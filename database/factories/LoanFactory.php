@@ -4,7 +4,9 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Book;
+use App\Models\Employee;
 use App\Models\User;
+use App\Models\Loan;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Loan>
@@ -18,17 +20,17 @@ class LoanFactory extends Factory
      */
     public function definition(): array
     {
-        $userId = User::inRandomOrder()->first()->id->where('role', 'user');
-        $employeeId = User::inRandomOrder()->first()->id->where('role', 'employee');
-        $book = Book::inRandomOrder()->first()->id_isbn;
+        $userId = User::inRandomOrder()->first()->id;
+        $employeeId = Employee::inRandomOrder()->first()->id;
+        $book = Book::inRandomOrder()->first()->id;
         $date = now();
         return [
             'loan_start_date' => $date,
             'id_isbn' => $book,
             'user_id' => $userId,
-            'employee_id' => $employeeId,
-            'loan_end_date' => $date->addDays($this->fake()->randomNumber(1)),
+            'loan_end_date' => $date->addDays(rand(1, 9)),
             'loan_due_date' => $date->addDays(7),
+            'employee_id' => $employeeId,
         ];
     }
 }

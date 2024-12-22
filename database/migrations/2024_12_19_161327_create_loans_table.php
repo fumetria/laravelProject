@@ -15,16 +15,10 @@ return new class extends Migration
             $table->id();
             $table->dateTime('loan_start_date');
             $table->foreignId('id_isbn')->constrained('books');
-            $table->foreign('id')->constrained(
-                table: 'users',
-                indexName: 'user_id'
-            );
-            $table->foreign('id')->constrained(
-                table: 'users',
-                indexName: 'employee_id'
-            );
+            $table->foreignId('user_id')->constrained('users');
             $table->dateTime('loan_end_date');
             $table->dateTime('loan_due_date');
+            $table->foreignId('employee_id')->constrained('employees');
             $table->timestamps();
         });
     }
