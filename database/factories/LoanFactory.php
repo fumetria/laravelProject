@@ -7,6 +7,9 @@ use App\Models\Book;
 use App\Models\Employee;
 use App\Models\User;
 use App\Models\Loan;
+use Illuminate\Support\Carbon;
+use App\Http\Controllers\BookControllerApi;
+
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Loan>
@@ -23,13 +26,22 @@ class LoanFactory extends Factory
         $userId = User::inRandomOrder()->first()->id;
         $employeeId = Employee::inRandomOrder()->first()->id;
         $book = Book::inRandomOrder()->first()->id;
-        $date = now();
+        BookControllerApi::updateStatus(Book::find($book), 'Prestado');
+        $date = Carbon::now();
+        $end_date = Carbon::now()->addDays(rand(1, 9));
+        $due_date = Carbon::now()->addDays(7);
+        if ($end_date === '') {
+            $status = 'activo';
+        } else {
+            $status = $end_date->diffInDays($due_date) < 0 ? 'Demorado' : 'Vencido';
+        }
         return [
             'loan_start_date' => $date,
             'book_id_isbn' => $book,
             'user_id' => $userId,
-            'loan_end_date' => $date->addDays(rand(1, 9)),
-            'loan_due_date' => $date->addDays(7),
+            'loan_end_date' => $end_date,
+            'loan_due_date' => $due_date,
+            'loan_status' => $status,
             'employee_id' => $employeeId,
         ];
     }

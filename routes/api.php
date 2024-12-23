@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Book;
 use App\Http\Controllers\BookControllerApi;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\LoanController;
 use App\Http\Controllers\UserControllerApi;
 
 Route::get('/user', function (Request $request) {
@@ -15,6 +17,10 @@ Route::get('/user', function (Request $request) {
  */
 Route::get('/books', [BookControllerApi::class, 'index']);
 /**
+ * Busca cualquier coincidencia dentro de la BD
+ */
+Route::get('/books/search', [BookControllerApi::class, 'search']);
+/**
  * Muestra información del libro seleccionado
  */
 Route::get('/books/{isbn}', [BookControllerApi::class, 'show']);
@@ -23,3 +29,5 @@ Route::get('/books/{isbn}', [BookControllerApi::class, 'show']);
  * Devuel el detalle de información del usuario
  */
 Route::get('/users/{id}', [UserControllerApi::class, 'show']);
+
+Route::get('/loans', [LoanController::class, 'index']);

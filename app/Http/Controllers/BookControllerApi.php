@@ -30,9 +30,9 @@ class BookControllerApi extends Controller
     {
         $book = Book::find($id);
 
-        if (!$book) {
-            return response()->json(['message' => 'Libro no encontrado'], 404);
-        }
+        // if (!$book) {
+        //     return response()->json(['message' => 'Libro no encontrado'], 404);
+        // }
 
         return response()->json($book);
     }
@@ -45,11 +45,34 @@ class BookControllerApi extends Controller
         //
     }
 
+    public static function updateStatus(Book $book, String $status)
+    {
+        $book->status = $status;
+        $book->save();
+    }
+
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Book $book)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $book = Book::orWhere('id', 'like', "%{$query}%")
+            ->orWhere('id_isbn', 'like', "%{$query}%")
+            ->orWhere('title', 'like', "%{$query}%")
+            ->orWhere('author_id', 'like', "%{$query}%")
+            ->orWhere('isbn', 'like', "%{$query}%")
+            ->orWhere('genre', 'like', "%{$query}%")
+            ->orWhere('publisher', 'like', "%{$query}%")
+            ->orWhere('status', 'like', "%{$query}%")
+            ->get();
+        return response()->json([
+            $book
+        ]);
     }
 }
