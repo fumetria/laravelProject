@@ -7,6 +7,9 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Database\Seeders\BookSeeder;
 use Database\Seeders\AuthorSeeder;
+use Database\Seeders\UserSeeder;
+use Database\Seeders\LoanSeeder;
+use Database\Seeders\EmployeeSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,5 +26,8 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call(AuthorSeeder::class);
         $this->call(BookSeeder::class);
+        $this->call(UserSeeder::class);
+        $this->call(EmployeeSeeder::class);
+        $this->call(LoanSeeder::class);
     }
 }
