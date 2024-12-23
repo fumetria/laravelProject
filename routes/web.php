@@ -10,7 +10,7 @@ use App\Http\Controllers\UserController;
  * Muestra página accesible para los usuarios
  */
 Route::get('/', function () {
-    echo "Hola, soy la página principal";
+    echo "Bienvenido";
 });
 
 /***

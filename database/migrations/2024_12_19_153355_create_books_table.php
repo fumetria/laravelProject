@@ -11,6 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
+
+        Schema::create('authors', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
+        });
+
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->string('id_isbn')->unique();
@@ -18,7 +25,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('genre');
             $table->string('publisher');
-            $table->string('author_id')->constrained('authors');
+            $table->foreignId('author_id')->constrained('authors');
             $table->string('status')->default('Disponible');
             $table->string('cover')->default('img/noimage.png');
             $table->integer('localitation_floor')->default(0);
@@ -33,6 +40,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('authors');
         Schema::dropIfExists('books');
     }
 };

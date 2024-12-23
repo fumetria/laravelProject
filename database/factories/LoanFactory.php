@@ -26,7 +26,7 @@ class LoanFactory extends Factory
         $date = now();
         return [
             'loan_start_date' => $date,
-            'id_isbn' => $book,
+            'book_id_isbn' => $book,
             'user_id' => $userId,
             'loan_end_date' => $date->addDays(rand(1, 9)),
             'loan_due_date' => $date->addDays(7),
