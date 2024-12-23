@@ -26,9 +26,9 @@ class BookFactory extends Factory
             'genre' => $this->faker->word(),
             'publisher' => $this->faker->sentence(2),
             'author_id' => $author,
-            'floor' => $this->faker->randomNumber(1),
-            'aisle' => $this->faker->randomNumber(1),
-            'bookshelves' => $this->faker->randomNumber(1)
+            'localitation_floor' => $this->faker->randomNumber(1),
+            'localitation_aisle' => $this->faker->randomNumber(1),
+            'localitation_bookshelves' => $this->faker->randomNumber(1)
         ];
     }
 }
