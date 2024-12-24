@@ -26,13 +26,13 @@ class BookControllerApi extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id_isbn)
+    public function show($id)
     {
-        $book = Book::find($id_isbn);
+        $book = Book::find($id);
 
-        if (!$book) {
-            return response()->json(['message' => 'Libro no encontrado'], 404);
-        }
+        // if (!$book) {
+        //     return response()->json(['message' => 'Libro no encontrado'], 404);
+        // }
 
         return response()->json($book);
     }
@@ -61,24 +61,18 @@ class BookControllerApi extends Controller
 
     public function search(Request $request)
     {
-        if (!empty($request->input('filterType'))) {
-            $filter = $request->input('filterType');
-            $query = $request->input('query');
-            $book = Book::where(strtolower($filter), 'like', strtolower("%$query%"))->get();
-            return response()->json($book);
-        } else {
-            $query = $request->input('query');
-            $book = Book::whereAny([
-                'id',
-                'id_isbn',
-                'title',
-                'author_id',
-                'isbn',
-                'genre',
-                'publisher',
-                'status'
-            ], 'like', "%{$query}%")->get();
-            return response()->json($book);
-        }
+        $query = $request->input('query');
+        $book = Book::orWhere('id', 'like', "%{$query}%")
+            ->orWhere('id_isbn', 'like', "%{$query}%")
+            ->orWhere('title', 'like', "%{$query}%")
+            ->orWhere('author_id', 'like', "%{$query}%")
+            ->orWhere('isbn', 'like', "%{$query}%")
+            ->orWhere('genre', 'like', "%{$query}%")
+            ->orWhere('publisher', 'like', "%{$query}%")
+            ->orWhere('status', 'like', "%{$query}%")
+            ->get();
+        return response()->json([
+            $book
+        ]);
     }
 }

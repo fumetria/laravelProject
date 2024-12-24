@@ -5,8 +5,10 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Book;
 use App\Http\Controllers\BookControllerApi;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\LoanController;
 use App\Http\Controllers\UserControllerApi;
+use Barryvdh\Debugbar\Facades\Debugbar;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -23,7 +25,7 @@ Route::get('/books/search', [BookControllerApi::class, 'search']);
 /**
  * Muestra información del libro seleccionado
  */
-Route::get('/books/{isbn}', [BookControllerApi::class, 'show']);
+Route::get('/books/{id_isbn}', [BookControllerApi::class, 'show']);
 
 /**
  * Devuel el detalle de información del usuario
@@ -31,3 +33,5 @@ Route::get('/books/{isbn}', [BookControllerApi::class, 'show']);
 Route::get('/users/{id}', [UserControllerApi::class, 'show']);
 
 Route::get('/loans', [LoanController::class, 'index']);
+
+Route::get('/employees', [EmployeeController::class, 'index']);
