@@ -27,10 +27,10 @@ return new class extends Migration
             $table->string('publisher');
             $table->foreignId('author_id')->constrained('authors');
             $table->string('status')->default('Disponible');
-            $table->string('cover')->default('img/noimage.png');
-            $table->integer('localitation_floor')->default(0);
-            $table->integer('localitation_aisle')->default(0);
-            $table->integer('localitation_bookshelves')->default(0);
+            $table->string('cover_url')->default('img/noimage.png');
+            $table->integer('location_floor')->default(0);
+            $table->integer('location_aisle')->default(0);
+            $table->integer('location_bookshelves')->default(0);
             $table->timestamps();
         });
     }
