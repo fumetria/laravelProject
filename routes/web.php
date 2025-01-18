@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\BookController;
+use App\Models\Book;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -16,7 +17,7 @@ Route::get('/', function () {
 
 Route::get('/books', function () {
     return Inertia::render('BooksList', [
-        'books' => [BookController::index()]
+        'books' => Book::get()
     ]);
 });
 
