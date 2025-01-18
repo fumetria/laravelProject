@@ -24,7 +24,7 @@ class LoanFactory extends Factory
     public function definition(): array
     {
         $userId = User::inRandomOrder()->first()->id;
-        $employeeId = Employee::inRandomOrder()->first()->id;
+        $employeeId = User::inRandomOrder()->first()->id;
         $book = Book::inRandomOrder()->first()->id;
         BookControllerApi::updateStatus(Book::find($book), 'Prestado');
         $date = Carbon::now();

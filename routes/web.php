@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\BookController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -10,6 +11,12 @@ Route::get('/', function () {
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
+    ]);
+});
+
+Route::get('/books', function () {
+    return Inertia::render('BooksList', [
+        'books' => [BookController::index()]
     ]);
 });
 

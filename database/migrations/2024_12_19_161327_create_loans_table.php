@@ -19,7 +19,7 @@ return new class extends Migration
             $table->dateTime('loan_end_date');
             $table->dateTime('loan_due_date');
             $table->string('loan_status')->default('Activo');
-            $table->foreignId('employee_id')->constrained('employees');
+            $table->foreignId('employee_id')->constrained('users');
             $table->timestamps();
         });
     }
