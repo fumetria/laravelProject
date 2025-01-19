@@ -15,11 +15,11 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/books', function () {
-    return Inertia::render('BooksList', [
-        'books' => Book::get()
-    ]);
-});
+// Route::get('/books', function () {
+//     return Inertia::render('BooksList', [
+//         'books' => Book::get()
+//     ]);
+// });
 
 Route::middleware([
     'auth:sanctum',
@@ -29,4 +29,9 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+    Route::get('/books', function () {
+        return Inertia::render('BooksList', [
+            'books' => Book::get()
+        ]);
+    })->name('books');
 });
