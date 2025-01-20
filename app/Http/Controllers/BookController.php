@@ -32,4 +32,33 @@ class BookController extends Controller
             $book
         ]);
     }
+
+    public function store(Request $request)
+    {
+        $book = new Book();
+        $book->isbn = $request->isbn;
+        $book_id = '';
+        if (!is_null(Book::where('isbn', $request->isbn))) {
+            $dc = Book::where('isbn', $request->isbn)->count();
+            if ($dc <= 9) {
+                $dc = '00' . str($dc);
+            } elseif ($dc <= 99) {
+                $dc = '0' . str($dc);
+            }
+            $book_id = $request->isbn . $dc;
+        } else {
+            $book_id = $request->isbn . '001';
+        }
+        $book->id_isbn = $book_id;
+        $book->title = $request->title;
+        $book->genre = $request->genre;
+        $book->publisher = $request->publisher;
+        $book->author_id = $request->author_id;
+        $book->cover_url = $request->cover_url;
+
+        $book->save();
+
+        // Book::Create($request->all());
+        return redirect()->route('books');
+    }
 }

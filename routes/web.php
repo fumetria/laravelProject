@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\BookController;
 use App\Models\Book;
+use App\Models\Author;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -34,4 +35,15 @@ Route::middleware([
             'books' => Book::get()
         ]);
     })->name('books');
+    Route::get('/pruebas', function () {
+        return Inertia::render('Pruebas', [
+            'authors' => Author::get()
+        ]);
+    })->name('pruebas');
+    Route::get('/books/new', function () {
+        return Inertia::render('AddBook', [
+            'authors' => Author::get()
+        ]);
+    })->name('newBook');
+    Route::post('/books/store', [BookController::class, 'store']);
 });

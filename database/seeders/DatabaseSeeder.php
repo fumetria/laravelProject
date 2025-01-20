@@ -20,10 +20,13 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'admin@example.com',
+            'password' => 'admin1234',
+            'is_employee' => true,
+            'is_admin' => true
+        ]);
         $this->call(AuthorSeeder::class);
         $this->call(BookSeeder::class);
         $this->call(UserSeeder::class);

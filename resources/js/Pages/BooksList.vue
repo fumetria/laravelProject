@@ -1,21 +1,32 @@
 <script setup>
+import PrimaryButton from '@/Components/PrimaryButton.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
 
 defineProps({
     books: Object,
 });
+
+
 </script>
 
 <template>
-    <AppLayout title="Listado_libros">
+    <AppLayout title="Listado Libros">
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Listado Libros
-            </h2>
+            <div class="box-border flex justify-between content-center items-center">
+                <h1 class="font-semibold text-4xl text-gray-800 leading-tight">
+                    Listado Libros
+                </h1>
+                <a :href="route('newBook')">
+                    <PrimaryButton>
+                            <font-awesome-icon :icon="['fas', 'plus']" class="z-50 text-xl text-stone-50"/>
+                    </PrimaryButton>
+                </a>
+            </div>
+
         </template>
-        <section class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <table class="items-center w-full border-collapse border-neutral-800 bg-neutral-50">
-                <thead class="bg-cyan-200 ">
+        <section class="bg-stone-900 my-4 mx-5 ">
+            <table class="items-center py-3 border-collapse border-neutral-800 bg-orange-300">
+                <thead class="bg-cyan-200 py-3 px-4">
                     <tr class="border-collapse border border-neutral-800 text-blueGray-500">
                         <th class="text-neutral-500 py-2 px-2">ID</th>
                         <th class="text-neutral-500 py-2 px-2">ID_ISBN</th>

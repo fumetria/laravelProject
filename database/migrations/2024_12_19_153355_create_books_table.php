@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('genre');
             $table->string('publisher');
             $table->foreignId('author_id')->constrained('authors');
-            $table->string('cover_url')->default('img/noimage.png');
+            $table->string('cover_url')->default('profile-photos/noimage.png')->nullable();
             $table->string('status')->default('Disponible');
             $table->integer('location_floor')->default(0);
             $table->integer('location_aisle')->default(0);
