@@ -14,23 +14,25 @@ class BookController extends Controller
 
     public function search(Request $request)
     {
-        $query = $request->input('query');
-        $book = Book::orWhere('id', 'like', "%{$query}%")
-            ->orWhere('id_isbn', 'like', "%{$query}%")
-            ->orWhere('title', 'like', "%{$query}%")
-            ->orWhere('author', 'like', "%{$query}%")
-            ->orWhere('isbn', 'like', "%{$query}%")
-            ->orWhere('genre', 'like', "%{$query}%")
-            ->orWhere('publisher', 'like', "%{$query}%")
-            ->orWhere('status', 'like', "%{$query}%")
-            ->get();
-
-        // $book = Book::where('id_isbn', 'like', "%{$query}%")
-        //     ->get();
-        return response()->json([
-            'input' =>  $query . " " . "%{$query}%",
-            $book
-        ]);
+        if (!empty($request->input('filterType'))) {
+            $filter = $request->input('filterType');
+            $query = $request->input('query');
+            $book = Book::where(strtolower($filter), 'like', strtolower("%$query%"))->get();
+            return $book;
+        } else {
+            $query = $request->input('query');
+            $book = Book::whereAny([
+                'id',
+                'id_isbn',
+                'title',
+                'author_id',
+                'isbn',
+                'genre',
+                'publisher',
+                'status'
+            ], 'like', "%{$query}%")->get();
+            return $book;
+        }
     }
 
     public function store(Request $request)

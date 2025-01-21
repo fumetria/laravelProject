@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BookControllerApi;
 use App\Models\Book;
 use App\Models\Author;
 
@@ -15,6 +16,11 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+/**
+ * Muestra información del libro seleccionado
+ */
+Route::get('/api/books/search/?query={isbn}&filterType=isbn', [BookControllerApi::class, 'search']);
 
 // Route::get('/books', function () {
 //     return Inertia::render('BooksList', [
