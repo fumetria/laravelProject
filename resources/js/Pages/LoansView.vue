@@ -23,7 +23,5 @@ defineProps({
                 <div></div>
             </aside>
         </div>
-
-
     </AppLayout>
 </template>
