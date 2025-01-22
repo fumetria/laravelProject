@@ -7,6 +7,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookControllerApi;
 use App\Models\Book;
 use App\Models\Author;
+use App\Models\Loan;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -52,4 +53,9 @@ Route::middleware([
         ]);
     })->name('newBook');
     Route::post('/books/store', [BookController::class, 'store']);
+    Route::get('/loans', function () {
+        return Inertia::render('LoansView', [
+            // 'loans' => Loan::get()
+        ]);
+    })->name('loans');
 });

@@ -20,7 +20,7 @@ class BookFactory extends Factory
         $isbn = $this->faker->isbn13();
         $author = Author::inRandomOrder()->first()->id;
         return [
-            'id_isbn' => $isbn . $this->faker->randomNumber(3, true),
+            'id_isbn' => $isbn . '000',
             'isbn' => $isbn,
             'title' => $this->faker->sentence(),
             'genre' => $this->faker->word(),

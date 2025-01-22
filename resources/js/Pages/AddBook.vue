@@ -9,24 +9,26 @@ const props = defineProps({
 })
 
 const form = useForm({
-    isbn: '',
-    title: '',
-    genre: '',
-    publisher: '',
-    author_id: '',
-    cover_url: '',
+    isbn: ref(''),
+    title: ref(''),
+    genre: ref(''),
+    publisher: ref(''),
+    author_id: ref(''),
+    cover_url: ref(''),
 })
 
 const isLoading = ref(false);
-const errorMessage  = ref('');
+const errorMessage = ref('');
 watch(() => form.isbn, async (newIsbn) => {
     if (newIsbn > 10) {
         isLoading.value = true;
         errorMessage.value = '';
         try {
-            const res = await axios.get(`/api/books/search/?query=${newIsbn}&filterType=isbn`); 
-            if (res.data.book) {
-                const book = res.data.book[0];
+            const res = await axios.get(`/api/books/search/?query=${newIsbn}&filterType=isbn`);
+            console.log(res);
+            console.log(res.data[0]);
+            if (res.data[0] != null) {
+                const book = res.data[0];
                 form.title = book.title;
                 form.genre = book.genre;
                 form.publisher = book.publisher;
