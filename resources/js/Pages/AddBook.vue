@@ -97,7 +97,8 @@ watch(() => form.isbn, async (newIsbn) => {
                                 class="rounded w-96" required>
                         </div>
                         <!-- <button type="submit" :disabled="form.processing">Añadir</button> -->
-                        <PrimaryButton type="submit" class="flex flex-col my-2 justify-between bg-orange-600"
+                        <PrimaryButton type="submit"
+                            class="flex flex-col my-2 justify-between bg-orange-600  hover:bg-orange-400"
                             :disabled="form.processing">
                             Añadir
                         </PrimaryButton>

@@ -5,17 +5,13 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookControllerApi;
+use App\Http\Controllers\LoanController;
 use App\Models\Book;
 use App\Models\Author;
 use App\Models\Loan;
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return redirect('/dashboard');
 });
 
 /**
@@ -58,4 +54,10 @@ Route::middleware([
             // 'loans' => Loan::get()
         ]);
     })->name('loans');
+    Route::post('/loans/store', [LoanController::class, 'store']);
+    Route::get('/loans/list', function () {
+        return Inertia::render('LoansListView', [
+            'loans' => Loan::get()
+        ]);
+    })->name('loansList');
 });
