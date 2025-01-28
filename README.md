@@ -1,3 +1,3 @@
-![Library app logo](/img/libraryLogos.PNG)
+![Library app logo](/public/img/libraryLogos.PNG)
 
-#Library App 
+# Library App 
