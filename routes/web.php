@@ -1,62 +1,67 @@
 <?php
 
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BookControllerApi;
 use App\Http\Controllers\LoanController;
-use App\Http\Controllers\UserController;
+use App\Models\Book;
+use App\Models\Author;
+use App\Models\Loan;
 
-
-/***
- * Muestra página accesible para los usuarios
- */
 Route::get('/', function () {
-    echo "Bienvenido";
+    return redirect('/dashboard');
 });
 
-/***
- * Muestra página accesible para los empleados
- */
-
-Route::get('/main', function () {
-    return view('main-dashboard');
+Route::get('/catalog', function () {
+    return Inertia::render('CatalogView');
 });
 
 /**
- * Muestra interfaz para dar de alta un prestamo de libro
+ * Muestra información del libro seleccionado
  */
-Route::get('/loans', function () {
-    return view('loans-page');
+Route::get('/api/books/search/?query={isbn}&filterType=isbn', [BookControllerApi::class, 'search']);
+
+// Route::get('/books', function () {
+//     return Inertia::render('BooksList', [
+//         'books' => Book::get()
+//     ]);
+// });
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
+    Route::get('/books', function () {
+        return Inertia::render('BooksList', [
+            'books' => Book::get()
+        ]);
+    })->name('books');
+    Route::get('/pruebas', function () {
+        return Inertia::render('Pruebas', [
+            'authors' => Author::get()
+        ]);
+    })->name('pruebas');
+    Route::get('/books/new', function () {
+        return Inertia::render('AddBook', [
+            'authors' => Author::get()
+        ]);
+    })->name('newBook');
+    Route::post('/books/store', [BookController::class, 'store']);
+    Route::get('/loans', function () {
+        return Inertia::render('LoansView', [
+            // 'loans' => Loan::get()
+        ]);
+    })->name('loans');
+    Route::post('/loans/store', [LoanController::class, 'store']);
+    Route::get('/loans/list', function () {
+        return Inertia::render('LoansListView', [
+            'loans' => Loan::get()
+        ]);
+    })->name('loansList');
 });
-/**
- * Muestra listado con los préstmos realizados (activos, devueltos, vencidos y no devueltros, etc.)
- */
-Route::get('/loans/list', [LoanController::class, 'index']);
-
-/**
- * Muestra detalle de información del préstamo seleccionado.
- */
-Route::get('/loans/list/{id-loan}', [LoanController::class, 'show']);
-/**
- * Crear nuevo préstamo de libro
- */
-Route::get('/loans/new', [LoanController::class, 'create']);
-Route::post('/loans/new', [LoanController::class, 'store']);
-
-/**
- * Muestra interfaz de menú de gestión de usuarios(alta, baja, modificación, ¿es empleado?)
- */
-Route::get('/users', function () {
-    return view('users-dashboard');
-});
-
-Route::get('/users/list', [UserController::class, 'index']);
-Route::get('/users/list/{id}', [UserController::class, 'show']);
-Route::get('/users/list/add', [UserController::class, 'create']);
-Route::post('/users/list/add', [UserController::class, 'store']);
-Route::post('/users/list/{id}/update', [UserController::class, 'update']);
-Route::post('/users/list/{id}/delete', [UserController::class, 'destroy']);
-
-Route::get('/catalog/books', [BookController::class, 'index']);
-Route::get('/catalog/books/{id}', [BookController::class, 'show']);
-Route::get('/catalog/books/{id}/update', [BookController::class, 'index']);
-Route::get('/catalog/books/{id}/delete', [BookController::class, 'show']);

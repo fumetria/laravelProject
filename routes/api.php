@@ -25,7 +25,7 @@ Route::get('/books/search', [BookControllerApi::class, 'search']);
 /**
  * Muestra información del libro seleccionado
  */
-Route::get('/books/{id_isbn}', [BookControllerApi::class, 'show']);
+Route::get('/books/{isbn}', [BookControllerApi::class, 'show']);
 
 /**
  * Devuel el detalle de información del usuario

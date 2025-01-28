@@ -13,28 +13,15 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('dni')->unique();
             $table->string('name');
-            $table->string('last_name_1');
-            $table->string('last_name_2');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->timestamps();
-        });
-
-        Schema::create('employees', function (Blueprint $table) {
-            $table->id();
-            $table->string('dni')->unique();
-            $table->string('name');
-            $table->string('last_name_1');
-            $table->string('last_name_2');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->string('role')->default('admin');
-            $table->rememberToken();
+            $table->boolean('is_employee')->default(false);
+            $table->boolean('is_admin')->default(false);
+            $table->foreignId('current_team_id')->nullable();
+            $table->string('profile_photo_path', 2048)->nullable();
             $table->timestamps();
         });
 
@@ -62,6 +49,5 @@ return new class extends Migration
         Schema::dropIfExists('users');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
-        Schema::dropIfExists('employees');
     }
 };

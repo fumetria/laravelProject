@@ -20,15 +20,18 @@ class BookControllerApi extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $book = new Book();
+        $book->isbn = $request->isbn;
+        if (Book::findOrFail($request->isbn)) {
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id_isbn)
+    public function show($isbn)
     {
-        $book = Book::find($id_isbn);
+        $book = Book::find($isbn);
 
         if (!$book) {
             return response()->json(['message' => 'Libro no encontrado'], 404);
@@ -69,7 +72,6 @@ class BookControllerApi extends Controller
         } else {
             $query = $request->input('query');
             $book = Book::whereAny([
-                'id',
                 'id_isbn',
                 'title',
                 'author_id',

@@ -19,15 +19,14 @@ return new class extends Migration
         });
 
         Schema::create('books', function (Blueprint $table) {
-            $table->id();
-            $table->string('id_isbn')->unique();
+            $table->string('id_isbn')->primary()->unique();
             $table->string('isbn');
             $table->string('title');
             $table->string('genre');
             $table->string('publisher');
             $table->foreignId('author_id')->constrained('authors');
+            $table->string('cover_url')->default('/img/noimage.png')->nullable();
             $table->string('status')->default('Disponible');
-            $table->string('cover_url')->default('img/noimage.png');
             $table->integer('location_floor')->default(0);
             $table->integer('location_aisle')->default(0);
             $table->integer('location_bookshelves')->default(0);
