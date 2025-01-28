@@ -11,7 +11,13 @@ class Book extends Model
 {
     /** @use HasFactory<\Database\Factories\BookFactory> */
     use HasFactory;
-
+    /**
+     * #Primary Keys
+     * https://laravel.com/docs/11.x/eloquent#primary-keys
+     */
+    public $incrementing = false;
+    protected $keyType = 'string';
+    protected $primaryKey = 'id_isbn';
     protected $fillable = ['isbn', 'title', 'genre', 'publisher', 'author_id'];
 
     public function author()

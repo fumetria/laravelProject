@@ -72,7 +72,6 @@ class BookControllerApi extends Controller
         } else {
             $query = $request->input('query');
             $book = Book::whereAny([
-                'id',
                 'id_isbn',
                 'title',
                 'author_id',

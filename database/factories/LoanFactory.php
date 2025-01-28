@@ -25,19 +25,22 @@ class LoanFactory extends Factory
     {
         $userId = User::inRandomOrder()->first()->id;
         $employeeId = User::inRandomOrder()->first()->id;
-        $book = Book::inRandomOrder()->first()->id;
-        BookControllerApi::updateStatus(Book::find($book), 'Prestado');
+        $book = Book::where('status', 'Disponible')->inRandomOrder()->first();
+        BookControllerApi::updateStatus(Book::find($book->id_isbn), 'Prestado');
         $date = Carbon::now();
         $end_date = Carbon::now()->addDays(rand(1, 9));
         $due_date = Carbon::now()->addDays(7);
-        if ($end_date === '') {
-            $status = 'activo';
+        $status = '';
+        if ($end_date === '' && $date->diffInDays($due_date) > 0) {
+            $status = 'Activo';
+        } else if ($end_date === '' && $date->diffInDays($due_date) < 0) {
+            $status = 'Demorado';
         } else {
-            $status = $end_date->diffInDays($due_date) < 0 ? 'Demorado' : 'Vencido';
+            $status = 'Vencido';
         }
         return [
             'loan_start_date' => $date,
-            'book_id_isbn' => $book,
+            'id_isbn' => $book->id_isbn,
             'user_id' => $userId,
             'loan_end_date' => $end_date,
             'loan_due_date' => $due_date,

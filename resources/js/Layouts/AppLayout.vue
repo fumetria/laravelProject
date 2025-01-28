@@ -56,7 +56,12 @@ const logout = () => {
                                 </div>
                                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                     <NavLink :href="route('books')" :active="route().current('books')">
-                                        Books
+                                        Libros
+                                    </NavLink>
+                                </div>
+                                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                    <NavLink :href="route('loans')" :active="route().current('loans')">
+                                        Préstamos
                                     </NavLink>
                                 </div>
                             </div>
@@ -312,7 +317,7 @@ const logout = () => {
                 </header>
 
                 <!-- Page Content -->
-                <main>
+                <main class="">
                     <slot />
                 </main>
 

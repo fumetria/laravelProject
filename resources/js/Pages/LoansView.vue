@@ -1,6 +1,6 @@
 <script setup>
 import { ref, watch } from 'vue';
-import { useForm, router } from '@inertiajs/vue3';
+import { useForm, router, usePage } from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 
@@ -9,12 +9,12 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
 defineProps({
     loans: Object,
 })
-
+const { props } = usePage();
 const form = useForm({
     id_isbn: ref(''),
     title: ref(''),
     user_id: ref(''),
-    employee_id: ref('')
+    employee_id: props.auth.user.id
 
 })
 
@@ -53,23 +53,24 @@ watch(() => form.id_isbn, async (newIsbn) => {
             <h1>Préstamo Libros</h1>
         </template>
         <div>
-            <section class="bg-stone-500">
-                <div class="">
+            <section class="">
+                <div class="py-8 px-4 mx-auto my-10 rounded-xl max-w-2xl lg:py-16 bg-emerald-600">
                     <form @submit.prevent="form.post('/loans/store')">
-                        <div>
+                    <div class="container flex flex-col items-center justify-center">
+                        <div class="flex flex-col my-2 justify-between">
                             <label for="id_isbn">ID_ISBN</label>
                             <input type="text" v-model="form.id_isbn" id="id_isbn" placeholder="Introduce id del libro">
                             <div v-if="isLoading" class="text-white">Buscando...</div>
                         </div>
-                        <div>
+                        <div class="flex flex-col my-2 justify-between">
                             <label for="title">TíTULO</label>
                             <input type="text" v-model="form.title" id="title" disabled>
                         </div>
-                        <div>
+                        <div class="flex flex-col my-2 justify-between">
                             <label for="user_id">ID USUARIO</label>
                             <input type="text" v-model="form.user_id" id="user_id" placeholder="Nº usuario">
                         </div>
-                        <div>
+                        <div class="flex flex-col my-2 justify-between">
                             <label for="employee_id" hidden>ID EMPLEADO</label>
                             <input type="text" id="employee_id" v-model="form.employee_id" hidden>
                         </div>
@@ -78,6 +79,7 @@ watch(() => form.id_isbn, async (newIsbn) => {
                             :disabled="form.processing">
                             Alta préstamo
                         </PrimaryButton>
+                    </div>
                     </form>
                 </div>
             </section>

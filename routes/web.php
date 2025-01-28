@@ -14,6 +14,10 @@ Route::get('/', function () {
     return redirect('/dashboard');
 });
 
+Route::get('/catalog', function () {
+    return Inertia::render('CatalogView');
+});
+
 /**
  * Muestra información del libro seleccionado
  */

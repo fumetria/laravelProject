@@ -68,4 +68,10 @@ class BookController extends Controller
         $book->status = $status;
         $book->save();
     }
+
+    public static function getById_isbn(Request $request)
+    {
+        $book = Book::where('id_isbn', $request->id_isbn);
+        return $book;
+    }
 }
