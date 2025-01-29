@@ -67,6 +67,7 @@ class BookControllerApi extends Controller
         if (!empty($request->input('filterType'))) {
             $filter = $request->input('filterType');
             $query = $request->input('query');
+            // $order = $request->input('order') ?: 'asc';
             $book = Book::where(strtolower($filter), 'like', strtolower("%$query%"))->get();
             return response()->json($book);
         } else {

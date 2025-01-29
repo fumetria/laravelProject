@@ -49,7 +49,7 @@ watch(() => form.id_isbn, async (newIsbn) => {
 <template>
     <AppLayout title="Préstamo" class="">
         <template #header >
-            <h1 class="font-semibold text-4xl text-gray-800 leading-tight">Préstamo Libros</h1>
+            <h1>Préstamo Libros</h1>
 
         </template>
         <div class="h-full flex justify-center items-center gap-4">
@@ -71,11 +71,7 @@ watch(() => form.id_isbn, async (newIsbn) => {
                             <label for="user_id">ID USUARIO</label>
                             <input type="text" v-model="form.user_id" id="user_id" placeholder="Nº usuario">
                         </div>
-                        <!-- <div class="flex flex-col my-2 justify-between">
-                            <label for="employee_id" hidden>ID EMPLEADO</label>
-                            <input type="text" id="employee_id" v-model="form.employee_id" hidden>
-                        </div> -->
-                        <div v-bind="errorLoan" class="text-red-500">{{ errorLoan }}</div>
+                        <div class="text-red-800">{{ errorLoan }}</div>
                         <PrimaryButton type="submit"
                             class="flex flex-col my-2 justify-between bg-orange-600 hover:bg-orange-400"
                             :disabled="form.processing">

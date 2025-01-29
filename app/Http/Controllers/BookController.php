@@ -69,9 +69,14 @@ class BookController extends Controller
         $book->save();
     }
 
-    public static function getById_isbn(Request $request)
+    public static function show($isbn)
     {
-        $book = Book::where('id_isbn', $request->id_isbn);
+        $book = Book::find($isbn);
+
+        if (!$book) {
+            return 'Libro no encontrado';
+        }
+
         return $book;
     }
 }

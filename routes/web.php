@@ -59,6 +59,11 @@ Route::middleware([
         ]);
     })->name('loans');
     Route::post('/loans/store', [LoanController::class, 'store']);
+    Route::get('/loans/error', function () {
+        return Inertia::render('LoansViewError', [
+            'errorLoan' => 'Error, libro prestado',
+        ]);
+    })->name('loansError');
     Route::get('/loans/list', function () {
         return Inertia::render('LoansListView', [
             'loans' => Loan::get()

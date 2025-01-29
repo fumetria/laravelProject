@@ -11,12 +11,15 @@ defineProps({
 
 <template>
     <AppLayout title="Listado Préstamos">
-        <template #header>
-            <div class="box-border flex justify-between content-center items-center">
-                <h1 class="font-semibold text-4xl text-gray-800 leading-tight">
-                    Listado Préstamos
-                </h1>
-            </div>
+        <template #header class="flex justify-between">
+            <h1 class="font-semibold text-4xl text-gray-800 leading-tight">
+                <span>
+                    <a :href="route('loans')">
+                        <font-awesome-icon icon="circle-xmark"  class="z-50 text-xl text-red-600"/>
+                    </a>
+                </span>
+                Listado Préstamos
+            </h1>
 
         </template>
         <section class=" my-4 mx-5 ">
