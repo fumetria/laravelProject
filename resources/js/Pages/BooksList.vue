@@ -7,7 +7,10 @@ defineProps({
 });
 
 
+
 </script>
+
+
 
 <template>
     <AppLayout title="Listado Libros">
@@ -38,19 +41,40 @@ defineProps({
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="book in books" :key="book.id" class="items-center">
+                    <tr v-for="book in books" :key="book.id" class="items-center even:bg-gray-200">
                         <td class="p-2">{{ book.id_isbn }}</td>
                         <td class="p-2">{{ book.isbn }}</td>
                         <td class="p-2">{{ book.title }}</td>
                         <td class="p-2 text-center">{{ book.genre }}</td>
                         <td class="p-2">{{ book.publisher }}</td>
                         <td class="p-2">{{ book.author_id }}</td>
-                        <td class="p-2">{{
+                        <td class="p-2" :class="estado(book.status)">{{
                             book.status
-                        }}</td>
+                            }}</td>
                     </tr>
                 </tbody>
             </table>
         </section>
     </AppLayout>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      items: [
+        { status: 'Disponible' },
+        { status: 'Prestado' }
+      ]
+    };
+  },
+  methods: {
+    estado(status) {
+      return {
+        'text-green-500': status === 'Disponible',
+        'text-red-500': status === 'Prestado'
+      };
+    }
+  }
+};
+</script>

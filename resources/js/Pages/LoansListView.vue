@@ -34,7 +34,7 @@ defineProps({
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="loan in loans" :key="loan.id" class="items-center">
+                    <tr v-for="loan in loans" :key="loan.id" class="items-center even:bg-gray-300">
                         <th class="p-2 text-center">{{ loan.id }}</th>
                         <td class="p-2 text-center">{{ loan.loan_start_date }}</td>
                         <td class="p-2 text-center">{{ loan.id_isbn }}</td>

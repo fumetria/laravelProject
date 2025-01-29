@@ -13,8 +13,8 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
         </template>
 
         <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+            <div class=" max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="flex justify-center gap-4 bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <a :href="route('loans')" :active="route().current('loans')">
                         <PrimaryButton type="button"
                             class="flex flex-col my-2 justify-between bg-orange-600 hover:bg-orange-400"
@@ -24,7 +24,7 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
                     </a>
                     <a :href="route('books')" :active="route().current('books')">
                         <PrimaryButton type="button"
-                            class="flex flex-col my-2 justify-between bg-orange-600 hover:bg-orange-400"
+                            class="flex flex-col my-2 justify-between bg-sky-500 hover:bg-sky-300"
                             >
                             Libros
                         </PrimaryButton>

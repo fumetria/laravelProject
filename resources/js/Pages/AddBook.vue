@@ -53,7 +53,9 @@ watch(() => form.isbn, async (newIsbn) => {
 <template>
     <AppLayout title="Nuevo libro">
         <template #header>
-            <h1 class="font-semibold text-4xl text-gray-800 leading-tight">Nuevo Libro</h1>
+            <a href="">
+                <h1 class="font-semibold text-4xl text-gray-800 leading-tight">Nuevo Libro</h1>
+            </a>
         </template>
         <section class=" w-full">
             <div class="py-8 px-4 mx-auto my-10 rounded-xl max-w-2xl lg:py-16 bg-emerald-600">
