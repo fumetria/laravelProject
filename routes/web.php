@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -23,12 +24,6 @@ Route::get('/catalog', function () {
  */
 Route::get('/api/books/search/?query={isbn}&filterType=isbn', [BookControllerApi::class, 'search']);
 
-// Route::get('/books', function () {
-//     return Inertia::render('BooksList', [
-//         'books' => Book::get()
-//     ]);
-// });
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -42,21 +37,21 @@ Route::middleware([
             'books' => Book::get()
         ]);
     })->name('books');
-    Route::get('/pruebas', function () {
-        return Inertia::render('Pruebas', [
-            'authors' => Author::get()
-        ]);
-    })->name('pruebas');
     Route::get('/books/new', function () {
         return Inertia::render('AddBook', [
             'authors' => Author::get()
         ]);
     })->name('newBook');
     Route::post('/books/store', [BookController::class, 'store']);
+
+
+    Route::get('/authors/new', function () {
+        return Inertia::render('AddAuthor');
+    })->name('addAuthorView');
+    Route::post('/authors/store', [AuthorController::class, 'store']);
+
     Route::get('/loans', function () {
-        return Inertia::render('LoansView', [
-            // 'loans' => Loan::get()
-        ]);
+        return Inertia::render('LoansView', []);
     })->name('loans');
     Route::post('/loans/store', [LoanController::class, 'store']);
     Route::get('/loans/error', function () {
@@ -69,4 +64,10 @@ Route::middleware([
             'loans' => Loan::get()
         ]);
     })->name('loansList');
+    Route::get('/loans/return', function () {
+        return Inertia::render('LoansReturn', [
+            'loans' => Loan::get()
+        ]);
+    })->name('loansReturn');
+    Route::post('/loans/finish', [LoanController::class, 'finish']);
 });

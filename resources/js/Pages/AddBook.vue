@@ -4,6 +4,7 @@ import { useForm } from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import axios from 'axios';
+
 const props = defineProps({
     authors: Object,
 })
@@ -25,8 +26,6 @@ watch(() => form.isbn, async (newIsbn) => {
         errorMessage.value = '';
         try {
             const res = await axios.get(`/api/books/search/?query=${newIsbn}&filterType=isbn`);
-            console.log(res);
-            console.log(res.data[0]);
             if (res.data[0] != null) {
                 const book = res.data[0];
                 form.title = book.title;
@@ -84,7 +83,12 @@ watch(() => form.isbn, async (newIsbn) => {
                                 class="rounded w-96" required>
                         </div>
                         <div class="flex flex-col my-2 justify-between">
-                            <label for="author" class="font-bold text-white">AUTOR</label>
+                            <label for="author" class="font-bold text-white">
+                                AUTOR
+                                <span class="text-white">
+                                    <a :href="route('addAuthorView')"><font-awesome-icon icon="fa-solid fa-user-plus" /></a>
+                                </span>
+                            </label>
                             <select name="author_id" v-model="form.author_id" id="author_id" class="rounded w-96"
                                 required>
                                 <option value="">Seleccione autor</option>

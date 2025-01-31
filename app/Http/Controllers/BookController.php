@@ -60,7 +60,6 @@ class BookController extends Controller
 
         $book->save();
 
-        // Book::Create($request->all());
         return redirect()->route('books');
     }
     public static function updateStatus(Book $book, String $status)

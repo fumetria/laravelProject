@@ -39,8 +39,30 @@ class LoanController extends Controller
                 return redirect()->route('loansError');
             }
         }
-
-
         return redirect()->route('loansList');
+    }
+
+    public function show($id_isbn)
+    {
+        $loan = Loan::where('id_isbn', 'like', strtolower($id_isbn))->get();
+
+        if (!$loan) {
+            return 'Préstamo no encontrado';
+        }
+        return response()->json($loan);
+    }
+
+    public function finish(Request $request)
+    {
+
+        Loan::where('id_isbn', 'like', strtolower($request->id_isbn))->update([
+            'loan_end_date' => Carbon::now(),
+            'loan_status' => 'Vencido'
+        ]);
+        Book::where('id_isbn', 'like', strtolower($request->id_isbn))->update([
+            'status' => 'Disponible'
+        ]);
+
+        return redirect()->route('loans');
     }
 }

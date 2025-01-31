@@ -10,33 +10,33 @@ defineProps({
     loans: Object,
     errorLoan: String,
 })
-const { props } = usePage();
+
 const form = useForm({
     id_isbn: ref(''),
     title: ref(''),
     user_id: ref(''),
-    employee_id: props.auth.user.id
 
 })
 
 // Busca el nombre del libro para mostrar al introducir id_isbn del libro
 const isLoading = ref(false);
 const errorMessage = ref('');
-watch(() => form.id_isbn, async (newIsbn) => {
-    if (newIsbn > 10) {
+watch(() => form.id_isbn, async (id_isbn) => {
+    if (id_isbn > 10) {
         isLoading.value = true;
         errorMessage.value = '';
         try {
-            const res = await axios.get(`/api/books/search/?query=${newIsbn}&filterType=id_isbn`);
+            const res = await axios.get(`/api/loans/show/${id_isbn}`);
             if (res.data[0] != null) {
-                const book = res.data[0];
-                form.title = book.title;
+                const loan = res.data[0];
+                form.id_isbn = loan.id_isbn;
+                form.user_id = loan.user_id;
             }
         } catch (error) {
             if (error.response && error.response.status === 404) {
-                errorMessage.value = 'No se encontró ningún libro con este ISBN.';
+                errorMessage.value = 'No se encontró ningún préstamo con este id.';
             } else {
-                errorMessage.value = 'Ocurrió un error al buscar el ISBN.';
+                errorMessage.value = 'Ocurrió un error al buscar el ID.';
             }
         } finally {
             isLoading.value = false;
@@ -54,8 +54,8 @@ watch(() => form.id_isbn, async (newIsbn) => {
         </template>
         <div class="h-full flex justify-center items-center gap-4">
             <section class="">
-                <div class="py-1 px-2 mx-auto my-10 rounded-xl max-w-xl bg-emerald-600">
-                    <form @submit.prevent="form.post('/loans/store')">
+                <div class="py-1 px-2 mx-auto my-10 rounded-xl max-w-xl bg-pink-600">
+                    <form @submit.prevent="form.post('/loans/finish')">
                     <div class="container flex flex-col items-center justify-center">
                         <div class="flex flex-col my-2 justify-between">
                             <label for="id_isbn">ID_ISBN</label>
@@ -63,19 +63,20 @@ watch(() => form.id_isbn, async (newIsbn) => {
                             <div v-if="isLoading" class="text-white">Buscando...</div>
                             <div v-if="errorMessage" class="text-white">{{errorMessage}}</div>
                         </div>
-                        <div class="flex flex-col my-2 justify-between">
+                        <!-- <div class="flex flex-col my-2 justify-between">
                             <label for="title">TíTULO</label>
                             <input type="text" v-model="form.title" id="title" disabled>
-                        </div>
+                        </div> -->
                         <div class="flex flex-col my-2 justify-between">
                             <label for="user_id">ID USUARIO</label>
-                            <input type="text" v-model="form.user_id" id="user_id" placeholder="Nº usuario">
+                            <input type="text" v-model="form.user_id" id="user_id" placeholder="Nº usuario" disabled>
                         </div>
+
                         <div v-bind="errorLoan" class="text-red-500">{{ errorLoan }}</div>
                         <PrimaryButton type="submit"
                             class="flex flex-col my-2 justify-between bg-orange-600 hover:bg-orange-400"
                             :disabled="form.processing">
-                            Alta préstamo
+                            Devolución libro
                         </PrimaryButton>
                     </div>
                     </form>
@@ -89,11 +90,11 @@ watch(() => form.id_isbn, async (newIsbn) => {
                         Listado
                     </PrimaryButton>
                 </a>
-                <a :href="route('loansReturn')" :active="route().current('loansReturn')">
+                <a :href="route('loans')" :active="route().current('loans')">
                     <PrimaryButton type="button"
-                        class="flex flex-col my-2 justify-center size-32 items-center bg-pink-600 hover:bg-pink-400"
+                        class="flex flex-col my-2 justify-center size-32 items-center bg-emerald-600 hover:bg-emerald-400"
                         :disabled="form.processing">
-                        Devolución
+                        Alta préstamo
                     </PrimaryButton>
                 </a>
             </aside>
