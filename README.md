@@ -41,6 +41,12 @@ Para probar tenemos el siguiente usuario habilitado:
 ```
 admin@example.com
 admin1234
+
+employee@example.com
+employee1234
+
+user@example.com
+user1234
 ```
 
 ## Características
