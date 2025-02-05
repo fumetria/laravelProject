@@ -12,10 +12,10 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* import specific icons */
-import { faPlus, faUserSecret, faArrowLeft, faCircleXmark, faUserPlus } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faUserSecret, faArrowLeft, faCircleXmark, faUserPlus, faEdit, faTrash, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
 /* add icons to the library */
-library.add(faUserSecret, faPlus, faArrowLeft, faCircleXmark, faUserPlus);
+library.add(faUserSecret, faPlus, faArrowLeft, faCircleXmark, faUserPlus, faEdit, faTrashAlt, faTrash);
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 

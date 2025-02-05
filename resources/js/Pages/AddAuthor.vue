@@ -55,7 +55,7 @@ const form = useForm({
             </h1>
         </template>
         <section class=" w-full">
-            <div class="py-8 px-4 mx-auto my-10 rounded-xl max-w-2xl lg:py-16 bg-emerald-600">
+            <div class="py-4 px-4 mx-auto my-10 rounded-xl max-w-2xl lg:py-4 bg-emerald-600">
                 <form @submit.prevent="form.post('/authors/store')">
                     <div class="container flex flex-col items-center justify-center">
                         <div class="flex flex-col my-2 justify-between">

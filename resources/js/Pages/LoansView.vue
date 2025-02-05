@@ -98,9 +98,7 @@ watch(() => form.id_isbn, async (newIsbn) => {
                 </a>
             </aside>
         </div>
-        <template #userLogged>
-            Usuario: {{ $page.props.auth.user.id }} - {{ $page.props.auth.user.name }}
-        </template>
+
     </AppLayout>
 </template>
 

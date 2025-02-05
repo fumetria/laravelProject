@@ -28,15 +28,16 @@ const logout = () => {
 </script>
 
 <template>
-    <div class="flex flex-col justify-beetween">
-        <div>
+    <div class="flex flex-col h-screen bg-black">
 
             <Head :title="title" />
 
             <Banner />
 
-            <div class="min-h-screen bg-gray-100">
-                <nav class="bg-white border-b border-gray-100">
+            <div class="flex flex-col h-screen justify-between bg-gray-100">
+                <!-- Page Header -->
+                <div>
+                    <nav class="bg-white border-b border-gray-100">
                     <!-- Primary Navigation Menu -->
                     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div class="flex justify-between h-16">
@@ -315,6 +316,8 @@ const logout = () => {
                         <slot name="header" />
                     </div>
                 </header>
+                </div>
+
 
                 <!-- Page Content -->
                 <main class="">
@@ -322,10 +325,11 @@ const logout = () => {
                 </main>
 
                 <!-- Page Footer-->
-                <footer class="bg-white border-t border-gray-100">
-                    <slot name="userLogged" />
+                <footer class="bg-white border-t border-gray-100 text-sm">
+                    Usuario: {{ $page.props.auth.user.id }} - {{ $page.props.auth.user.name }}
                 </footer>
             </div>
-        </div>
+
     </div>
 </template>
+
