@@ -85,6 +85,13 @@ class BookController extends Controller
         return redirect()->route('books');
     }
 
+    public function destroy($id_isbn)
+    {
+        $book = Book::find($id_isbn);
+        $book->delete();
+        return redirect()->route('books');
+    }
+
     public static function show($isbn)
     {
         $book = Book::find($isbn);

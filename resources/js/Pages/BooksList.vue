@@ -57,7 +57,7 @@ defineProps({
                         <td class="p-2">{{ book.author_id }}</td>
                         <td class="p-2" :class="estado(book.status)">{{
                             book.status
-                        }}</td>
+                            }}</td>
                         <td class="p-2 text-center">{{ book.location_floor }}</td>
                         <td class="p-2 text-center">{{ book.location_aisle }}</td>
                         <td class="p-2 text-center">{{ book.location_bookshelves }}</td>
@@ -68,13 +68,9 @@ defineProps({
                                 </PrimaryButton>
                             </a>
                             <div v-if="$page.props.auth.user.is_admin === 1">
-                                <form action=""></form>
-                                <a :href="route('deleteBook', book.id_isbn)">
-                                    <PrimaryButton class="bg-red-500">
-                                        <font-awesome-icon :icon="['fas', 'trash-alt']"
-                                            class="z-50 text-l text-stone-50" />
-                                    </PrimaryButton>
-                                </a>
+                                <PrimaryButton class="bg-red-500" @click.prevent="deleteBook(book.id_isbn)">
+                                    <font-awesome-icon :icon="['fas', 'trash-alt']" class="z-50 text-l text-stone-50" />
+                                </PrimaryButton>
                             </div>
 
                         </td>
@@ -101,7 +97,11 @@ export default {
                 'text-green-500': status === 'Disponible',
                 'text-red-500': status === 'Prestado'
             };
+        },
+        deleteBook(id_isbn) {
+            this.$inertia.delete(route('deleteBook', id_isbn));
         }
     }
 };
+
 </script>
