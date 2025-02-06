@@ -67,4 +67,10 @@ class AuthorController extends Controller
     {
         //
     }
+
+    public static function getStatics()
+    {
+        $numAuthor = Author::get()->count();
+        return $numAuthor;
+    }
 }

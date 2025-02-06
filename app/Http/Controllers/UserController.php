@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -60,5 +61,11 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public static function getStatics()
+    {
+        $numUsers = User::get()->count();
+        return $numUsers;
     }
 }

@@ -68,6 +68,23 @@ class BookController extends Controller
         $book->save();
     }
 
+    public function update(Request $request, Book $book)
+    {
+        $book = Book::find($request->id_isbn);
+        $book->id_isbn = $request->id_isbn;
+        $book->title = $request->title;
+        $book->genre = $request->genre;
+        $book->publisher = $request->publisher;
+        $book->author_id = $request->author_id;
+        $book->cover_url = $request->cover_url;
+        $book->location_floor = $request->location_floor;
+        $book->location_aisle = $request->location_aisle;
+        $book->location_bookshelves = $request->location_bookshelves;
+
+        $book->save();
+        return redirect()->route('books');
+    }
+
     public static function show($isbn)
     {
         $book = Book::find($isbn);
@@ -77,5 +94,12 @@ class BookController extends Controller
         }
 
         return $book;
+    }
+
+    public static function getStatics()
+    {
+        //$numBooks = Book::get()->count();
+        dd(Book::get()->count());
+        return $numBooks;
     }
 }

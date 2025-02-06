@@ -65,4 +65,10 @@ class LoanController extends Controller
 
         return redirect()->route('loans');
     }
+
+    public static function getStatics()
+    {
+        $numLoans = Loan::get()->count();
+        return $numLoans;
+    }
 }

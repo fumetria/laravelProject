@@ -10,6 +10,7 @@ use App\Http\Controllers\LoanController;
 use App\Models\Book;
 use App\Models\Author;
 use App\Models\Loan;
+use App\Models\User;
 
 Route::get('/', function () {
     return redirect('/dashboard');
@@ -30,8 +31,16 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
+        if (!auth()->user()->is_employee) {
+            return redirect('/catalog');
+        } else {
+            return Inertia::render('Dashboard');
+        };
     })->name('dashboard');
+
+    /**
+     * ROUTES FOR BOOKS
+     */
     Route::get('/books', function () {
         return Inertia::render('BooksList', [
             'books' => Book::get()
@@ -43,13 +52,28 @@ Route::middleware([
         ]);
     })->name('newBook');
     Route::post('/books/store', [BookController::class, 'store']);
+    Route::get('/books/editbook/{id_isbn}', function ($id_isbn) {
+        return Inertia::render('Books/EditBook', [
+            'book' => Book::find($id_isbn),
+            'authors' => Author::get()
+        ]);
+    })->name('editBook');
+    Route::post('books/update/{id_isbn}', [BookController::class, 'update']);
+    Route::post('/books/deleteBook/{id_isbn}', [BookController::class, 'delete'])->name('deleteBook');
 
-
+    /**
+     * ROUTES FOR AUTHORS
+     */
     Route::get('/authors/new', function () {
         return Inertia::render('AddAuthor');
     })->name('addAuthorView');
     Route::post('/authors/store', [AuthorController::class, 'store']);
+    // Route::post('/authors/delete/{id}', [AuthorController::class, 'delete']);
+    // Route::post('/authors/update/{id}', [AuthorController::class, 'update']);
 
+    /**
+     * ROUTES FOR LOANS
+     */
     Route::get('/loans', function () {
         return Inertia::render('LoansView', []);
     })->name('loans');
@@ -70,4 +94,17 @@ Route::middleware([
         ]);
     })->name('loansReturn');
     Route::post('/loans/finish', [LoanController::class, 'finish']);
+
+    /**
+     *
+     */
+    Route::get('/statics', function () {
+        if (auth()->user()->is_admin == 1)
+            return Inertia::render('StaticsView', [
+                'users' => User::get()->count(),
+                'numBooks' => Book::get()->count(),
+                'authors' => Author::get()->count(),
+                'loans' => Loan::get()->count(),
+            ]);
+    });
 });
