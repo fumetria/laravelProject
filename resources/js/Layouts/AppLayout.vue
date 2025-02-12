@@ -66,6 +66,14 @@ const logout = () => {
                                             Préstamos
                                         </NavLink>
                                     </div>
+                                    <div v-if="$page.props.auth.user.is_admin" class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                        <NavLink :href="route('usersList')" :active="route().current('usersList')">
+                                            Usuarios
+                                        </NavLink>
+                                        <NavLink :href="route('statics')" :active="route().current('statics')">
+                                            Estadísticas web
+                                        </NavLink>
+                                    </div>
                                 </div>
 
                             </div>

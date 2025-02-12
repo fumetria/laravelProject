@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 Route::get('/catalog', function () {
     return Inertia::render('CatalogView');
-});
+})->name('catalog');
 
 /**
  * Muestra información del libro seleccionado
@@ -96,6 +96,14 @@ Route::middleware([
     Route::post('/loans/finish', [LoanController::class, 'finish']);
 
     /**
+     * ROUTES FOR USERS
+     */
+    Route::get('/users-pages', function () {
+        return Inertia::render('Users/UsersView', [
+            'users' => User::get()
+        ]);
+    })->name('usersList');
+    /**
      *
      */
     Route::get('/statics', function () {
@@ -106,5 +114,5 @@ Route::middleware([
                 'authors' => Author::get()->count(),
                 'loans' => Loan::get()->count(),
             ]);
-    });
+    })->name('statics');
 });

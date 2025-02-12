@@ -3,6 +3,7 @@ import { ref, watch } from 'vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import { useForm } from '@inertiajs/vue3';
 import { formToJSON } from 'axios';
+import AppLayoutNoneUser from '@/Layouts/AppLayoutNoneUser.vue';
 
 const books = ref('');
 const form = useForm({
@@ -37,23 +38,31 @@ watch(() => form, async (newQuery) => {
 </script>
 
 <template>
-    <AppLayout title="Catálogo" class="">
+    <AppLayoutNoneUser title="Catálogo" class="">
         <template #header>
             <h1>Catálogo</h1>
         </template>
         <div class="flex justify-center align-middle">
             <section>
-                <input type="text" v-model="form.query" id="query">
-                <select name="tquery" id="tquery" v-model="form.tquery">
-                    <option value="">Todos</option>
-                    <option value="id_isbn">Id_isbn</option>
-                    <option value="title">Título</option>
-                    <option value="author_id">Autor</option>
-                    <option value="isbn">Isbn</option>
-                    <option value="genre">Género</option>
-                    <option value="publisher">Editorial</option>
-                    <option value="status">Estado</option>
-                </select>
+                <form @submit.prevent="form.post('/api/books/search/')">
+                    <input type="text" v-model="form.query" id="query">
+                    <select name="tquery" id="tquery" v-model="form.tquery">
+                        <option value="">Todos</option>
+                        <option value="id_isbn">Id_isbn</option>
+                        <option value="title">Título</option>
+                        <option value="author_id">Autor</option>
+                        <option value="isbn">Isbn</option>
+                        <option value="genre">Género</option>
+                        <option value="publisher">Editorial</option>
+                        <option value="status">Estado</option>
+                    </select>
+                    <PrimaryButton type="submit"
+                        class="flex flex-col my-2 justify-between bg-orange-600  hover:bg-orange-400"
+                        :disabled="form.processing">
+                        Buscar
+                    </PrimaryButton>
+                </form>
+
             </section>
         </div>
         <div v-if="books">
@@ -68,5 +77,5 @@ watch(() => form, async (newQuery) => {
             </div>
         </div>
 
-    </AppLayout>
+    </AppLayoutNoneUser>
 </template>

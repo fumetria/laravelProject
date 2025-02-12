@@ -50,23 +50,6 @@ const logout = () => {
                                 </div>
 
                                 <!-- Navigation Links -->
-                                <!-- <div v-if="$page.props.auth.user.is_employee || $page.props.auth.user == null">
-                                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                        <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                                            Dashboard
-                                        </NavLink>
-                                    </div>
-                                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                        <NavLink :href="route('books')" :active="route().current('books')">
-                                            Libros
-                                        </NavLink>
-                                    </div>
-                                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                        <NavLink :href="route('loans')" :active="route().current('loans')">
-                                            Préstamos
-                                        </NavLink>
-                                    </div>
-                                </div> -->
 
                             </div>
 
@@ -230,25 +213,6 @@ const logout = () => {
 
                         <!-- Responsive Settings Options -->
                         <div class="pt-4 pb-1 border-t border-gray-200">
-                            <div class="flex items-center px-4">
-                                <div v-if="$page.props.jetstream.managesProfilePhotos" class="shrink-0 me-3">
-                                    <div v-if="$page.props.auth.user.profile_photo_url != null">
-                                        <img class="size-10 rounded-full object-cover"
-                                        :src="$page.props.auth.user.profile_photo_url"
-                                        :alt="$page.props.auth.user.name">
-                                    </div>
-
-                                </div>
-
-                                <div>
-                                    <div class="font-medium text-base text-gray-800">
-                                        {{ $page.props.auth.user.name }}
-                                    </div>
-                                    <div class="font-medium text-sm text-gray-500">
-                                        {{ $page.props.auth.user.email }}
-                                    </div>
-                                </div>
-                            </div>
 
                             <div class="mt-3 space-y-1">
                                 <ResponsiveNavLink :href="route('profile.show')"
@@ -335,7 +299,7 @@ const logout = () => {
 
             <!-- Page Footer-->
             <footer class="bg-white border-t border-gray-100 text-sm">
-                Usuario: {{ $page.props.auth.user.id }} - {{ $page.props.auth.user.name }}
+
             </footer>
         </div>
 
