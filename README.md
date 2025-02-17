@@ -24,6 +24,11 @@ Copiamos nuestro archivo _.env.example_ en _.env_ y configuramos nuestra base de
 Desde la terminal ejecutamos:
 
 ```bash
+cp .env.example .env
+```
+
+Ejecutamos script dev
+```bash
 npm run dev
 ```
 
@@ -58,5 +63,7 @@ user1234
 ### TODO
 
 -   Crear vista para usuarios(no registrados)
--   crear roles de empleados
+-   Vista modificar permisos de usuarios
 -   Mejorar interfaz
+-   Crear vista con historial de libros en el perfil del usuario
+-   Crear sistema de notificaciones
