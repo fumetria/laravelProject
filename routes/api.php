@@ -27,6 +27,8 @@ Route::post('/books/search', [BookControllerApi::class, 'search']);
  */
 Route::get('/books/{isbn}', [BookControllerApi::class, 'show']);
 
+Route::get('/catalog/search', [BookControllerApi::class, 'search']);
+
 /**
  * Devuel el detalle de información del usuario
  */

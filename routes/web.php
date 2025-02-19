@@ -1,9 +1,11 @@
 <?php
 
+
 use App\Http\Controllers\AuthorController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookControllerApi;
 use App\Http\Controllers\LoanController;
@@ -24,6 +26,7 @@ Route::get('/catalog', function () {
  * Muestra información del libro seleccionado
  */
 Route::get('/api/books/search/?query={isbn}&filterType=isbn', [BookControllerApi::class, 'search']);
+
 
 Route::middleware([
     'auth:sanctum',
@@ -90,7 +93,7 @@ Route::middleware([
     })->name('loansList');
     Route::get('/loans/return', function () {
         return Inertia::render('LoansReturn', [
-            'loans' => Loan::get()
+            'loans' => Loan::get()->orderBy('updated_at', 'desc')->get()
         ]);
     })->name('loansReturn');
     Route::post('/loans/finish', [LoanController::class, 'finish']);
@@ -103,6 +106,7 @@ Route::middleware([
             'users' => User::get()
         ]);
     })->name('usersList');
+    Route::put('/update/user/is-active/{id}', [UserController::class, 'updateIsActive'])->name('updateIsActive');
     /**
      *
      */
@@ -115,4 +119,11 @@ Route::middleware([
                 'loans' => Loan::get()->count(),
             ]);
     })->name('statics');
+    Route::get('/loans/examen', function () {
+        if (auth()->user()->is_admin == 1) {
+            return Inertia::render('Loans/LoansListExamenView', [
+                'loans' => Loan::orderBy('updated_at', 'desc')->get(),
+            ]);
+        }
+    })->name('loansExamen');
 });
