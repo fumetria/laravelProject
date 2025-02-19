@@ -73,6 +73,9 @@ const logout = () => {
                                         <NavLink :href="route('statics')" :active="route().current('statics')">
                                             Estadísticas web
                                         </NavLink>
+                                        <NavLink :href="route('loansExamen')" :active="route().current('loansExamen')">
+                                            Listado Préstamos
+                                        </NavLink>
                                     </div>
                                 </div>
 

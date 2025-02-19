@@ -68,4 +68,12 @@ class UserController extends Controller
         $numUsers = User::get()->count();
         return $numUsers;
     }
+
+    public function updateIsActive($id)
+    {
+        $user = User::find($id);
+        $user->is_active = !$user->is_active;
+        $user->save();
+        return redirect()->route('usersList');
+    }
 }
