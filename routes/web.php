@@ -13,6 +13,7 @@ use App\Models\Book;
 use App\Models\Author;
 use App\Models\Loan;
 use App\Models\User;
+use Illuminate\Support\Carbon;
 
 Route::get('/', function () {
     return redirect('/dashboard');
@@ -93,7 +94,7 @@ Route::middleware([
     })->name('loansList');
     Route::get('/loans/return', function () {
         return Inertia::render('LoansReturn', [
-            'loans' => Loan::get()->orderBy('updated_at', 'desc')->get()
+            'loans' => Loan::orderBy('updated_at', 'desc')->get()
         ]);
     })->name('loansReturn');
     Route::post('/loans/finish', [LoanController::class, 'finish']);
@@ -121,8 +122,13 @@ Route::middleware([
     })->name('statics');
     Route::get('/loans/examen', function () {
         if (auth()->user()->is_admin == 1) {
+            // $loans = Loan::get();
+            // $loansOrdered = usort($loans, function ($a, $b) {
+            //     return Carbon::createFromFormat('Y-m-d H:i:s.u', $a->updated_at)->gt(Carbon::createFromFormat('Y-m-d H:i:s.u', $b->updated_at));
+            // });
             return Inertia::render('Loans/LoansListExamenView', [
-                'loans' => Loan::orderBy('updated_at', 'desc')->get(),
+                'loans' => Loan::oldest('updated_at')->get(),
+                // 'loans' => $loansOrdered,
             ]);
         }
     })->name('loansExamen');

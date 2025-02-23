@@ -38,7 +38,7 @@ const errorMessage = ref('');
             <div v-if="books" class="flex flex-col justify-center items-center">
                 <div v-for="book in books" :key="book.id_isbn"
                     class="flex gap-3 my-2 mx-4 bg-white shadow w-full py-2 px-4">
-                    <img :src="book.cover_url" alt="" width="100" height="100">
+                    <img :src="getCoverUrl(book.cover_url)" alt="" width="100" height="100">
                     <div class="flex flex-col w-full justify-between">
                         <div>
                             <div class="flex justify-between">
@@ -46,7 +46,7 @@ const errorMessage = ref('');
                                 <p :class="estado(book.status)">{{ book.status }}</p>
                             </div>
 
-                            <p>{{ book.author }}</p>
+                            <p>{{ book.author_id }}</p>
                             <p>{{ book.genre }}</p>
                             <p>{{ book.publisher }}</p>
                         </div>
@@ -96,6 +96,9 @@ export default {
                 'text-red-500': status === 'Prestado'
             };
         },
+        getCoverUrl(coverPath) {
+            return coverPath ? `/storage/${coverPath}` : '/img/noimage.png';
+        }
     }
 };
 

@@ -37,6 +37,15 @@ class BookController extends Controller
 
     public function store(Request $request)
     {
+        // $request->validate([
+        //     'isbn' => 'required',
+        //     'title' => 'required',
+        //     'genre' => 'required',
+        //     'publisher' => 'required',
+        //     'author_id' => 'required',
+        //     'cover' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        // ]);
+        $coverPath = $request->file('cover')->storeAs('covers', $request->isbn . '.' . $request->file('cover')->extension(), 'public');
         $book = new Book();
         $book->isbn = $request->isbn;
         $book_id = '';
@@ -56,7 +65,7 @@ class BookController extends Controller
         $book->genre = $request->genre;
         $book->publisher = $request->publisher;
         $book->author_id = $request->author_id;
-        $book->cover_url = $request->cover_url;
+        $book->cover_url = $coverPath;
 
         $book->save();
 
