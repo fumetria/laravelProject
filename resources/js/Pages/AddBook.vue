@@ -15,7 +15,7 @@ const form = useForm({
     genre: ref(''),
     publisher: ref(''),
     author_id: ref(''),
-    cover_url: ref(''),
+    cover: null,
 })
 
 const isLoading = ref(false);
@@ -32,7 +32,6 @@ watch(() => form.isbn, async (newIsbn) => {
                 form.genre = book.genre;
                 form.publisher = book.publisher;
                 form.author_id = book.author_id;
-                form.cover_url = book.cover_url;
             }
         } catch (error) {
             if (error.response && error.response.status === 404) {
@@ -45,7 +44,18 @@ watch(() => form.isbn, async (newIsbn) => {
         }
     }
 
-})
+});
+
+// Captura el archivo seleccionado
+const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        form.cover = file;
+    }
+    console.log(event.target.files[0]);
+    console.log(form.cover.value);
+}
+
 </script>
 
 
@@ -86,7 +96,8 @@ watch(() => form.isbn, async (newIsbn) => {
                             <label for="author" class="font-bold text-white">
                                 AUTOR
                                 <span class="text-white">
-                                    <a :href="route('addAuthorView')"><font-awesome-icon icon="fa-solid fa-user-plus" /></a>
+                                    <a :href="route('addAuthorView')"><font-awesome-icon
+                                            icon="fa-solid fa-user-plus" /></a>
                                 </span>
                             </label>
                             <select name="author_id" v-model="form.author_id" id="author_id" class="rounded w-96"
@@ -98,11 +109,10 @@ watch(() => form.isbn, async (newIsbn) => {
                             </select>
                         </div>
                         <div class="flex flex-col my-2 justify-between">
-                            <label for="cover_url" class="font-bold text-white">PORTADA</label>
-                            <input type="text" v-model="form.cover_url" id="cover_url" placeholder="Portada"
-                                class="rounded w-96" required>
+                            <label for="cover" class="font-bold text-white">PORTADA</label>
+                            <input type="file" @change="handleFileChange" id="cover" placeholder="Portada"
+                                class="rounded w-96 bg-white" accept=".jpg,.jpeg,.png" required>
                         </div>
-                        <!-- <button type="submit" :disabled="form.processing">Añadir</button> -->
                         <PrimaryButton type="submit"
                             class="flex flex-col my-2 justify-between bg-orange-600  hover:bg-orange-400"
                             :disabled="form.processing">
@@ -114,3 +124,15 @@ watch(() => form.isbn, async (newIsbn) => {
         </section>
     </AppLayout>
 </template>
+<!-- <script>
+methods: {
+    handleFileChange(event) {
+        this.form.cover = event.target.files[0];
+    },
+    submitForm() {
+        this.form.post('/books/store', {
+            forceFormData: true
+        });
+    }
+}
+</script> -->
