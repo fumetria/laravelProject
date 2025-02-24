@@ -38,15 +38,16 @@ const errorMessage = ref('');
             <div v-if="books" class="flex flex-col justify-center items-center">
                 <div v-for="book in books" :key="book.id_isbn"
                     class="flex gap-3 my-2 mx-4 bg-white shadow w-full py-2 px-4">
-                    <img :src="getCoverUrl(book.cover_url)" alt="" width="100" height="100">
+                    <img :src="getCoverUrl(book.cover_url)" :alt="book.title + ' cover'" width="100" height="100"
+                        class="border">
                     <div class="flex flex-col w-full justify-between">
                         <div>
                             <div class="flex justify-between">
-                                <h4 class="text-l font-bold">{{ book.title }}</h4>
+                                <h4 class="text-l font-bold uppercase">{{ book.title }}</h4>
                                 <p :class="estado(book.status)">{{ book.status }}</p>
                             </div>
 
-                            <p>{{ book.author_id }}</p>
+                            <p class="italic">{{ book.author_id }}</p>
                             <p>{{ book.genre }}</p>
                             <p>{{ book.publisher }}</p>
                         </div>
@@ -67,10 +68,14 @@ const errorMessage = ref('');
 
 <script>
 const books = ref('');
+const errorMessage = ref('');
 const getBooks = async (query, tquery) => {
     try {
         const res = await axios.get(`/api/catalog/search?query=${query}&filterType=${tquery}`);
-        books.value = res.data;
+        books.value = await Promise.all(res.data.map(async (book) => {
+            book.author_id = await getAuthorNom(book.author_id);
+            return book;
+        }));
     } catch (error) {
         if (error.response && error.response.status === 404) {
             errorMessage.value = 'No se encontró ningún libro con los datos introducidos.';
@@ -79,6 +84,15 @@ const getBooks = async (query, tquery) => {
         }
     }
 };
+async function getAuthorNom(authorId) {
+    try {
+        const res = await axios.get(`/api/authors/${authorId}`);
+        let author = res.data.name;
+        return author;
+    } catch (error) {
+        return `Autor no encontrado`
+    }
+}
 
 export default {
     data() {
@@ -98,6 +112,19 @@ export default {
         },
         getCoverUrl(coverPath) {
             return coverPath ? `/storage/${coverPath}` : '/img/noimage.png';
+        },
+        async getAuthorName(authorId) {
+
+            try {
+                const res = await axios.get(`/api/authors/${authorId}`);
+                console.log(res);
+                let author = res.data.name;
+                console.log(author);
+                console.log(author.name);
+                return author.name;
+            } catch (error) {
+                return `Autor no encontrado`
+            }
         }
     }
 };

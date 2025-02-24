@@ -8,7 +8,8 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\LoanController;
 use App\Http\Controllers\UserControllerApi;
-use Barryvdh\Debugbar\Facades\Debugbar;
+use App\Http\Controllers\AuthorControllerApi;
+
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -29,6 +30,7 @@ Route::get('/books/{isbn}', [BookControllerApi::class, 'show']);
 
 Route::get('/catalog/search', [BookControllerApi::class, 'search']);
 
+Route::get('/authors/{id}', [AuthorControllerApi::class, 'show']);
 /**
  * Devuel el detalle de información del usuario
  */

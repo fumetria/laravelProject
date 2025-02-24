@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Author;
 
-class AuthorController extends Controller
+class AuthorControllerApi extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,14 +27,14 @@ class AuthorController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        $author = new Author();
-        $author->name = $request->name;
-        $author->save();
+    // public function store(Request $request)
+    // {
+    //     $author = new Author();
+    //     $author->name = $request->name;
+    //     $author->save();
 
-        return redirect()->route('newBook');
-    }
+    //     return redirect()->route('newBook');
+    // }
 
     /**
      * Display the specified resource.
@@ -42,7 +42,7 @@ class AuthorController extends Controller
     public function show($id)
     {
         $author = Author::find($id);
-        return $author;
+        return response()->json($author);
     }
 
     /**
@@ -69,9 +69,9 @@ class AuthorController extends Controller
         //
     }
 
-    public static function getStatics()
-    {
-        $numAuthor = Author::get()->count();
-        return $numAuthor;
-    }
+    // public static function getStatics()
+    // {
+    //     $numAuthor = Author::get()->count();
+    //     return $numAuthor;
+    // }
 }
