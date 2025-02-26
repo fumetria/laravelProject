@@ -64,6 +64,10 @@ class BookControllerApi extends Controller
 
     public function search(Request $request)
     {
+        if (empty($request->input('query'))) {
+            $errorMessage = 'Introduce texto a buscar';
+            return response()->json($errorMessage);
+        }
         if (!empty($request->input('filterType'))) {
             $filter = $request->input('filterType');
             $query = $request->input('query');

@@ -8,6 +8,7 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 
+
 defineProps({
     title: String,
 });
@@ -48,8 +49,8 @@ const logout = () => {
                                     <ApplicationMark class="block h-9 w-auto" />
                                     </Link>
                                 </div>
-
                                 <!-- Navigation Links -->
+
                                 <div v-if="$page.props.auth.user.is_employee" class="flex">
                                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                         <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
@@ -66,7 +67,8 @@ const logout = () => {
                                             Préstamos
                                         </NavLink>
                                     </div>
-                                    <div v-if="$page.props.auth.user.is_admin" class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                    <div v-if="$page.props.auth.user.is_admin"
+                                        class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                         <NavLink :href="route('usersList')" :active="route().current('usersList')">
                                             Usuarios
                                         </NavLink>
@@ -77,14 +79,28 @@ const logout = () => {
                                             Listado Préstamos
                                         </NavLink>
                                     </div>
-                                </div>
 
+                                </div>
+                                <div v-if="!$page.props.auth.user" class="flex">
+                                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                        <NavLink :href="route('login')" :active="route().current('login')">
+                                            Identificarse
+                                        </NavLink>
+                                    </div>
+                                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                        <NavLink :href="route('register')" :active="route().current('register')">
+                                            Registrarse
+                                        </NavLink>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="hidden sm:flex sm:items-center sm:ms-6">
                                 <div class="ms-3 relative">
                                     <!-- Teams Dropdown -->
-                                    <Dropdown v-if="$page.props.jetstream.hasTeamFeatures" align="right" width="60">
+                                    <Dropdown
+                                        v-if="$page.props.jetstream.hasTeamFeatures && $page.props.auth.user != null"
+                                        align="right" width="60">
                                         <template #trigger>
                                             <span class="inline-flex rounded-md">
                                                 <button type="button"
@@ -154,10 +170,11 @@ const logout = () => {
                                 </div>
 
                                 <!-- Settings Dropdown -->
-                                <div class="ms-3 relative">
+                                <div v-if="$page.props.auth.user" class="ms-3 relative">
                                     <Dropdown align="right" width="48">
                                         <template #trigger>
-                                            <button v-if="$page.props.jetstream.managesProfilePhotos"
+                                            <button
+                                                v-if="$page.props.jetstream.managesProfilePhotos && $page.props.auth.user"
                                                 class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
                                                 <img class="size-8 rounded-full object-cover"
                                                     :src="$page.props.auth.user.profile_photo_url"
@@ -237,7 +254,7 @@ const logout = () => {
                         </div>
 
                         <!-- Responsive Settings Options -->
-                        <div class="pt-4 pb-1 border-t border-gray-200">
+                        <div v-if="$page.props.auth.user != null" class="pt-4 pb-1 border-t border-gray-200">
                             <div class="flex items-center px-4">
                                 <div v-if="$page.props.jetstream.managesProfilePhotos" class="shrink-0 me-3">
                                     <img class="size-10 rounded-full object-cover"
@@ -340,7 +357,9 @@ const logout = () => {
 
             <!-- Page Footer-->
             <footer class="bg-white border-t border-gray-100 text-sm">
-                Usuario: {{ $page.props.auth.user.id }} - {{ $page.props.auth.user.name }}
+                <div v-if="$page.props.auth.user != null">
+                    Usuario: {{ $page.props.auth.user.id }} - {{ $page.props.auth.user.name }}
+                </div>
             </footer>
         </div>
 
