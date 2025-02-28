@@ -16,7 +16,7 @@ use App\Models\User;
 use Illuminate\Support\Carbon;
 
 Route::get('/', function () {
-    return redirect('/dashboard');
+    return redirect('/catalog');
 });
 
 Route::get('/catalog', function () {

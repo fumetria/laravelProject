@@ -50,37 +50,49 @@ const logout = () => {
                                     </Link>
                                 </div>
                                 <!-- Navigation Links -->
+                                <div v-if="$page.props.auth.user != null"
+                                    class="flex items-center justify-center align-middle">
+                                    <div v-if="$page.props.auth.user.is_employee"
+                                        class="flex items-center justify-center align-middle">
+                                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                            <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                                                Dashboard
+                                            </NavLink>
+                                        </div>
+                                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                            <NavLink :href="route('books')" :active="route().current('books')">
+                                                Libros
+                                            </NavLink>
+                                        </div>
+                                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                            <NavLink :href="route('loans')" :active="route().current('loans')">
+                                                Préstamos
+                                            </NavLink>
+                                        </div>
+                                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                            <NavLink :href="route('catalog')" :active="route().current('catalog')">
+                                                Catálogo
+                                            </NavLink>
+                                        </div>
+                                        <div v-if="$page.props.auth.user.is_admin"
+                                            class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                            <NavLink :href="route('usersList')" :active="route().current('usersList')"
+                                                class="text-orange-600">
+                                                Usuarios
+                                            </NavLink>
+                                            <NavLink :href="route('statics')" :active="route().current('statics')"
+                                                class="text-orange-600">
+                                                Estadísticas web
+                                            </NavLink>
+                                            <NavLink :href="route('loansExamen')"
+                                                :active="route().current('loansExamen')" class="text-orange-600">
+                                                Examen - Listado Préstamos
+                                            </NavLink>
+                                        </div>
 
-                                <div v-if="$page.props.auth.user.is_employee" class="flex">
-                                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                        <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-                                            Dashboard
-                                        </NavLink>
                                     </div>
-                                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                        <NavLink :href="route('books')" :active="route().current('books')">
-                                            Libros
-                                        </NavLink>
-                                    </div>
-                                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                        <NavLink :href="route('loans')" :active="route().current('loans')">
-                                            Préstamos
-                                        </NavLink>
-                                    </div>
-                                    <div v-if="$page.props.auth.user.is_admin"
-                                        class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                        <NavLink :href="route('usersList')" :active="route().current('usersList')">
-                                            Usuarios
-                                        </NavLink>
-                                        <NavLink :href="route('statics')" :active="route().current('statics')">
-                                            Estadísticas web
-                                        </NavLink>
-                                        <NavLink :href="route('loansExamen')" :active="route().current('loansExamen')">
-                                            Listado Préstamos
-                                        </NavLink>
-                                    </div>
-
                                 </div>
+
                                 <div v-if="!$page.props.auth.user" class="flex">
                                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                         <NavLink :href="route('login')" :active="route().current('login')">
