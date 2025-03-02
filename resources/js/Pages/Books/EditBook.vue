@@ -12,6 +12,7 @@ const props = defineProps({
 })
 
 const form = useForm({
+    isbn: ref(''),
     id_isbn: ref(''),
     title: ref(''),
     genre: ref(''),
@@ -21,8 +22,10 @@ const form = useForm({
     location_floor: ref(''),
     location_aisle: ref(''),
     location_bookshelves: ref(''),
+    cover: null
 })
 
+form.isbn = props.book.isbn;
 form.id_isbn = props.book.id_isbn;
 form.title = props.book.title;
 form.genre = props.book.genre;
@@ -32,6 +35,25 @@ form.cover_url = props.book.cover_url;
 form.location_floor = props.book.location_floor;
 form.location_aisle = props.book.location_aisle;
 form.location_bookshelves = props.book.location_bookshelves;
+
+let cover = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        return file;
+    }
+}
+const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        form.cover = file;
+    }
+    console.log(event.target.files[0]);
+    console.log(form.cover.value);
+}
+
+function getCoverUrl(coverPath) {
+    return coverPath ? `/storage/${coverPath}` : '/img/noimage.png';
+}
 
 </script>
 
@@ -44,23 +66,27 @@ form.location_bookshelves = props.book.location_bookshelves;
             </a>
         </template>
         <section class=" w-full">
-            <div class="py-8 px-4 mx-auto my-10 rounded-xl max-w-xl lg:py-10 bg-emerald-600">
+            <div class="flex gap-5 py-8 px-4 mx-auto my-10 rounded-xl max-w-xl lg:py-10 bg-emerald-600">
                 <form @submit.prevent="form.post('/books/update/{{ form.id_isbn }}')">
                     <div class="container flex flex-col items-center justify-center">
                         <div class="flex flex-col my-2 justify-between">
+                            <input type="text" v-model="form.isbn" id="isbn" placeholder="ISBN" class="rounded w-96"
+                                disabled hidden>
+                        </div>
+                        <div class="flex flex-col my-2 justify-between">
                             <label for="isbn" class="font-bold text-white">ISBN</label>
                             <input type="text" v-model="form.id_isbn" id="isbn" placeholder="ISBN" class="rounded w-96"
-                                 disabled>
+                                disabled>
                         </div>
                         <div class="flex flex-col my-2 justify-between">
                             <label for="title" class="font-bold text-white">TíTULO</label>
                             <input type="text" v-model="form.title" id="title" placeholder="Título" class="rounded w-96"
-                                 disabled>
+                                disabled>
                         </div>
                         <div class="flex flex-col my-2 justify-between">
                             <label for="genre" class="font-bold text-white">GÉNERO</label>
                             <input type="text" v-model="form.genre" id="genre" placeholder="Género" class="rounded w-96"
-                               required>
+                                required>
                         </div>
                         <div class="flex flex-col my-2 justify-between">
                             <label for="publisher" class="font-bold text-white">EDITORIAL</label>
@@ -71,7 +97,8 @@ form.location_bookshelves = props.book.location_bookshelves;
                             <label for="author" class="font-bold text-white">
                                 AUTOR
                                 <span class="text-white">
-                                    <a :href="route('addAuthorView')"><font-awesome-icon icon="fa-solid fa-user-plus" /></a>
+                                    <a :href="route('addAuthorView')"><font-awesome-icon
+                                            icon="fa-solid fa-user-plus" /></a>
                                 </span>
                             </label>
                             <select name="author_id" v-model="form.author_id" id="author_id" class="rounded w-96"
@@ -82,18 +109,23 @@ form.location_bookshelves = props.book.location_bookshelves;
                                 </option>
                             </select>
                         </div>
-                        <div class="flex flex-col my-2 justify-between">
+                        <!-- <div class="flex flex-col my-2 justify-between">
                             <label for="cover_url" class="font-bold text-white">PORTADA</label>
                             <input type="text" v-model="form.cover_url" id="cover_url"  placeholder="Portada"
                                 class="rounded w-96" required>
+                        </div> -->
+                        <div class="flex flex-col my-2 justify-between">
+                            <label for="cover" class="font-bold text-white">PORTADA</label>
+                            <input type="file" @change="handleFileChange" id="cover" placeholder="Portada"
+                                class="rounded w-96 bg-white" accept=".jpg,.jpeg,.png" required>
                         </div>
                         <div class="flex flex-col my-2 justify-between">
                             <label for="cover_url" class="font-bold text-white">UBICACIÓN</label>
                             <div class="flex flex-row w-96 justify-center gap-2">
                                 <input type="text" v-model="form.location_floor" id="location_floor" placeholder="Piso"
-                                    class="rounded w-24" required >
-                                <input type="text" v-model="form.location_aisle" id="location_aisle" placeholder="Pasillo"
                                     class="rounded w-24" required>
+                                <input type="text" v-model="form.location_aisle" id="location_aisle"
+                                    placeholder="Pasillo" class="rounded w-24" required>
                                 <input type="text" v-model="form.location_bookshelves" id="location_bookshelves"
                                     placeholder="Estantería" class="rounded w-24" required>
                             </div>
@@ -105,6 +137,10 @@ form.location_bookshelves = props.book.location_bookshelves;
                         </PrimaryButton>
                     </div>
                 </form>
+                <div class="flex justify-center items-center">
+                    <img :src="getCoverUrl(book.cover_url)"
+                        :alt="'Portada ' + book.title" width="600" height="600">
+                </div>
             </div>
         </section>
     </AppLayout>

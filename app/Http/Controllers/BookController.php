@@ -79,13 +79,14 @@ class BookController extends Controller
 
     public function update(Request $request, Book $book)
     {
+        $coverPath = $request->file('cover')->storeAs('covers', $request->isbn . '.' . $request->file('cover')->extension(), 'public');
         $book = Book::find($request->id_isbn);
         $book->id_isbn = $request->id_isbn;
         $book->title = $request->title;
         $book->genre = $request->genre;
         $book->publisher = $request->publisher;
         $book->author_id = $request->author_id;
-        $book->cover_url = $request->cover_url;
+        $book->cover_url = $coverPath;
         $book->location_floor = $request->location_floor;
         $book->location_aisle = $request->location_aisle;
         $book->location_bookshelves = $request->location_bookshelves;
