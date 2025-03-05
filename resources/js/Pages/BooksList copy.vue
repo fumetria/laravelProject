@@ -1,27 +1,11 @@
 <script setup>
-import { ref } from 'vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
-import Modal from '@/Components/Modal.vue';
 
 defineProps({
-    books: Array,
+    books: Object,
 });
 
-const showModal = ref(false);
-const selectedBook = ref('');
-
-const openModal = (book) => {
-    selectedBook.value = book;
-    showModal.value = true;
-}
-const closeModal =  () => {
-    showModal.value = false
-}
-
-function updateBook(book){
-
-}
 
 
 </script>
@@ -78,52 +62,22 @@ function updateBook(book){
                         <td class="p-2 text-center">{{ book.location_aisle }}</td>
                         <td class="p-2 text-center">{{ book.location_bookshelves }}</td>
                         <td class="p-2 text-center flex flex-row gap-1 justify-center items-center">
-                            <PrimaryButton class=" bg-orange-600  hover:bg-orange-400" @click="openModal(book)">
-                                <font-awesome-icon :icon="['fas', 'edit']" class="z-50 text-l  text-stone-50" />
-                            </PrimaryButton>
-
+                            <a :href="route('editBook', book.id_isbn)">
+                                <PrimaryButton class=" bg-orange-600  hover:bg-orange-400">
+                                    <font-awesome-icon :icon="['fas', 'edit']" class="z-50 text-l  text-stone-50" />
+                                </PrimaryButton>
+                            </a>
                             <div v-if="$page.props.auth.user.is_admin === 1">
                                 <PrimaryButton class="bg-red-500" @click.prevent="deleteBook(book.id_isbn)">
                                     <font-awesome-icon :icon="['fas', 'trash-alt']" class="z-50 text-l text-stone-50" />
                                 </PrimaryButton>
                             </div>
+
                         </td>
                     </tr>
                 </tbody>
             </table>
         </section>
-        <Modal :show="showModal" @close="closeModal()">
-            <template #default>
-                <div class="p-6">
-                    <div class="flex justify-between">
-                        <h2 class="text-xl font-semibold">Editar Libro</h2>
-                        <font-awesome-icon :icon="['fas', 'x']" class="text-xl text-gray-800" />
-                    </div>
-                    
-                    <form @submit.prevent="updateBook(selectedBook)">
-                        <div class="mt-4">
-                            <label for="title" class="block">Título</label>
-                            <input v-model="selectedBook.title" type="text" id="title" class="mt-2 p-2 w-full" />
-                        </div>
-                        <div class="mt-4">
-                            <label for="author" class="block">Autor</label>
-                            <input v-model="selectedBook.author_id" type="text" id="author" class="mt-2 p-2 w-full" />
-                        </div>
-                        <div class="mt-4">
-                            <label for="publisher" class="block">Editorial</label>
-                            <input v-model="selectedBook.publisher" type="text" id="publisher"
-                                class="mt-2 p-2 w-full" />
-                        </div>
-                        <!-- Agrega más campos según sea necesario -->
-                        <div class="mt-4 text-right">
-                            <PrimaryButton type="submit" class="bg-green-600 hover:bg-green-400">
-                                Guardar cambios
-                            </PrimaryButton>
-                        </div>
-                    </form>
-                </div>
-            </template>
-        </Modal>
     </AppLayout>
 </template>
 

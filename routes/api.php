@@ -27,6 +27,7 @@ Route::post('/books/search', [BookControllerApi::class, 'search']);
  * Muestra información del libro seleccionado
  */
 Route::get('/books/{isbn}', [BookControllerApi::class, 'show']);
+Route::post('/books/update/{id_isbn}', [BookController::class, 'update']);
 
 Route::get('/catalog/search', [BookControllerApi::class, 'search']);
 
