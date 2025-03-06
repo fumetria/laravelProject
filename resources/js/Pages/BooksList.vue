@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import Modal from '@/Components/Modal.vue';
+import axios from 'axios';
 
 defineProps({
     books: Array,
@@ -10,6 +11,8 @@ defineProps({
 
 const showModal = ref(false);
 const selectedBook = ref('');
+const updateBookOk = ref();
+const updateBookMsg = ref('');
 
 const openModal = (book) => {
     selectedBook.value = book;
@@ -20,7 +23,8 @@ const closeModal =  () => {
 }
 
 function updateBook(book){
-
+    const res = axios.put(`/api/books/update/${book.id_isbn}`, book);
+    console.log(res);
 }
 
 
@@ -100,10 +104,22 @@ function updateBook(book){
                         <font-awesome-icon :icon="['fas', 'x']" class="text-xl text-gray-800" />
                     </div>
                     
-                    <form @submit.prevent="updateBook(selectedBook)">
+                    <form method="put" @submit.prevent="updateBook(selectedBook)">
+                        <div class="mt-4">
+                            <input type="text" v-model="selectedBook.isbn" id="isbn" placeholder="ISBN" class="rounded w-96"
+                                disabled hidden>
+                        </div>
+                        <div class="mt-4">
+                            <label for="id_isbn" class="block">Id_isbn</label>
+                            <input v-model="selectedBook.id_isbn" type="text" id="id_isbn" class="mt-2 p-2 w-full" disabled/>
+                        </div>
                         <div class="mt-4">
                             <label for="title" class="block">Título</label>
                             <input v-model="selectedBook.title" type="text" id="title" class="mt-2 p-2 w-full" />
+                        </div>
+                        <div class="mt-4">
+                            <label for="author" class="block">Género</label>
+                            <input v-model="selectedBook.genre" type="text" id="author" class="mt-2 p-2 w-full" />
                         </div>
                         <div class="mt-4">
                             <label for="author" class="block">Autor</label>
@@ -114,6 +130,17 @@ function updateBook(book){
                             <input v-model="selectedBook.publisher" type="text" id="publisher"
                                 class="mt-2 p-2 w-full" />
                         </div>
+                        <div class="mt-4">
+                            <label for="cover_url" class="block">Ubicación</label>
+                            <div class="flex flex-row w-96 justify-center gap-2">
+                                <input type="text" v-model="selectedBook.location_floor" id="location_floor" placeholder="Piso"
+                                    class="rounded w-24" required>
+                                <input type="text" v-model="selectedBook.location_aisle" id="location_aisle"
+                                    placeholder="Pasillo" class="rounded w-24" required>
+                                <input type="text" v-model="selectedBook.location_bookshelves" id="location_bookshelves"
+                                    placeholder="Estantería" class="rounded w-24" required>
+                            </div>
+                        </div>
                         <!-- Agrega más campos según sea necesario -->
                         <div class="mt-4 text-right">
                             <PrimaryButton type="submit" class="bg-green-600 hover:bg-green-400">
@@ -121,6 +148,7 @@ function updateBook(book){
                             </PrimaryButton>
                         </div>
                     </form>
+                    <div class="">{{ updateBookMsg }}</div>
                 </div>
             </template>
         </Modal>
