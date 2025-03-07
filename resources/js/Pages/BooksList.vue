@@ -7,6 +7,7 @@ import axios from 'axios';
 
 defineProps({
     books: Array,
+    authors: Object,
 });
 
 const showModal = ref(false);
@@ -24,9 +25,14 @@ const closeModal =  () => {
 
 function updateBook(book){
     const res = axios.put(`/api/books/update/${book.id_isbn}`, book);
-    console.log(res);
+    closeModal();
 }
 
+function checkAuthorId(bookAuthorId, authorId){
+    if(bookAuthorId === authorId){
+        return true
+    }
+}
 
 </script>
 
@@ -82,7 +88,7 @@ function updateBook(book){
                         <td class="p-2 text-center">{{ book.location_aisle }}</td>
                         <td class="p-2 text-center">{{ book.location_bookshelves }}</td>
                         <td class="p-2 text-center flex flex-row gap-1 justify-center items-center">
-                            <PrimaryButton class=" bg-orange-600  hover:bg-orange-400" @click="openModal(book)">
+                            <PrimaryButton class=" bg-orange-600  hover:bg-orange-400 focus:bg-orange-400" @click="openModal(book)">
                                 <font-awesome-icon :icon="['fas', 'edit']" class="z-50 text-l  text-stone-50" />
                             </PrimaryButton>
 
@@ -101,7 +107,7 @@ function updateBook(book){
                 <div class="p-6">
                     <div class="flex justify-between">
                         <h2 class="text-xl font-semibold">Editar Libro</h2>
-                        <font-awesome-icon :icon="['fas', 'x']" class="text-xl text-gray-800" />
+                        <div><font-awesome-icon :icon="['fas', 'x']" class="text-xl text-gray-800" /></div>
                     </div>
                     
                     <form method="put" @submit.prevent="updateBook(selectedBook)">
@@ -124,6 +130,13 @@ function updateBook(book){
                         <div class="mt-4">
                             <label for="author" class="block">Autor</label>
                             <input v-model="selectedBook.author_id" type="text" id="author" class="mt-2 p-2 w-full" />
+                            <select name="author_id" v-model="selectedBook.author_id" id="author_id" class="rounded w-96"
+                                required>
+                                <option value="">Seleccione autor</option>
+                                <option v-for="author in authors" :key="author_id" :value="author.id" :selected="checkAuthorId(selectedBook.author_id, author.id)">
+                                    {{ author.name }}
+                                </option>
+                            </select>
                         </div>
                         <div class="mt-4">
                             <label for="publisher" class="block">Editorial</label>
@@ -143,7 +156,7 @@ function updateBook(book){
                         </div>
                         <!-- Agrega más campos según sea necesario -->
                         <div class="mt-4 text-right">
-                            <PrimaryButton type="submit" class="bg-green-600 hover:bg-green-400">
+                            <PrimaryButton type="submit" class="bg-green-600 hover:bg-green-400 focus:bg-green-400">
                                 Guardar cambios
                             </PrimaryButton>
                         </div>

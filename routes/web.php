@@ -47,7 +47,8 @@ Route::middleware([
      */
     Route::get('/books', function () {
         return Inertia::render('BooksList', [
-            'books' => Book::get()
+            'books' => Book::get(),
+            'authors' => Author::get()
         ]);
     })->name('books');
     Route::get('/books/new', function () {
