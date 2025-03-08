@@ -38,7 +38,7 @@ const logout = () => {
         <div class="flex flex-col h-screen justify-between bg-gray-100">
             <!-- Page Header -->
             <div class="w-screen">
-                <nav class="bg-white border-b border-gray-100 w-screen flex justify-between h-16 mx-auto px-4 ">
+                <nav class="bg-white border-b dark:bg-gray-800 border-gray-100 w-screen flex justify-between h-16 mx-auto px-4 ">
                     <!-- Primary Navigation Menu -->
 
                     <!-- <div class="flex w-full justify-between h-16 max-w-7xl  px-4 sm:px-6 lg:px-8"> -->
@@ -52,39 +52,39 @@ const logout = () => {
                         <!-- Navigation Links -->
                         <div v-if="$page.props.auth.user != null" class="flex items-center justify-center align-middle">
                             <div v-if="$page.props.auth.user.is_employee"
-                                class="flex items-center justify-center align-middle">
-                                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                    <NavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                                class="flex  items-center justify-center align-middle">
+                                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex ">
+                                    <NavLink :href="route('dashboard')" :active="route().current('dashboard')" class="dark:text-white">
                                         Dashboard
                                     </NavLink>
                                 </div>
                                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                    <NavLink :href="route('books')" :active="route().current('books')">
+                                    <NavLink :href="route('books')" :active="route().current('books')" class="dark:text-white">
                                         Libros
                                     </NavLink>
                                 </div>
                                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                    <NavLink :href="route('loans')" :active="route().current('loans')">
+                                    <NavLink :href="route('loans')" :active="route().current('loans')" class="dark:text-white">
                                         Préstamos
                                     </NavLink>
                                 </div>
                                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                    <NavLink :href="route('catalog')" :active="route().current('catalog')">
+                                    <NavLink :href="route('catalog')" :active="route().current('catalog')" class="dark:text-white">
                                         Catálogo
                                     </NavLink>
                                 </div>
                                 <div v-if="$page.props.auth.user.is_admin"
                                     class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                     <NavLink :href="route('usersList')" :active="route().current('usersList')"
-                                        class="text-emerald-600">
+                                        class="text-emerald-600 dark:text-white">
                                         Usuarios
                                     </NavLink>
                                     <NavLink :href="route('statics')" :active="route().current('statics')"
-                                        class="text-emerald-600">
+                                        class="text-emerald-600 dark:text-white">
                                         Estadísticas web
                                     </NavLink>
                                     <NavLink :href="route('loansExamen')" :active="route().current('loansExamen')"
-                                        class="text-emerald-600">
+                                        class="text-emerald-600 dark:text-white">
                                         Examen - Listado Préstamos
                                     </NavLink>
                                 </div>

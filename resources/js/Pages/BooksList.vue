@@ -19,17 +19,17 @@ const openModal = (book) => {
     selectedBook.value = book;
     showModal.value = true;
 }
-const closeModal =  () => {
+const closeModal = () => {
     showModal.value = false
 }
 
-function updateBook(book){
+function updateBook(book) {
     const res = axios.put(`/api/books/update/${book.id_isbn}`, book);
     closeModal();
 }
 
-function checkAuthorId(bookAuthorId, authorId){
-    if(bookAuthorId === authorId){
+function checkAuthorId(bookAuthorId, authorId) {
+    if (bookAuthorId === authorId) {
         return true
     }
 }
@@ -83,12 +83,13 @@ function checkAuthorId(bookAuthorId, authorId){
                         <td class="p-2">{{ book.author_id }}</td>
                         <td class="p-2" :class="estado(book.status)">{{
                             book.status
-                            }}</td>
+                        }}</td>
                         <td class="p-2 text-center">{{ book.location_floor }}</td>
                         <td class="p-2 text-center">{{ book.location_aisle }}</td>
                         <td class="p-2 text-center">{{ book.location_bookshelves }}</td>
                         <td class="p-2 text-center flex flex-row gap-1 justify-center items-center">
-                            <PrimaryButton class=" bg-orange-600  hover:bg-orange-400 focus:bg-orange-400" @click="openModal(book)">
+                            <PrimaryButton class=" bg-orange-600  hover:bg-orange-400 focus:bg-orange-400"
+                                @click="openModal(book)">
                                 <font-awesome-icon :icon="['fas', 'edit']" class="z-50 text-l  text-stone-50" />
                             </PrimaryButton>
 
@@ -109,15 +110,16 @@ function checkAuthorId(bookAuthorId, authorId){
                         <h2 class="text-xl font-semibold">Editar Libro</h2>
                         <div><font-awesome-icon :icon="['fas', 'x']" class="text-xl text-gray-800" /></div>
                     </div>
-                    
+
                     <form method="put" @submit.prevent="updateBook(selectedBook)">
                         <div class="mt-4">
-                            <input type="text" v-model="selectedBook.isbn" id="isbn" placeholder="ISBN" class="rounded w-96"
-                                disabled hidden>
+                            <input type="text" v-model="selectedBook.isbn" id="isbn" placeholder="ISBN"
+                                class="rounded w-96" disabled hidden>
                         </div>
                         <div class="mt-4">
                             <label for="id_isbn" class="block">Id_isbn</label>
-                            <input v-model="selectedBook.id_isbn" type="text" id="id_isbn" class="mt-2 p-2 w-full" disabled/>
+                            <input v-model="selectedBook.id_isbn" type="text" id="id_isbn" class="mt-2 p-2 w-full"
+                                disabled />
                         </div>
                         <div class="mt-4">
                             <label for="title" class="block">Título</label>
@@ -130,10 +132,11 @@ function checkAuthorId(bookAuthorId, authorId){
                         <div class="mt-4">
                             <label for="author" class="block">Autor</label>
                             <input v-model="selectedBook.author_id" type="text" id="author" class="mt-2 p-2 w-full" />
-                            <select name="author_id" v-model="selectedBook.author_id" id="author_id" class="rounded w-96"
-                                required>
+                            <select name="author_id" v-model="selectedBook.author_id" id="author_id"
+                                class="rounded w-96" required>
                                 <option value="">Seleccione autor</option>
-                                <option v-for="author in authors" :key="author_id" :value="author.id" :selected="checkAuthorId(selectedBook.author_id, author.id)">
+                                <option v-for="author in authors" :key="author_id" :value="author.id"
+                                    :selected="selectedBook.author_id === author.id ? true : false">
                                     {{ author.name }}
                                 </option>
                             </select>
@@ -146,8 +149,8 @@ function checkAuthorId(bookAuthorId, authorId){
                         <div class="mt-4">
                             <label for="cover_url" class="block">Ubicación</label>
                             <div class="flex flex-row w-96 justify-center gap-2">
-                                <input type="text" v-model="selectedBook.location_floor" id="location_floor" placeholder="Piso"
-                                    class="rounded w-24" required>
+                                <input type="text" v-model="selectedBook.location_floor" id="location_floor"
+                                    placeholder="Piso" class="rounded w-24" required>
                                 <input type="text" v-model="selectedBook.location_aisle" id="location_aisle"
                                     placeholder="Pasillo" class="rounded w-24" required>
                                 <input type="text" v-model="selectedBook.location_bookshelves" id="location_bookshelves"
