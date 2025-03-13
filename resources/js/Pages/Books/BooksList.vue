@@ -105,10 +105,10 @@ function checkAuthorId(bookAuthorId, authorId) {
         </section>
         <Modal :show="showModal" @close="closeModal()">
             <template #default>
-                <div class="p-6">
+                <div class="p-6 bg-emerald-600">
                     <div class="flex justify-between">
-                        <h2 class="text-xl font-semibold">Editar Libro</h2>
-                        <div><font-awesome-icon :icon="['fas', 'x']" class="text-xl text-gray-800" /></div>
+                        <h2 class="text-xl font-semibold text-stone-100">Editar Libro</h2>
+                        <div><font-awesome-icon :icon="['fas', 'x']" class="text-xl text-stone-100" /></div>
                     </div>
 
                     <form method="put" @submit.prevent="updateBook(selectedBook)">
@@ -117,21 +117,21 @@ function checkAuthorId(bookAuthorId, authorId) {
                                 class="rounded w-96" disabled hidden>
                         </div>
                         <div class="mt-4">
-                            <label for="id_isbn" class="block">Id_isbn</label>
+                            <label for="id_isbn" class="block text-stone-100">Id_isbn</label>
                             <input v-model="selectedBook.id_isbn" type="text" id="id_isbn" class="mt-2 p-2 w-full"
                                 disabled />
                         </div>
                         <div class="mt-4">
-                            <label for="title" class="block">Título</label>
+                            <label for="title" class="block text-stone-100">Título</label>
                             <input v-model="selectedBook.title" type="text" id="title" class="mt-2 p-2 w-full" />
                         </div>
                         <div class="mt-4">
-                            <label for="author" class="block">Género</label>
+                            <label for="author" class="block text-stone-100">Género</label>
                             <input v-model="selectedBook.genre" type="text" id="author" class="mt-2 p-2 w-full" />
                         </div>
                         <div class="mt-4">
-                            <label for="author" class="block">Autor</label>
-                            <input v-model="selectedBook.author_id" type="text" id="author" class="mt-2 p-2 w-full" />
+                            <label for="author" class="block text-stone-100">Autor</label>
+                            <!-- <input v-model="selectedBook.author_id" type="text" id="author" class="mt-2 p-2 w-full" /> -->
                             <select name="author_id" v-model="selectedBook.author_id" id="author_id"
                                 class="rounded w-96" required>
                                 <option value="">Seleccione autor</option>
@@ -142,12 +142,12 @@ function checkAuthorId(bookAuthorId, authorId) {
                             </select>
                         </div>
                         <div class="mt-4">
-                            <label for="publisher" class="block">Editorial</label>
+                            <label for="publisher" class="block text-stone-100">Editorial</label>
                             <input v-model="selectedBook.publisher" type="text" id="publisher"
                                 class="mt-2 p-2 w-full" />
                         </div>
                         <div class="mt-4">
-                            <label for="cover_url" class="block">Ubicación</label>
+                            <label for="cover_url" class="block text-stone-100">Ubicación</label>
                             <div class="flex flex-row w-96 justify-center gap-2">
                                 <input type="text" v-model="selectedBook.location_floor" id="location_floor"
                                     placeholder="Piso" class="rounded w-24" required>
@@ -158,7 +158,7 @@ function checkAuthorId(bookAuthorId, authorId) {
                             </div>
                         </div>
                         <div class="mt-4 text-right">
-                            <PrimaryButton type="submit" class="bg-green-600 hover:bg-green-400 focus:bg-green-400">
+                            <PrimaryButton type="submit" class="bg-orange-600 hover:bg-orange-400 focus:bg-orange-400">
                                 Guardar cambios
                             </PrimaryButton>
                         </div>

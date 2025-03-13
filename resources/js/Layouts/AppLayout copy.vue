@@ -94,12 +94,12 @@ const logout = () => {
 
                         <div v-if="!$page.props.auth.user" class="flex">
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink :href="route('login')" :active="route().current('login')" class="dark:text-white">
+                                <NavLink :href="route('login')" :active="route().current('login')">
                                     Identificarse
                                 </NavLink>
                             </div>
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink :href="route('register')" :active="route().current('register')" class="dark:text-white">
+                                <NavLink :href="route('register')" :active="route().current('register')">
                                     Registrarse
                                 </NavLink>
                             </div>
