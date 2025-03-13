@@ -74,6 +74,7 @@ const handleFileChange = (event) => {
                             <label for="isbn" class="font-bold text-white">ISBN</label>
                             <input type="text" v-model="form.isbn" id="isbn" placeholder="ISBN" class="rounded w-96"
                                 required>
+                            <div v-if="form.errors.isbn" class="text-red-500">{{ form.errors.isbn }}</div>
                             <div v-if="isLoading" class="text-white">Buscando...</div>
                             <div v-if="errorMessage" class="text-red-500">{{ errorMessage }}</div>
                         </div>

@@ -46,13 +46,15 @@ Route::middleware([
      * ROUTES FOR BOOKS
      */
     Route::get('/books', function () {
-        return Inertia::render('BooksList', [
+        // dd(Author::get());
+        // dd(Book::get());
+        return Inertia::render('Books/BooksList', [
             'books' => Book::get(),
             'authors' => Author::get()
         ]);
     })->name('books');
     Route::get('/books/new', function () {
-        return Inertia::render('AddBook', [
+        return Inertia::render('Books/AddBook', [
             'authors' => Author::get()
         ]);
     })->name('newBook');
@@ -69,6 +71,15 @@ Route::middleware([
     /**
      * ROUTES FOR AUTHORS
      */
+    Route::get('/authors', function (){
+        // dd(Author::get());
+        // $authors = Author::get();
+
+        return Inertia::render('Authors/AuthorIndex',  [
+            'authors' => Author::get()
+        ]);
+    })->name('authors');
+
     Route::get('/authors/new', function () {
         return Inertia::render('AddAuthor');
     })->name('addAuthorView');
