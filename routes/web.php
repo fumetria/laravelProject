@@ -26,7 +26,7 @@ Route::get('/catalog', function () {
 /**
  * Muestra información del libro seleccionado
  */
-Route::get('/api/books/search/?query={isbn}&filterType=isbn', [BookControllerApi::class, 'search']);
+// Route::get('/api/books/search/?query={isbn}&filterType=isbn', [BookControllerApi::class, 'search']);
 
 
 Route::middleware([
