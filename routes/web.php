@@ -34,6 +34,18 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+    // if(isset(auth()->user()->is_active)){
+    //     if(auth()->user()->is_active && !auth()->user()->is_admin){
+    //         Route::get('/dashboard', function () {
+    //             if (!auth()->user()->is_employee) {
+    //                 return redirect('/catalog');
+    //             } else {
+    //                 return Inertia::render('Dashboard');
+    //             };
+    //         })->name('dashboard');
+    //     }
+    // }
+
     Route::get('/dashboard', function () {
         if (!auth()->user()->is_employee) {
             return redirect('/catalog');
