@@ -22,7 +22,7 @@ Route::get('/books', [BookControllerApi::class, 'index']);
 /**
  * Busca cualquier coincidencia dentro de la BD
  */
-Route::post('/books/search', [BookControllerApi::class, 'search']);
+Route::get('/books/search', [BookControllerApi::class, 'search']);
 /**
  * Muestra información del libro seleccionado
  */
