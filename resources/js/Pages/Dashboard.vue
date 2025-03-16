@@ -15,8 +15,8 @@ import PrimaryButton from '@/Components/PrimaryButton.vue';
         </template>
 
         <div class="py-12">
-            <div class=" max-w-5xl mx-auto sm:px-6 lg:px-6">
-                <div class="flex justify-center gap-4 bg-green-100 overflow-hidden shadow-xl sm:rounded-lg">
+            <div class=" max-w-5xl mx-auto sm:px-6 lg:px-6 ">
+                <div class="flex justify-center gap-4 bg-green-100 overflow-hidden shadow-xl sm:rounded-lg xl:p-8">
                     <a :href="route('loans')" :active="route().current('loans')">
                         <PrimaryButton type="button"
                             class="flex flex-col my-2 justify-center text-2xl xl:size-64 size-32 bg-orange-600 hover:bg-orange-400">
