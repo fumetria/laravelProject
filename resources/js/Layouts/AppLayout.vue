@@ -105,7 +105,7 @@ const logout = () => {
                             </div>
                         </div>
 
-                        <div v-if="$page.props.jetstream.hasTeamFeatures && $page.props.auth.user != null" class="hidden sm:flex sm:items-center sm:ms-6">
+                        <div v-if="$page.props.auth.user != null" class="hidden sm:flex sm:items-center sm:ms-6">
                             <div class="ms-3 relative">
                                 <!-- Teams Dropdown -->
                                 <Dropdown v-if="$page.props.jetstream.hasTeamFeatures && $page.props.auth.user != null"
