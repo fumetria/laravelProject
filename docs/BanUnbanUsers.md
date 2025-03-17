@@ -149,4 +149,13 @@ const flashError = computed(() => {
 
 Mediante *usePage()* crearemos la variable **page** con el que accederemos a nuestros datos flash, luego mediante la función computed(), modificaremos nuetra variable **flashError** para que nos muestre los errores que envie nuestro controlador.
 
+### ¿Por qué usamos computed en el mensaje flash con Inertia?
+
+```vue
+const flashMessage = computed(() => page.props.flash.status);
+```
+
+- page.props.flash.status proviene de Inertia.
+- Si cambia page.props, Vue solo recalcula flashMessage cuando es necesario.
+- Evita cálculos innecesarios y mejora el rendimiento.
 
