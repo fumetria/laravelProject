@@ -1,5 +1,5 @@
 <script setup>
-import { Head, Link, useForm } from '@inertiajs/vue3';
+import { Head, Link, useForm, usePage } from '@inertiajs/vue3';
 import AuthenticationCard from '@/Components/AuthenticationCard.vue';
 import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
 import Checkbox from '@/Components/Checkbox.vue';
@@ -7,10 +7,12 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import { computed } from 'vue';
 
 defineProps({
     canResetPassword: Boolean,
     status: String,
+    error: String
 });
 
 const form = useForm({
@@ -27,6 +29,13 @@ const submit = () => {
         onFinish: () => form.reset('password'),
     });
 };
+
+const page = usePage();
+
+const flashError = computed(() => {
+    return page.props.flash.error;
+});
+
 </script>
 
 <template>
@@ -73,7 +82,9 @@ const submit = () => {
                 <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Log in
                 </PrimaryButton>
+                
             </div>
+            <p class="text-red-600">{{ flashError }}</p>
         </form>
     </AuthenticationCard>
 </template>

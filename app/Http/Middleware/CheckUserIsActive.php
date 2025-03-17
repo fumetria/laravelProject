@@ -16,9 +16,9 @@ class CheckUserIsActive
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::check() && !Auth::user()->is_active){
+        if (Auth::check() && !Auth::user()->is_active) {
             Auth()->guard('web')->logout();
-            return redirect('/login')->with("error", "cuenta desactivada");
+            return redirect('/login')->with(['error' => 'cuenta desactivada']);
         }
         return $next($request);
     }

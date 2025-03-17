@@ -72,8 +72,11 @@ class UserController extends Controller
     public function updateIsActive($id)
     {
         $user = User::find($id);
-        $user->is_active = !$user->is_active;
-        $user->save();
+        if (!$user->is_admin) {
+            $user->is_active = !$user->is_active;
+            $user->save();
+            return redirect()->route('usersList');
+        }
         return redirect()->route('usersList');
     }
 }

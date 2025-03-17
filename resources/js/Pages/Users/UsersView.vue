@@ -81,7 +81,7 @@ export default {
             return is_active === 1 ? 'bg-green-600 hover:bg-green-400' : 'bg-red-600 hover:bg-red-400';
         },
         updateIsActive(id) {
-            this.$inertia.put(route('updateIsActive', id));
+            this.$inertia.patch(route('updateIsActive', id));
         },
     }
 };
