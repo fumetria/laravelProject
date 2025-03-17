@@ -92,7 +92,7 @@ Route::post('/user/profile', function () {
 
 Después de que el usuario sea redirigido, puedes mostrar el mensaje flasheado desde la sesión. Por ejemplo, usando la sintaxis de Blade:
 
-```php
+```Blade
 @if (session('status'))
     <div class="alert alert-success">
         {{ session('status') }}
