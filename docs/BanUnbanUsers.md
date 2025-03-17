@@ -151,7 +151,7 @@ Mediante *usePage()* crearemos la variable **page** con el que accederemos a nue
 
 ### ¿Por qué usamos computed en el mensaje flash con Inertia?
 
-```vue
+```Vue
 const flashMessage = computed(() => page.props.flash.status);
 ```
 
