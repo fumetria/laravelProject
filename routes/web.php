@@ -14,7 +14,14 @@ use App\Models\Author;
 use App\Models\Loan;
 use App\Models\User;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\NewLoan;
 
+
+Route::get('/email-test', function (){
+    $user = User::get();
+    Notification::send($user[0], new NewLoan);
+});
 Route::get('/', function () {
     return redirect('/catalog');
 });
