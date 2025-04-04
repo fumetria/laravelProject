@@ -20,7 +20,8 @@ use App\Notifications\NewLoan;
 
 Route::get('/email-test', function (){
     $user = User::get();
-    Notification::send($user[0], new NewLoan);
+    $loans = Loan::get();
+    Notification::send($user[2], new NewLoan($loans[0]));
 });
 Route::get('/', function () {
     return redirect('/catalog');

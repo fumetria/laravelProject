@@ -6,17 +6,22 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use App\Models\Loan;
+use App\Models\User;
 
 class NewLoan extends Notification
 {
     use Queueable;
 
+    private string $userName;
+
     /**
      * Create a new notification instance.
      */
-    public function __construct()
+    public function __construct(Loan $newLoan)
     {
-        //
+        $user = User::find($newLoan->user_id);
+        $this->userName = $user->name;
     }
 
     /**
@@ -35,6 +40,7 @@ class NewLoan extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
+                    ->line('New loan from ' . $this->userName)
                     ->line('The introduction to the notification.')
                     ->action('Notification Action', url('/'))
                     ->line('Thank you for using our application!');
