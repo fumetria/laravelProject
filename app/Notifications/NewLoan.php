@@ -40,9 +40,10 @@ class NewLoan extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
+                    ->greeting('NEW LOAN')
                     ->line('New loan from ' . $this->userName)
                     ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
+                    ->action('Check Loan', url(env('APP_URL') . '/loans/list'))
                     ->line('Thank you for using our application!');
     }
 
