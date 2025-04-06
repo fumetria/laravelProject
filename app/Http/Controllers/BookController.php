@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Policies\BookPolicy;
 
 class BookController extends Controller
 {
@@ -79,6 +80,11 @@ class BookController extends Controller
 
     public function update(Request $request, Book $book)
     {
+        $this->authorize('update', $book);
+        $request->validate([
+            'id_isbn' =>required,
+            'title' => 'string max:128',
+        ]);
         $coverPath = $request->file('cover')->storeAs('covers', $request->isbn . '.' . $request->file('cover')->extension(), 'public');
         $book = Book::find($request->id_isbn);
         $book->id_isbn = $request->id_isbn;
