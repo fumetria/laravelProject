@@ -74,6 +74,7 @@ const handleFileChange = (event) => {
                             <label for="isbn" class="font-bold text-white">ISBN</label>
                             <input type="text" v-model="form.isbn" id="isbn" placeholder="ISBN" class="rounded w-96"
                                 required>
+                            <div v-if="form.errors.isbn" class="text-red-500">{{ form.errors.isbn }}</div>
                             <div v-if="isLoading" class="text-white">Buscando...</div>
                             <div v-if="errorMessage" class="text-red-500">{{ errorMessage }}</div>
                         </div>
@@ -81,16 +82,19 @@ const handleFileChange = (event) => {
                             <label for="title" class="font-bold text-white">TíTULO</label>
                             <input type="text" v-model="form.title" id="title" placeholder="Título" class="rounded w-96"
                                 required>
+                            <div v-if="form.errors.title" class="text-red-500">{{ form.errors.title }}</div>
                         </div>
                         <div class="flex flex-col my-2 justify-between">
                             <label for="genre" class="font-bold text-white">GÉNERO</label>
                             <input type="text" v-model="form.genre" id="genre" placeholder="Género" class="rounded w-96"
                                 required>
+                            <div v-if="form.errors.genre" class="text-red-500">{{ form.errors.genre }}</div>
                         </div>
                         <div class="flex flex-col my-2 justify-between">
                             <label for="publisher" class="font-bold text-white">EDITORIAL</label>
                             <input type="text" v-model="form.publisher" id="publisher" placeholder="Editorial"
                                 class="rounded w-96" required>
+                            <div v-if="form.errors.publisher" class="text-red-500">{{ form.errors.publisher }}</div>
                         </div>
                         <div class="flex flex-col my-2 justify-between">
                             <label for="author" class="font-bold text-white">
@@ -107,11 +111,13 @@ const handleFileChange = (event) => {
                                     {{ author.name }}
                                 </option>
                             </select>
+                            <div v-if="form.errors.author_id" class="text-red-500">{{ form.errors.author_id }}</div>
                         </div>
                         <div class="flex flex-col my-2 justify-between">
                             <label for="cover" class="font-bold text-white">PORTADA</label>
                             <input type="file" @change="handleFileChange" id="cover" placeholder="Portada"
-                                class="rounded w-96 bg-white" accept=".jpg,.jpeg,.png" required>
+                                class="rounded w-96 bg-white" accept=".jpg,.jpeg,.png,.webp" required>
+                            <div v-if="form.errors.cover" class="text-red-500">{{ form.errors.cover }}</div>
                         </div>
                         <PrimaryButton type="submit"
                             class="flex flex-col my-2 justify-between bg-orange-600  hover:bg-orange-400"
