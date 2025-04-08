@@ -60,10 +60,18 @@ user1234
 -   Sistema de alta de libros funcional.
 -   Sistema de gestión de prestamos funcional.
 
+## Uso file storage para mostrar portadas
+
+```bash
+php artisan storage:link
+
+cp -r /public/img/noimage.png /storage/app/public/img/
+```
+
 ### TODO
 
 -   Crear vista para usuarios(no registrados)
--   Vista modificar permisos de usuarios
+-   Vista modificar permisos de usuarios ✔
 -   Mejorar interfaz
 -   Crear vista con historial de libros en el perfil del usuario
 -   Crear sistema de notificaciones
