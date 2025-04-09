@@ -2,6 +2,14 @@
 
 # Library App
 
+## Introducción
+Como estudiante de DAW, el siguiente proyecto ha sido creado con el fin de entender el funcionamiento del framework Laravel junto con el kit Laravel Jetstream (Inertia + Vue) y como base datos usaremos mySQL.
+<p align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=laravel,vue,mysql,tailwind&theme=light" />
+  </a>
+</p> 
+
 ## ¿Qué es Library App?
 
 Library App es un aplicación para la gestión de una biblioteca. Esta enfocada en tener un sistema organizado con los libros de los que se dispone, gestionar los préstamos y devoluciones de libros y dar un servicio de consulta para los usuarios que busquen la ubicación de algún libro que quieran alquilar.
@@ -26,6 +34,11 @@ Desde la terminal ejecutamos:
 ```bash
 cp .env.example .env
 ```
+
+Generamos clave del proyecto
+```bash
+php artisan key:generate
+``` 
 
 Ejecutamos script dev
 ```bash
@@ -60,10 +73,18 @@ user1234
 -   Sistema de alta de libros funcional.
 -   Sistema de gestión de prestamos funcional.
 
+## Uso file storage para mostrar portadas
+
+```bash
+php artisan storage:link
+
+cp -r /public/img/noimage.png /storage/app/public/covers/
+```
+
 ### TODO
 
 -   Crear vista para usuarios(no registrados)
--   Vista modificar permisos de usuarios
+-   Vista modificar permisos de usuarios ✔ [+info](/docs/BanUnbanUsers.md)
 -   Mejorar interfaz
 -   Crear vista con historial de libros en el perfil del usuario
 -   Crear sistema de notificaciones
