@@ -6,7 +6,7 @@
 Como estudiante de DAW, el siguiente proyecto ha sido creado con el fin de entender el funcionamiento del framework Laravel junto con el kit Laravel Jetstream (Inertia + Vue) y como base datos usaremos mySQL.
 <p align="center">
   <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=laravel,vue,mysql&theme=light" />
+    <img src="https://skillicons.dev/icons?i=laravel,vue,mysql,tailwind&theme=light" />
   </a>
 </p> 
 
@@ -84,7 +84,7 @@ cp -r /public/img/noimage.png /storage/app/public/covers/
 ### TODO
 
 -   Crear vista para usuarios(no registrados)
--   Vista modificar permisos de usuarios ✔
+-   Vista modificar permisos de usuarios ✔ [+info](/docs/BanUnbanUsers.md)
 -   Mejorar interfaz
 -   Crear vista con historial de libros en el perfil del usuario
 -   Crear sistema de notificaciones
