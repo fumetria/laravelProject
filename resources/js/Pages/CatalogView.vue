@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from 'vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
-import AppLayoutNoneUser from '@/Layouts/AppLayoutNoneUser.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import axios from 'axios';
 
@@ -84,7 +83,20 @@ const getBooks = async (query, tquery) => {
             loading.value = false;
             return;
         }
+        /**
+         * Recorremos la respuesta del servidor y
+         * guardamos los libros en la variable books
+         * Mediante la función getAuthorNom(authorId)
+         * obtenemos el nombre del autor y lo guardamos
+         * en la propiedad author_id en cada libro obtenido
+         * mediante la función map.
+         */
         books.value = await Promise.all(res.data.map(async (book) => {
+            /**
+             * Utilizo el id del autor para obtener su nombre
+             * y lo guardo en la propiedad author_id
+             * de la respuesta del servidor con la función getAuthorNom(authorId)
+             */
             book.author_id = await getAuthorNom(book.author_id);
             return book;
         }));
@@ -97,8 +109,17 @@ const getBooks = async (query, tquery) => {
         }
     }
 };
+
+/**
+ * Mediante id del autor, buscamos su nombre en la API.
+ * Devolvemos el nombre del autor.
+ * @param {number} authorId
+ * @returns {string} author.name
+ * @throws {string} 'Autor no encontrado'
+ */
 async function getAuthorNom(authorId) {
     try {
+
         const res = await axios.get(`/api/authors/${authorId}`);
         let author = res.data.name;
         return author;
@@ -126,19 +147,6 @@ export default {
         getCoverUrl(coverPath) {
             return coverPath ? `/storage${coverPath}` : '/storage/covers/noimage.png';
         },
-        async getAuthorName(authorId) {
-
-            try {
-                const res = await axios.get(`/api/authors/${authorId}`);
-                console.log(res);
-                let author = res.data.name;
-                console.log(author);
-                console.log(author.name);
-                return author.name;
-            } catch (error) {
-                return `Autor no encontrado`
-            }
-        }
     }
 };
 
