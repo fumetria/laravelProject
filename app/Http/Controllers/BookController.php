@@ -38,7 +38,7 @@ class BookController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validate = $request->validate([
             'id_isbn' =>['required'],
             'title' => ['required','string', 'max:128'],
             'genre' => ['required', 'string', 'max:128'],
@@ -84,7 +84,7 @@ class BookController extends Controller
     public function update(Request $request, Book $book)
     {
         $this->authorize('update', $book);
-        $request->validate([
+        $validate = $request->validate([
             'id_isbn' =>['required'],
             'title' => ['required','string', 'max:128'],
             'genre' => ['required', 'string', 'max:128'],

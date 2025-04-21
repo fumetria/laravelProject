@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
+use App\Policies\BookPolicy;
 
 class BookControllerApi extends Controller
 {
@@ -20,6 +21,17 @@ class BookControllerApi extends Controller
      */
     public function store(Request $request)
     {
+        $validate = $request->validate([
+            'id_isbn' =>['required'],
+            'title' => ['required','string', 'max:128'],
+            'genre' => ['required', 'string', 'max:128'],
+            'publisher' => ['required', 'string', 'max:128'],
+            'author_id' => ['required', 'numeric', 'integer', 'min:1', 'max:9999'],
+            'cover' => ['image', 'mimes:jpeg,png,jpg,webp', 'max:2048'],
+            'location_floor' => ['required', 'numeric', 'integer', 'min:0', 'max:99'],
+            'location_aisle' => ['required', 'numeric', 'integer', 'min:0', 'max:99'],
+            'location_bookshelves' => ['required', 'numeric', 'integer', 'min:0', 'max:99'],
+        ]);
         $book = new Book();
         $book->isbn = $request->isbn;
         if (Book::findOrFail($request->isbn)) {
@@ -46,6 +58,18 @@ class BookControllerApi extends Controller
     public function update(Request $request)
     {
         try {
+            $this->authorize('update', $book);
+            $validate = $request->validate([
+                'id_isbn' =>['required'],
+                'title' => ['required','string', 'max:128'],
+                'genre' => ['required', 'string', 'max:128'],
+                'publisher' => ['required', 'string', 'max:128'],
+                'author_id' => ['required', 'numeric', 'integer', 'min:1', 'max:9999'],
+                'cover' => ['image', 'mimes:jpeg,png,jpg,webp', 'max:2048'],
+                'location_floor' => ['required', 'numeric', 'integer', 'min:0', 'max:99'],
+                'location_aisle' => ['required', 'numeric', 'integer', 'min:0', 'max:99'],
+                'location_bookshelves' => ['required', 'numeric', 'integer', 'min:0', 'max:99'],
+            ]);
             if($request->file('cover')){
                 $coverPath = $request->file('cover')->storeAs('covers', $request->isbn . '.' . $request->file('cover')->extension(), 'public');
             }
