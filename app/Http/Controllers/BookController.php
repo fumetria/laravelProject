@@ -107,7 +107,7 @@ class BookController extends Controller
         $book->location_aisle = $request->location_aisle;
         $book->location_bookshelves = $request->location_bookshelves;
         $book->save();
-        return redirect()->route('books');
+        return redirect()->route('books')->with('updateBookMsg', 'Libro actualizado correctamente');
     }
 
     public function destroy($id_isbn)
