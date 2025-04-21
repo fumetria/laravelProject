@@ -37,13 +37,16 @@ class BookController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'isbn' => ['required', 'string', 'max:13'],
-            'title' => 'required|string|max:128',
-            'genre' => 'required|string|max:28',
-            'publisher' => 'required|string|max:64',
-            'author_id' => 'required|integer',
-            'cover' => 'required|image|mimes:jpeg,png,jpg,webp|max:2048',
+        $validate = $request->validate([
+            'id_isbn' =>['required'],
+            'title' => ['required','string', 'max:128'],
+            'genre' => ['required', 'string', 'max:128'],
+            'publisher' => ['required', 'string', 'max:128'],
+            'author_id' => ['required', 'numeric', 'integer', 'min:1', 'max:9999'],
+            'cover' => ['image', 'mimes:jpeg,png,jpg,webp', 'max:2048'],
+            'location_floor' => ['required', 'numeric', 'integer', 'min:0', 'max:99'],
+            'location_aisle' => ['required', 'numeric', 'integer', 'min:0', 'max:99'],
+            'location_bookshelves' => ['required', 'numeric', 'integer', 'min:0', 'max:99'],
         ]);
         $coverPath = $request->file('cover')->storeAs('covers', $request->isbn . '.' . $request->file('cover')->extension(), 'public');
         $book = new Book();
@@ -79,6 +82,17 @@ class BookController extends Controller
 
     public function update(Request $request, Book $book)
     {
+        $validate = $request->validate([
+            'id_isbn' =>['required'],
+            'title' => ['required','string', 'max:128'],
+            'genre' => ['required', 'string', 'max:128'],
+            'publisher' => ['required', 'string', 'max:128'],
+            'author_id' => ['required', 'numeric', 'integer', 'min:1', 'max:9999'],
+            'cover' => ['image', 'mimes:jpeg,png,jpg,webp', 'max:2048'],
+            'location_floor' => ['required', 'numeric', 'integer', 'min:0', 'max:99'],
+            'location_aisle' => ['required', 'numeric', 'integer', 'min:0', 'max:99'],
+            'location_bookshelves' => ['required', 'numeric', 'integer', 'min:0', 'max:99'],
+        ]);
         $coverPath = $request->file('cover')->storeAs('covers', $request->isbn . '.' . $request->file('cover')->extension(), 'public');
         $book = Book::find($request->id_isbn);
         $book->id_isbn = $request->id_isbn;
@@ -90,9 +104,8 @@ class BookController extends Controller
         $book->location_floor = $request->location_floor;
         $book->location_aisle = $request->location_aisle;
         $book->location_bookshelves = $request->location_bookshelves;
-
         $book->save();
-        return redirect()->route('books');
+        return redirect()->route('books')->with('updateBookMsg', 'Libro actualizado correctamente');
     }
 
     public function destroy($id_isbn)
