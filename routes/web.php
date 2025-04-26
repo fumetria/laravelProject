@@ -62,7 +62,7 @@ Route::middleware([
             'authors' => Author::get()
         ]);
     })->name('editBook');
-    Route::post('books/update/{id_isbn}', [BookController::class, 'update']);
+    Route::post('books/update/{book}', [BookController::class, 'update'])->name('updateBook');
     Route::delete('/books/delete/{id_isbn}', [BookController::class, 'destroy'])->name('deleteBook');
 
     /**

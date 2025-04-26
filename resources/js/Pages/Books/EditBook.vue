@@ -67,11 +67,12 @@ function getCoverUrl(coverPath) {
         </template>
         <section class=" w-full">
             <div class="flex gap-5 py-8 px-4 mx-auto my-10 rounded-xl max-w-xl lg:py-10 bg-emerald-600">
-                <form @submit.prevent="form.post('/books/update/{{ form.id_isbn }}')">
+                <form @submit.prevent="form.post(route('updateBook', book.id_isbn, { forceFormData: true }))">
                     <div class="container flex flex-col items-center justify-center">
                         <div class="flex flex-col my-2 justify-between">
                             <input type="text" v-model="form.isbn" id="isbn" placeholder="ISBN" class="rounded w-96"
                                 disabled hidden>
+                            <div v-if="form.errors.isbn" class="text-red-500">{{ form.errors.isbn }}</div>
                         </div>
                         <div class="flex flex-col my-2 justify-between">
                             <label for="isbn" class="font-bold text-white">ISBN</label>
@@ -82,16 +83,22 @@ function getCoverUrl(coverPath) {
                             <label for="title" class="font-bold text-white">TíTULO</label>
                             <input type="text" v-model="form.title" id="title" placeholder="Título" class="rounded w-96"
                                 disabled>
+                            <div v-if="form.errors.title" class="text-red-500">{{ form.errors.title }}</div>
+
                         </div>
                         <div class="flex flex-col my-2 justify-between">
                             <label for="genre" class="font-bold text-white">GÉNERO</label>
                             <input type="text" v-model="form.genre" id="genre" placeholder="Género" class="rounded w-96"
                                 required>
+                            <div v-if="form.errors.genre" class="text-red-500">{{ form.errors.genre }}</div>
+
                         </div>
                         <div class="flex flex-col my-2 justify-between">
                             <label for="publisher" class="font-bold text-white">EDITORIAL</label>
                             <input type="text" v-model="form.publisher" id="publisher" placeholder="Editorial"
                                 class="rounded w-96" required>
+                            <div v-if="form.errors.publisher" class="text-red-500">{{ form.errors.publisher }}</div>
+
                         </div>
                         <div class="flex flex-col my-2 justify-between">
                             <label for="author" class="font-bold text-white">
@@ -108,16 +115,15 @@ function getCoverUrl(coverPath) {
                                     {{ author.name }}
                                 </option>
                             </select>
+                            <div v-if="form.errors.author_id" class="text-red-500">{{ form.errors.author_id }}</div>
+
                         </div>
-                        <!-- <div class="flex flex-col my-2 justify-between">
-                            <label for="cover_url" class="font-bold text-white">PORTADA</label>
-                            <input type="text" v-model="form.cover_url" id="cover_url"  placeholder="Portada"
-                                class="rounded w-96" required>
-                        </div> -->
                         <div class="flex flex-col my-2 justify-between">
                             <label for="cover" class="font-bold text-white">PORTADA</label>
                             <input type="file" @change="handleFileChange" id="cover" placeholder="Portada"
-                                class="rounded w-96 bg-white" accept=".jpg,.jpeg,.png" required>
+                                class="rounded w-96 bg-white" accept=".jpg,.jpeg,.png">
+                            <div v-if="form.errors.cover" class="text-red-500">{{ form.errors.cover }}</div>
+
                         </div>
                         <div class="flex flex-col my-2 justify-between">
                             <label for="cover_url" class="font-bold text-white">UBICACIÓN</label>
@@ -129,6 +135,13 @@ function getCoverUrl(coverPath) {
                                 <input type="text" v-model="form.location_bookshelves" id="location_bookshelves"
                                     placeholder="Estantería" class="rounded w-24" required>
                             </div>
+                            <div v-if="form.errors.location_floor" class="text-red-500">{{ form.errors.location_floor }}
+                            </div>
+                            <div v-if="form.errors.location_floor" class="text-red-500">{{ form.errors.location_aisle }}
+                            </div>
+                            <div v-if="form.errors.location_floor" class="text-red-500">{{
+                                form.errors.location_bookshelves }}
+                            </div>
                         </div>
                         <PrimaryButton type="submit"
                             class="flex flex-col my-2 justify-between bg-orange-600  hover:bg-orange-400"
@@ -138,8 +151,7 @@ function getCoverUrl(coverPath) {
                     </div>
                 </form>
                 <div class="flex justify-center items-center">
-                    <img :src="getCoverUrl(book.cover_url)"
-                        :alt="'Portada ' + book.title" width="600" height="600">
+                    <img :src="getCoverUrl(book.cover_url)" :alt="'Portada ' + book.title" width="600" height="600">
                 </div>
             </div>
         </section>
