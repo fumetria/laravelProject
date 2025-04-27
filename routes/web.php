@@ -23,12 +23,6 @@ Route::get('/catalog', function () {
     return Inertia::render('CatalogView');
 })->name('catalog');
 
-/**
- * Muestra información del libro seleccionado
- */
-Route::get('/api/books/search/?query={isbn}&filterType=isbn', [BookControllerApi::class, 'search']);
-
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -112,7 +106,7 @@ Route::middleware([
             'users' => User::get()
         ]);
     })->name('usersList');
-    Route::put('/update/user/is-active/{id}', [UserController::class, 'updateIsActive'])->name('updateIsActive');
+    Route::patch('/update/user/is-active/{id}', [UserController::class, 'updateIsActive'])->name('updateIsActive');
     /**
      *
      */
