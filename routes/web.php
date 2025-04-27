@@ -68,6 +68,11 @@ Route::middleware([
     /**
      * ROUTES FOR AUTHORS
      */
+    Route::get('/authors', function () {
+        return Inertia::render('Authors/AuthorIndex',  [
+            'authors' => Author::get()
+        ]);
+    })->name('authors');
     Route::get('/authors/new', function () {
         return Inertia::render('AddAuthor');
     })->name('addAuthorView');
