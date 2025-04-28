@@ -78,21 +78,21 @@ Route::middleware([
      * ROUTES FOR LOANS
      */
     Route::get('/loans', function () {
-        return Inertia::render('LoansView', []);
+        return Inertia::render('Loans/LoansView', []);
     })->name('loans');
     Route::post('/loans/store', [LoanController::class, 'store']);
     Route::get('/loans/error', function () {
-        return Inertia::render('LoansViewError', [
+        return Inertia::render('Loans/LoansViewError', [
             'errorLoan' => 'Error, libro prestado',
         ]);
     })->name('loansError');
     Route::get('/loans/list', function () {
-        return Inertia::render('LoansListView', [
+        return Inertia::render('Loans/LoansListView', [
             'loans' => Loan::get()
         ]);
     })->name('loansList');
     Route::get('/loans/return', function () {
-        return Inertia::render('LoansReturn', [
+        return Inertia::render('Loans/LoansReturn', [
             'loans' => Loan::orderBy('updated_at', 'desc')->get()
         ]);
     })->name('loansReturn');

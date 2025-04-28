@@ -93,7 +93,7 @@ watch(() => form.id_isbn, async (id_isbn) => {
                     </a>
                     <a :href="route('loans')" :active="route().current('loans')">
                         <PrimaryButton type="button"
-                            class="flex flex-col my-2 justify-center size-32 items-center bg-purple-600 hover:bg-purple-400"
+                            class="flex flex-col my-2 justify-center size-32 items-center bg-emerald-600 hover:bg-emerald-400"
                             :disabled="form.processing">
                             Alta préstamo
                         </PrimaryButton>
