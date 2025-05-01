@@ -91,11 +91,18 @@ watch(() => form.id_isbn, async (id_isbn) => {
                             Listado
                         </PrimaryButton>
                     </a>
-                    <a :href="route('loans')" :active="route().current('loans')">
+                    <!-- <a :href="route('loans')" :active="route().current('loans')">
                         <PrimaryButton type="button"
                             class="flex flex-col my-2 justify-center size-32 items-center bg-emerald-600 hover:bg-emerald-400"
                             :disabled="form.processing">
                             Alta préstamo
+                        </PrimaryButton>
+                    </a> -->
+                    <a :href="route('loans')" :active="route().current('loans')">
+                        <PrimaryButton type="button"
+                            class="flex flex-col my-2 justify-center size-32 items-center bg-green-600 hover:bg-green-400 focus:bg-green-700 active:bg-green-900"
+                            :disabled="form.processing">
+                            Alta Préstamo
                         </PrimaryButton>
                     </a>
                 </aside>

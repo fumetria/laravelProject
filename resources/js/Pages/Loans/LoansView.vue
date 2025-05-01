@@ -84,14 +84,14 @@ watch(() => form.id_isbn, async (newIsbn) => {
                 <aside class="flex flex-col gap-2 justify-center mx-2">
                     <a :href="route('loansList')" :active="route().current('loansList')">
                         <PrimaryButton type="button"
-                            class="flex flex-col my-2 justify-center size-32 items-center bg-sky-600 hover:bg-sky-400"
+                            class="flex flex-col my-2 justify-center size-32 items-center bg-sky-600 hover:bg-sky-400 focus:bg-sky-700 active:bg-sky-900"
                             :disabled="form.processing">
                             Listado
                         </PrimaryButton>
                     </a>
                     <a :href="route('loansReturn')" :active="route().current('loansReturn')">
                         <PrimaryButton type="button"
-                            class="flex flex-col my-2 justify-center size-32 items-center bg-pink-600 hover:bg-pink-400"
+                            class="flex flex-col my-2 justify-center size-32 items-center bg-pink-600 hover:bg-pink-400 focus:bg-pink-700 active:bg-pink-900"
                             :disabled="form.processing">
                             Devolución
                         </PrimaryButton>
