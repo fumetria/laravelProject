@@ -61,7 +61,7 @@
       "genre": "Fantasy",
       "publisher": "Houghton Mifflin Harcourt",
       "author_name": "J.R.R. Tolkien",
-      "cover_url": ""
+      "cover_url": "/covers/noimage.png"
     },
     {
       "title": "Fahrenheit 451",
@@ -69,7 +69,7 @@
       "genre": "Dystopian",
       "publisher": "Simon & Schuster",
       "author_name": "Ray Bradbury",
-      "cover_url": ""
+      "cover_url": "/covers/noimage.png"
     },
     {
       "title": "Crime and Punishment",
@@ -77,7 +77,7 @@
       "genre": "Philosophical Fiction",
       "publisher": "Dover Publications",
       "author_name": "Fyodor Dostoevsky",
-      "cover_url": ""
+      "cover_url": "/covers/noimage.png"
     }
   ]
   
