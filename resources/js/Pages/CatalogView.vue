@@ -124,7 +124,7 @@ export default {
             };
         },
         getCoverUrl(coverPath) {
-            return coverPath ? `/storage/${coverPath}` : '/img/noimage.png';
+            return coverPath ? `/storage${coverPath}` : '/img/noimage.png';
         },
         async getAuthorName(authorId) {
 

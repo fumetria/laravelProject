@@ -78,7 +78,7 @@ user1234
 ```bash
 php artisan storage:link
 
-cp -r /public/img/noimage.png /storage/app/public/covers/
+cp -r /public/img/covers/ /storage/app/public/covers/
 ```
 
 ### TODO

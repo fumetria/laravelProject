@@ -1,0 +1,83 @@
+[
+    {
+      "title": "1984",
+      "isbn": "9780451524935",
+      "genre": "Dystopian",
+      "publisher": "Signet Classics",
+      "author_name": "George Orwell",
+      "cover_url": "/covers/9780451524935.webp"
+    },
+    {
+      "title": "To Kill a Mockingbird",
+      "isbn": "9780099419785",
+      "genre": "Fiction",
+      "publisher": "Harper Perennial",
+      "author_name": "Harper Lee",
+      "cover_url": "/covers/9780099419785.webp"
+    },
+    {
+      "title": "The Great Gatsby",
+      "isbn": "9780743273565",
+      "genre": "Classic",
+      "publisher": "Scribner",
+      "author_name": "F. Scott Fitzgerald",
+      "cover_url": "/covers/9780743273565.webp"
+    },
+    {
+      "title": "Pride and Prejudice",
+      "isbn": "9780141439518",
+      "genre": "Romance",
+      "publisher": "Penguin Classics",
+      "author_name": "Jane Austen",
+      "cover_url": "/covers/9780141439518.jpg"
+    },
+    {
+      "title": "The Catcher in the Rye",
+      "isbn": "9780241984758",
+      "genre": "Literary Fiction",
+      "publisher": "Little, Brown and Company",
+      "author_name": "J.D. Salinger",
+      "cover_url": "/covers/9780241984758.webp"
+    },
+    {
+      "title": "Brave New World",
+      "isbn": "9781784877750",
+      "genre": "Science Fiction",
+      "publisher": "Harper Perennial",
+      "author_name": "Aldous Huxley",
+      "cover_url": "/covers/9781784877750.webp"
+    },
+    {
+        "title": "Algoritmos: Guía ilustrada para programadores y curiosos",
+        "isbn": "9788441540989",
+        "genre": "Programación",
+        "publisher": "Anaya Multimedia",
+        "author_name": "Aditya Y. Bhargava",
+        "cover_url": "/covers/9788441540989.webp"
+    },
+    {
+      "title": "The Hobbit",
+      "isbn": "9780547928227",
+      "genre": "Fantasy",
+      "publisher": "Houghton Mifflin Harcourt",
+      "author_name": "J.R.R. Tolkien",
+      "cover_url": "/covers/noimage.png"
+    },
+    {
+      "title": "Fahrenheit 451",
+      "isbn": "9781451673319",
+      "genre": "Dystopian",
+      "publisher": "Simon & Schuster",
+      "author_name": "Ray Bradbury",
+      "cover_url": "/covers/noimage.png"
+    },
+    {
+      "title": "Crime and Punishment",
+      "isbn": "9780486415871",
+      "genre": "Philosophical Fiction",
+      "publisher": "Dover Publications",
+      "author_name": "Fyodor Dostoevsky",
+      "cover_url": "/covers/noimage.png"
+    }
+  ]
+  
