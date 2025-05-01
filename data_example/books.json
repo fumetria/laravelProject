@@ -9,11 +9,11 @@
     },
     {
       "title": "To Kill a Mockingbird",
-      "isbn": "9780061120084",
+      "isbn": "9780099419785",
       "genre": "Fiction",
       "publisher": "Harper Perennial",
       "author_name": "Harper Lee",
-      "cover_url": "/covers/9780061120084.webp"
+      "cover_url": "/covers/9780099419785.webp"
     },
     {
       "title": "The Great Gatsby",
@@ -45,7 +45,7 @@
       "genre": "Science Fiction",
       "publisher": "Harper Perennial",
       "author_name": "Aldous Huxley",
-      "cover_url": "/covers/9781784877750.jpg"
+      "cover_url": "/covers/9781784877750.webp"
     },
     {
         "title": "Algoritmos: Guía ilustrada para programadores y curiosos",

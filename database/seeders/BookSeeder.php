@@ -14,8 +14,7 @@ class BookSeeder extends Seeder
      */
     public function run()
     {
-        // return Book::factory()->count(6)->create();
-        $json = file_get_contents('../data_example/books.json');
+        $json = file_get_contents(base_path('/data_example/books.json'));
         if ($json === false) {
             echo "Error al obtener datos";
         } else {
