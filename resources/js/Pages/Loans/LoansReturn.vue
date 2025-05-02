@@ -26,9 +26,11 @@ watch(() => form.id_isbn, async (id_isbn) => {
         isLoading.value = true;
         errorMessage.value = '';
         try {
-            const res = await axios.get(`/loans/show/${id_isbn}`);
-            if (res.data[0] != null) {
-                const loan = res.data[0];
+            const res = await axios.get(`/api/loans/show/${id_isbn}`);
+            // console.log('resd: '+ res.data);
+            // console.log(res.data);
+            if (res.data != null) {
+                const loan = res.data;
                 form.id_isbn = loan.id_isbn;
                 form.user_id = loan.user_id;
             }

@@ -44,7 +44,7 @@ class LoanController extends Controller
 
     public function show($id_isbn)
     {
-        $loan = Loan::find($id_isbn);
+        $loan = Loan::where('id_isbn', $id_isbn)->first();
 
         if (!$loan) {
             return 'Préstamo no encontrado';
