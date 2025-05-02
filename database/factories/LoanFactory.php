@@ -37,6 +37,7 @@ class LoanFactory extends Factory
             $status = 'Demorado';
         } else {
             $status = 'Vencido';
+            BookControllerApi::updateStatus(Book::find($book->id_isbn), 'Disponible');
         }
         return [
             'loan_start_date' => $date,
