@@ -29,13 +29,13 @@ const logout = () => {
 </script>
 
 <template>
-    <div class="flex flex-col h-screen bg-black">
+    <div class="flex flex-col h-screen bg-gray-100">
 
         <Head :title="title" />
 
         <Banner />
 
-        <div class="flex flex-col h-screen justify-between bg-gray-100">
+        <div class="flex flex-col h-screen justify-between bg-gray-200">
             <!-- Page Header -->
             <div class="w-screen">
                 <nav class="bg-white border-b border-gray-100 w-screen flex justify-between h-16 mx-auto px-10 ">
@@ -358,7 +358,7 @@ const logout = () => {
 
 
             <!-- Page Content -->
-            <main class="">
+            <main class="bg-gray-200">
                 <slot />
             </main>
 
