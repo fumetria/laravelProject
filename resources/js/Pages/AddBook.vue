@@ -116,7 +116,7 @@ const handleFileChange = (event) => {
                         <div class="flex flex-col my-2 justify-between">
                             <label for="cover" class="font-bold text-white">PORTADA</label>
                             <input type="file" @change="handleFileChange" id="cover" placeholder="Portada"
-                                class="rounded w-96 bg-white" accept=".jpg,.jpeg,.png,.webp" required>
+                                class="rounded w-96 bg-white" accept=".jpg,.jpeg,.png,.webp">
                             <div v-if="form.errors.cover" class="text-red-500">{{ form.errors.cover }}</div>
                         </div>
                         <PrimaryButton type="submit"
