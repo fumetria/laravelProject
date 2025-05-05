@@ -16,8 +16,8 @@ const errorMessage = ref('');
         <template #header>
             <h1 class="font-semibold text-3xl text-gray-800 leading-tight">Catálogo</h1>
         </template>
-        <div class="flex justify-center my-5 align-middle">
-            <div>
+        <div class="flex justify-center w-screen gap-4 my-2" id="searchBar">
+            <div class="">
                 <input type="text" v-model="query" id="query" placeholder="Introduce texto a buscar">
                 <select name="tquery" id="tquery" v-model="tquery">
                     <option value="">Todos</option>
@@ -29,11 +29,11 @@ const errorMessage = ref('');
                     <option value="publisher">Editorial</option>
                     <option value="status">Estado</option>
                 </select>
-                <PrimaryButton @click="getBooks(query, tquery)" class="bg-orange-600  hover:bg-orange-400">
+                <PrimaryButton @click="getBooks(query, tquery)" class="bg-orange-600  hover:bg-orange-400 ms-2">
                     Buscar
                 </PrimaryButton>
             </div>
-            <div v-if="loanding">
+            <div v-if="loading">
                 <p><span><img src="/img/loading.gif" alt="loading animation"></span> Buscando...</p>
             </div>
             <div v-bind="errorMessage">{{ errorMessage }}</div>
@@ -78,7 +78,7 @@ const getBooks = async (query, tquery) => {
     try {
         loading.value = true;
         const res = await axios.get(`/api/catalog/search?query=${query}&filterType=${tquery}`);
-        console.log(res);
+        
         if (res.data === 'Introduce texto a buscar') {
             errorMessage.value = res.data;
             loading.value = false;

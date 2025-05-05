@@ -73,6 +73,9 @@ class BookControllerApi extends Controller
             $query = $request->input('query');
             // $order = $request->input('order') ?: 'asc';
             $book = Book::where(strtolower($filter), 'like', strtolower("%$query%"))->get();
+            // if ($book->isEmpty()) {
+            //     return response()->json(['message' => 'No se encontraron resultados'], 404);
+            // }
             return response()->json($book);
         } else {
             $query = $request->input('query');
@@ -85,6 +88,9 @@ class BookControllerApi extends Controller
                 'publisher',
                 'status'
             ], 'like', "%{$query}%")->get();
+            // if ($book->isEmpty()) {
+            //     return response()->json(['message' => 'No se encontraron resultados'], 404);
+            // }
             return response()->json($book);
         }
     }
