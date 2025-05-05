@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import AppLayoutNoneUser from '@/Layouts/AppLayoutNoneUser.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
+import Spinner from '@/Components/Spinner.vue';
 import axios from 'axios';
 
 const query = ref('');
@@ -16,32 +17,39 @@ const errorMessage = ref('');
         <template #header>
             <h1 class="font-semibold text-3xl text-gray-800 leading-tight">Catálogo</h1>
         </template>
-        <div class="flex justify-center w-screen gap-4 my-2" id="searchBar">
-            <div class="">
-                <input type="text" v-model="query" id="query" placeholder="Introduce texto a buscar">
-                <select name="tquery" id="tquery" v-model="tquery">
-                    <option value="">Todos</option>
-                    <option value="id_isbn">Id_isbn</option>
-                    <option value="title">Título</option>
-                    <option value="author_id">Autor</option>
-                    <option value="isbn">Isbn</option>
-                    <option value="genre">Género</option>
-                    <option value="publisher">Editorial</option>
-                    <option value="status">Estado</option>
-                </select>
-                <PrimaryButton @click="getBooks(query, tquery)" class="bg-orange-600  hover:bg-orange-400 ms-2">
-                    Buscar
-                </PrimaryButton>
+        <div class="flex justify-center w-full gap-4 my-5" id="searchBar">
+            <div class="flex flex-col items-center w-full max-w-xl">
+                <div class="flex flex-col sm:flex-row justify-center items-center w-full">
+                    <input type="text" v-model="query" id="query" placeholder="Introduce texto a buscar">
+                    <select name="tquery" id="tquery" v-model="tquery">
+                        <option value="">Todos</option>
+                        <option value="id_isbn">Id_isbn</option>
+                        <option value="title">Título</option>
+                        <option value="author_id">Autor</option>
+                        <option value="isbn">Isbn</option>
+                        <option value="genre">Género</option>
+                        <option value="publisher">Editorial</option>
+                        <option value="status">Estado</option>
+                    </select>
+                    <PrimaryButton @click="getBooks(query, tquery)"
+                        class="bg-orange-600  hover:bg-orange-400 focus:bg-orange-700 active:bg-orange-900 ms-2">
+                        Buscar
+                    </PrimaryButton>
+                </div>
+                <div v-if="loading" class="flex flex-row justify-center gap-2 mt-3">
+                    <!-- <img src="/img/loading.gif" alt="loading animation" width="24" height="24"> -->
+                    
+                    <Spinner size="22px"/> <!-- spinner por defecto -->
+                    <p><span></span> Buscando...</p>
+                </div>
+                <div v-bind="errorMessage">{{ errorMessage }}</div>
             </div>
-            <div v-if="loading">
-                <p><span><img src="/img/loading.gif" alt="loading animation"></span> Buscando...</p>
-            </div>
-            <div v-bind="errorMessage">{{ errorMessage }}</div>
+
         </div>
-        <div>
-            <div v-if="books" class="flex flex-col justify-center items-center">
+        <div class="flex flex-col justify-center items-center w-full">
+            <div v-if="books" class="flex flex-col justify-center items-center max-w-4xl">
                 <div v-for="book in books" :key="book.id_isbn"
-                    class="flex gap-3 my-2 mx-4 bg-white shadow w-full py-2 px-4">
+                    class="flex gap-3 my-4 mx-4 bg-white shadow w-full py-2 px-4">
                     <img :src="getCoverUrl(book.cover_url)" :alt="book.title + ' cover'" width="100" height="100"
                         class="border">
                     <div class="flex flex-col w-full justify-between">
@@ -78,7 +86,7 @@ const getBooks = async (query, tquery) => {
     try {
         loading.value = true;
         const res = await axios.get(`/api/catalog/search?query=${query}&filterType=${tquery}`);
-        
+
         if (res.data === 'Introduce texto a buscar') {
             errorMessage.value = res.data;
             loading.value = false;
