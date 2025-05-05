@@ -35,7 +35,7 @@ const logout = () => {
 
         <Banner />
 
-        <div class="flex flex-col h-screen justify-between bg-gray-200">
+        <div class="flex flex-col h-screen justify-between bg-sky-200">
             <!-- Page Header -->
             <div class="w-screen">
                 <nav class="bg-white border-b border-gray-100 w-screen flex justify-between h-16 mx-auto px-10 ">
@@ -207,11 +207,11 @@ const logout = () => {
                                     <template #content>
                                         <!-- Account Management -->
                                         <div class="block px-4 py-2 text-xs text-gray-400">
-                                            Manage Account
+                                            Cuenta
                                         </div>
 
                                         <DropdownLink :href="route('profile.show')">
-                                            Profile
+                                            Perfil
                                         </DropdownLink>
 
                                         <DropdownLink v-if="$page.props.jetstream.hasApiFeatures"
@@ -224,7 +224,7 @@ const logout = () => {
                                         <!-- Authentication -->
                                         <form @submit.prevent="logout">
                                             <DropdownLink as="button">
-                                                Log Out
+                                                Desconectarse
                                             </DropdownLink>
                                         </form>
                                     </template>
@@ -358,7 +358,7 @@ const logout = () => {
 
 
             <!-- Page Content -->
-            <main class="bg-gray-200">
+            <main class="bg-sky-200">
                 <slot />
             </main>
 
