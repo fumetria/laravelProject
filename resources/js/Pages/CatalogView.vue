@@ -46,10 +46,10 @@ const errorMessage = ref('');
             </div>
 
         </div>
-        <div class="flex flex-col justify-center items-center w-full">
+        <div class="flex flex-col justify-center items-center w-full mb-0 pb-2">
             <div v-if="books" class="flex flex-col justify-center items-center max-w-4xl">
                 <div v-for="book in books" :key="book.id_isbn"
-                    class="flex gap-3 my-4 mx-4 bg-white shadow w-full py-2 px-4">
+                    class="flex gap-3 my-2 mx-4 bg-white shadow w-full py-2 px-4">
                     <img :src="getCoverUrl(book.cover_url)" :alt="book.title + ' cover'" width="100" height="100"
                         class="border">
                     <div class="flex flex-col w-full justify-between">
