@@ -7,7 +7,7 @@ import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
-import TermsOfService from '@/Pages/TermsOfService.vue';
+
 
 
 defineProps({
@@ -81,10 +81,10 @@ const logout = () => {
                                     class="text-emerald-600 ">
                                     Estadísticas web
                                 </NavLink>
-                                <NavLink :href="route('loansExamen')" :active="route().current('loansExamen')"
+                                <!-- <NavLink :href="route('loansExamen')" :active="route().current('loansExamen')"
                                     class="text-emerald-600 ">
                                     Examen - Listado Préstamos
-                                </NavLink>
+                                </NavLink> -->
                             </div>
                         </div>
                     </div>
