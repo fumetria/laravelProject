@@ -7,6 +7,7 @@ import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
+import TermsOfService from '@/Pages/TermsOfService.vue';
 
 
 defineProps({
@@ -373,8 +374,14 @@ const logout = () => {
                             <p>España</p>
                         </div>
                     </section>
-                    <section class="bg-cyan-800 text-xs p-1" id="copyright">
-                        <p>Copyright 2025. Todos los derechos reservados.</p>
+                    <section class="bg-cyan-800 text-xs py-1 px-4 text-center flex justify-between" id="copyright">
+                        <p>© Copyright 2025. Todos los derechos reservados.</p>
+                        <aside class="flex gap-2">
+                            <a href="">Pólitica de Privacidad</a>
+                            <a href="">Aviso legal</a>
+                            <a href="">Cookies</a>
+                            <a href="">Accesibilidad</a>
+                        </aside>
                     </section>
 
                 </div>
