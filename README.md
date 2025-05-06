@@ -40,9 +40,21 @@ Generamos clave del proyecto
 php artisan key:generate
 ``` 
 
+### Uso file storage para mostrar portadas
+
+```bash
+php artisan storage:link
+
+cp -r public/img/covers/ storage/app/public/covers/
+```
+
 Ejecutamos script dev
 ```bash
 npm run dev
+```
+o script build si queremos desplegar a producción
+```bash
+npm run build
 ```
 
 Abrimos una nueva terminal
@@ -73,13 +85,7 @@ user1234
 -   Sistema de alta de libros funcional.
 -   Sistema de gestión de prestamos funcional.
 
-## Uso file storage para mostrar portadas
 
-```bash
-php artisan storage:link
-
-cp -r public/img/covers/ storage/app/public/covers/
-```
 
 ### TODO
 
