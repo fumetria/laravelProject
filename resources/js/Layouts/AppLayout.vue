@@ -377,10 +377,10 @@ const logout = () => {
                     <section class="bg-cyan-800 text-xs py-1 px-4 text-center flex justify-between" id="copyright">
                         <p>© Copyright 2025. Todos los derechos reservados.</p>
                         <aside class="flex gap-2">
-                            <a href="">Pólitica de Privacidad</a>
-                            <a href="">Aviso legal</a>
-                            <a href="">Cookies</a>
-                            <a href="">Accesibilidad</a>
+                            <a href="#" class="cursor-pointer">Pólitica de Privacidad</a>
+                            <a href="#" class="cursor-pointer">Aviso legal</a>
+                            <a href="#" class="cursor-pointer">Cookies</a>
+                            <a href="#" class="cursor-cell">Accesibilidad</a>
                         </aside>
                     </section>
 
