@@ -366,12 +366,48 @@ const logout = () => {
                     Usuario: {{ $page.props.auth.user.id }} - {{ $page.props.auth.user.name }}
                 </div>
                 <div v-if="$page.props.auth.user === null">
-                    <section class="bg-cyan-700 py-2 px-5">
-                        <div id="donde">
-                            <h4><span>🌍</span> DONDE ESTAMOS</h4>
+                    <section class="bg-cyan-700 py-3 px-5 flex gap-4 justify-between">
+                        <div class="flex justify-center items-center">
+                            <ApplicationMark class="w-40"></ApplicationMark>
+                        </div>
+                        <div class="text-xs " id="donde">
+                            <h4 class="mb-2 flex gap-1 items-center"><span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="size-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                                    </svg>
+
+                                </span> DONDE ESTAMOS</h4>
                             <p>Camí vell de l'estació 33</p>
                             <p>46870 Ontinyent (Valencia)</p>
                             <p>España</p>
+                        </div>
+                        <div id="contacto">
+
+                        </div>
+                        <div class="text-xs">
+                            <h4 class="mb-2 flex items-center gap-1">
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="size-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M12.75 19.5v-.75a7.5 7.5 0 0 0-7.5-7.5H4.5m0-6.75h.75c7.87 0 14.25 6.38 14.25 14.25v.75M6 18.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                                    </svg>
+                                </span>SUSCRIBETE
+                            </h4>
+                            <p class="mb-1">Introduce tu email para recibir todas las novedades de nuestro catálogo</p>
+                            <form action="">
+                                <div class="flex items-center gap-0 bg-none">
+                                    <input class="border-transparent h-6 text-xs" type="email" name="email" id="email"
+                                        placeholder="Introduce Email">
+                                    <button class="flex-inline h-6 px-2 border items-center border-white"
+                                        type="submit">Enviar</button>
+                                </div>
+                            </form>
+
                         </div>
                     </section>
                     <section class="bg-cyan-800 text-xs py-1 px-4 text-center flex justify-between" id="copyright">
