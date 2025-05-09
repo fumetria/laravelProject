@@ -19,9 +19,11 @@ const errorMessage = ref('');
         </template>
         <div class="flex justify-center w-full gap-4 my-5" id="searchBar">
             <div class="flex flex-col items-center w-full max-w-xl">
-                <div class="flex flex-col sm:flex-row justify-center items-center w-full">
-                    <input type="text" v-model="query" id="query" placeholder="Introduce texto a buscar">
-                    <select name="tquery" id="tquery" v-model="tquery">
+                <div
+                    class="flex flex-col xl:flex-row bg-white gap-0 h-10 justify-between items-center w-full border rounded p-0 shadow">
+                    <input class="border-none focus:rounded bg-transparent w-full" type="text" v-model="query" id="query"
+                        placeholder="Introduce texto a buscar">
+                    <select class="border-none bg-transparent" name="tquery" id="tquery" v-model="tquery">
                         <option value="">Todos</option>
                         <option value="id_isbn">Id_isbn</option>
                         <option value="title">Título</option>
@@ -32,14 +34,14 @@ const errorMessage = ref('');
                         <option value="status">Estado</option>
                     </select>
                     <PrimaryButton @click="getBooks(query, tquery)"
-                        class="bg-orange-600  hover:bg-orange-400 focus:bg-orange-700 active:bg-orange-900 ms-2">
+                        class="bg-orange-600  hover:bg-orange-400 focus:bg-orange-700 active:bg-orange-900 h-10 rounded-none rounded-r">
                         Buscar
                     </PrimaryButton>
                 </div>
                 <div v-if="loading" class="flex flex-row justify-center gap-2 mt-3">
                     <!-- <img src="/img/loading.gif" alt="loading animation" width="24" height="24"> -->
-                    
-                    <Spinner size="22px"/> <!-- spinner por defecto -->
+
+                    <Spinner size="22px" /> <!-- spinner por defecto -->
                     <p><span></span> Buscando...</p>
                 </div>
                 <div v-bind="errorMessage">{{ errorMessage }}</div>
@@ -73,7 +75,8 @@ const errorMessage = ref('');
                             <!-- Boton para reservar libro si el usuario está logueado -->
                             <div v-if="$page.props.auth.user != null">
                                 <form action="">
-                                    <button class="text-white py-1 px-2 text-xs  bg-orange-600 hover:bg-orange-400 active:bg-orange-800 focus:bg-orange-700 rounded">
+                                    <button
+                                        class="text-white py-1 px-2 text-xs  bg-orange-600 hover:bg-orange-400 active:bg-orange-800 focus:bg-orange-700 rounded">
                                         Reservar
                                     </button>
                                 </form>
