@@ -21,20 +21,24 @@ const errorMessage = ref('');
             <div class="flex flex-col items-center w-full max-w-xl">
                 <div
                     class="flex flex-col xl:flex-row bg-white gap-0 h-10 justify-between items-center w-full border rounded p-0 shadow">
-                    <input class="border-none focus:rounded bg-transparent w-full" type="text" v-model="query" id="query"
-                        placeholder="Introduce texto a buscar">
-                    <select class="border-none bg-transparent" name="tquery" id="tquery" v-model="tquery">
-                        <option value="">Todos</option>
-                        <option value="id_isbn">Id_isbn</option>
-                        <option value="title">Título</option>
-                        <option value="author_id">Autor</option>
-                        <option value="isbn">Isbn</option>
-                        <option value="genre">Género</option>
-                        <option value="publisher">Editorial</option>
-                        <option value="status">Estado</option>
-                    </select>
+                    <div class="flex justify-between w-full">
+                        <input class="border-none focus:rounded bg-transparent w-full" type="text" v-model="query"
+                            id="query" placeholder="Introduce texto a buscar">
+                        <select class="border-none bg-transparent focus:rounded" name="tquery" id="tquery"
+                            v-model="tquery">
+                            <option value="">Todos</option>
+                            <option value="id_isbn">Id_isbn</option>
+                            <option value="title">Título</option>
+                            <option value="author_id">Autor</option>
+                            <option value="isbn">Isbn</option>
+                            <option value="genre">Género</option>
+                            <option value="publisher">Editorial</option>
+                            <option value="status">Estado</option>
+                        </select>
+                    </div>
+
                     <PrimaryButton @click="getBooks(query, tquery)"
-                        class="bg-orange-600  hover:bg-orange-400 focus:bg-orange-700 active:bg-orange-900 h-10 rounded-none rounded-r">
+                        class="bg-orange-600  hover:bg-orange-400 focus:bg-orange-700 active:bg-orange-900 h-10 border-transparent rounded-none rounded-r">
                         Buscar
                     </PrimaryButton>
                 </div>
