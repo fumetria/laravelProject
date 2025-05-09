@@ -70,6 +70,15 @@ const errorMessage = ref('');
                                 <p>Pasillo: {{ book.location_aisle }}</p>
                                 <p>Estantería: {{ book.location_bookshelves }}</p>
                             </div>
+                            <!-- Boton para reservar libro si el usuario está logueado -->
+                            <div v-if="$page.props.auth.user != null">
+                                <form action="">
+                                    <button class="text-white py-1 px-2 text-xs  bg-orange-600 hover:bg-orange-400 active:bg-orange-800 focus:bg-orange-700 rounded">
+                                        Reservar
+                                    </button>
+                                </form>
+
+                            </div>
                         </div>
                     </div>
                 </div>
