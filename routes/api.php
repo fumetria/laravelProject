@@ -39,4 +39,4 @@ Route::get('/users/{id}', [UserControllerApi::class, 'show']);
 Route::get('/loans', [LoanController::class, 'index']);
 Route::get('/loans/show/{id_isbn}', [LoanController::class, 'show']);
 
-Route::get('/employees', [EmployeeController::class, 'index']);
+// Route::get('/employees', [EmployeeController::class, 'index']);

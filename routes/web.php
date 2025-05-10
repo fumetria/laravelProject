@@ -40,12 +40,12 @@ Route::middleware([
      * ROUTES FOR BOOKS
      */
     Route::get('/books', function () {
-        return Inertia::render('BooksList', [
+        return Inertia::render('Books/BooksList', [
             'books' => Book::get()
         ]);
     })->name('books');
     Route::get('/books/new', function () {
-        return Inertia::render('AddBook', [
+        return Inertia::render('Books/AddBook', [
             'authors' => Author::get()
         ]);
     })->name('newBook');
@@ -68,7 +68,7 @@ Route::middleware([
         ]);
     })->name('authors');
     Route::get('/authors/new', function () {
-        return Inertia::render('AddAuthor');
+        return Inertia::render('Authors/AddAuthor');
     })->name('addAuthorView');
     Route::post('/authors/store', [AuthorController::class, 'store']);
     // Route::post('/authors/delete/{id}', [AuthorController::class, 'delete']);
