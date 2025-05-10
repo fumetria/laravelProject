@@ -38,17 +38,19 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'id_isbn' => ['required'],
+            'isbn' => ['required'],
             'title' => ['required', 'string', 'max:128'],
             'genre' => ['required', 'string', 'max:128'],
             'publisher' => ['required', 'string', 'max:128'],
             'author_id' => ['required', 'numeric', 'integer', 'min:1', 'max:9999'],
             'cover' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:2048'],
-            'location_floor' => ['required', 'numeric', 'integer', 'min:0', 'max:99'],
-            'location_aisle' => ['required', 'numeric', 'integer', 'min:0', 'max:99'],
-            'location_bookshelves' => ['required', 'numeric', 'integer', 'min:0', 'max:99'],
+
         ]);
-        $coverPath = $request->file('cover')->storeAs('covers', $request->isbn . '.' . $request->file('cover')->extension(), 'public');
+        $coverPath = null;
+        if ($request->file('cover')) {
+            $validate['cover'] = $request->file('cover')->storeAs('covers', $request->isbn . '.' . $request->file('cover')->extension(), 'public');
+            $coverPath = $request->file('cover')->storeAs('covers', $request->isbn . '.' . $request->file('cover')->extension(), 'public');
+        }
         $book = new Book();
         $book->isbn = $request->isbn;
         $book_id = '';
@@ -68,11 +70,12 @@ class BookController extends Controller
         $book->genre = $request->genre;
         $book->publisher = $request->publisher;
         $book->author_id = $request->author_id;
-        $book->cover_url = $coverPath;
-
+        if(!is_null($coverPath)){
+            $book->cover_url = $coverPath;
+        }
         $book->save();
 
-        return redirect()->route('books');
+        return redirect()->route('books')->with('newBookMsg', 'Libro creado correctamente');
     }
     public static function updateStatus(Book $book, String $status)
     {
@@ -88,13 +91,15 @@ class BookController extends Controller
             'genre' => ['required', 'string', 'max:128'],
             'publisher' => ['required', 'string', 'max:128'],
             'author_id' => ['required', 'numeric', 'integer', 'min:1', 'max:9999'],
+            'cover_url' => ['nullable', 'string', 'max:128'],
             'cover' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:2048'],
             'location_floor' => ['required', 'numeric', 'integer', 'min:0', 'max:99'],
             'location_aisle' => ['required', 'numeric', 'integer', 'min:0', 'max:99'],
             'location_bookshelves' => ['required', 'numeric', 'integer', 'min:0', 'max:99'],
         ]);
-        $coverPath = "";
+        $coverPath = null;
         if (!is_null($request->file('cover'))) {
+            $validate['cover'] = $request->file('cover')->storeAs('covers', $request->isbn . '.' . $request->file('cover')->extension(), 'public');
             $coverPath = $request->file('cover')->storeAs('covers', $request->isbn . '.' . $request->file('cover')->extension(), 'public');
         }
         $book = Book::find($request->id_isbn);
@@ -103,7 +108,9 @@ class BookController extends Controller
         $book->genre = $request->genre;
         $book->publisher = $request->publisher;
         $book->author_id = $request->author_id;
-        $book->cover_url = $coverPath;
+        if(!is_null($coverPath)){
+            $book->cover_url = $coverPath;
+        }
         $book->location_floor = $request->location_floor;
         $book->location_aisle = $request->location_aisle;
         $book->location_bookshelves = $request->location_bookshelves;

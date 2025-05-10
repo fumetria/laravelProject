@@ -120,8 +120,13 @@ function getCoverUrl(coverPath) {
                         </div>
                         <div class="flex flex-col my-2 justify-between">
                             <label for="cover" class="font-bold text-white">PORTADA</label>
+                            <div v-if="form.cover_url">
+                                <input type="text" v-model="form.cover_url" id="cover_url"
+                                    class="rounded w-96" hidden>
+                            </div>
                             <input type="file" @change="handleFileChange" id="cover" placeholder="Portada"
                                 class="rounded w-96 bg-white" accept=".jpg,.jpeg,.png">
+
                             <div v-if="form.errors.cover" class="text-red-500">{{ form.errors.cover }}</div>
 
                         </div>

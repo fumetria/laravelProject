@@ -4,6 +4,8 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 
 defineProps({
     books: Object,
+    updateBookMsg: String,
+    newBookMsg: String,
 });
 
 
@@ -28,6 +30,9 @@ defineProps({
 
         </template>
         <section class="bg-stone-900 my-4 mx-5 overflow-scroll overflow-y-auto ">
+            <div>
+                <h2>{{ newBookMsg }}</h2>
+            </div>
             <table class="items-center w-full py-3 border-collapse border-neutral-800 bg-stone-50">
                 <thead class="bg-emerald-600 py-3 px-4 border-collapse border border-neutral-800 text-blueGray-500">
                     <tr class="">
@@ -61,17 +66,20 @@ defineProps({
                         <td class="p-2 text-center">{{ book.location_floor }}</td>
                         <td class="p-2 text-center">{{ book.location_aisle }}</td>
                         <td class="p-2 text-center">{{ book.location_bookshelves }}</td>
-                        <td class="p-2 text-center flex flex-row gap-1 justify-center items-center">
-                            <a :href="route('editBook', book.id_isbn)">
+                        <td class="p-2 text-center ">
+                            <div class="flex flex-row gap-1 justify-center items-center align-middle">
+                                <a :href="route('editBook', book.id_isbn)">
                                 <PrimaryButton class=" bg-orange-600  hover:bg-orange-400">
                                     <font-awesome-icon :icon="['fas', 'edit']" class="z-50 text-l  text-stone-50" />
                                 </PrimaryButton>
                             </a>
                             <div v-if="$page.props.auth.user.is_admin === 1">
-                                <PrimaryButton class="bg-red-500" @click.prevent="deleteBook(book.id_isbn)">
+                                <PrimaryButton class="bg-red-600 hover:bg-red-400 focus:bg-red-700 active:bg-red-900" @click.prevent="deleteBook(book.id_isbn)">
                                     <font-awesome-icon :icon="['fas', 'trash-alt']" class="z-50 text-l text-stone-50" />
                                 </PrimaryButton>
                             </div>
+                            </div>
+
 
                         </td>
                     </tr>
