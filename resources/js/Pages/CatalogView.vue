@@ -20,7 +20,7 @@ const errorMessage = ref('');
         <div class="flex justify-center w-full gap-4 my-5" id="searchBar">
             <div class="flex flex-col items-center w-full max-w-xl">
                 <div
-                    class="flex flex-col xl:flex-row bg-white gap-0 h-10 justify-between items-center w-full border rounded p-0 shadow">
+                    class="flex flex-col xl:flex-row bg-white hover:bg-stone-100/75 hover:border-white gap-0 h-10 justify-between items-center w-full border rounded p-0 shadow">
                     <div class="flex justify-between w-full">
                         <input class="border-none focus:rounded bg-transparent w-full" type="text" v-model="query"
                             id="query" placeholder="Introduce texto a buscar">
