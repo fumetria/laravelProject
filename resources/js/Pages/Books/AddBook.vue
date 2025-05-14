@@ -16,6 +16,7 @@ const form = useForm({
     publisher: ref(''),
     author_id: ref(''),
     cover: null,
+    cover_url: null,
 })
 
 const isLoading = ref(false);
@@ -32,6 +33,7 @@ watch(() => form.isbn, async (newIsbn) => {
                 form.genre = book.genre;
                 form.publisher = book.publisher;
                 form.author_id = book.author_id;
+                form.cover_url = book.cover_url;
             }
         } catch (error) {
             if (error.response && error.response.status === 404) {
@@ -112,6 +114,9 @@ const handleFileChange = (event) => {
                                 </option>
                             </select>
                             <div v-if="form.errors.author_id" class="text-red-500">{{ form.errors.author_id }}</div>
+                        </div>
+                        <div class="display-none">
+                            <input type="text" v-model="form.cover_url" id="cover_url" hidden>
                         </div>
                         <div class="flex flex-col my-2 justify-between">
                             <label for="cover" class="font-bold text-white">PORTADA</label>

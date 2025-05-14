@@ -44,12 +44,16 @@ class BookController extends Controller
             'publisher' => ['required', 'string', 'max:128'],
             'author_id' => ['required', 'numeric', 'integer', 'min:1', 'max:9999'],
             'cover' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:2048'],
+            'cover_url' => ['nullable', 'string', 'max:128'],
 
         ]);
         $coverPath = null;
         if ($request->file('cover')) {
             $validate['cover'] = $request->file('cover')->storeAs('covers', $request->isbn . '.' . $request->file('cover')->extension(), 'public');
             $coverPath = $request->file('cover')->storeAs('covers', $request->isbn . '.' . $request->file('cover')->extension(), 'public');
+        }
+        if(!$request->file('cover') && $request->cover_url){
+            $coverPath = $request->cover_url;
         }
         $book = new Book();
         $book->isbn = $request->isbn;
