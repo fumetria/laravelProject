@@ -23,6 +23,15 @@ Route::get('/catalog', function () {
     return Inertia::render('CatalogView');
 })->name('catalog');
 
+Route::get('/welcome', function () {
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+})->name('welcome');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
