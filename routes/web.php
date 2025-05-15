@@ -15,6 +15,7 @@ use App\Models\Loan;
 use App\Models\User;
 use Illuminate\Support\Carbon;
 use Milon\Barcode\DNS1D;
+use Milon\Barcode\DNS2D;
 
 Route::get('/', function () {
     return redirect('/catalog');
@@ -24,11 +25,13 @@ Route::get('/catalog', function () {
     return Inertia::render('CatalogView');
 })->name('catalog');
 
-Route::get('/barcode-test', function (){
+Route::get('/barcode-test', function () {
+    $book = Book::get()->first();
     $dns1d = new DNS1D();
-    $barcode = $dns1d->getBarcodeSVG('590123412345', 'EAN13');
+    $barcode = $dns1d->getBarcodeSVG($book->id_isbn, 'EAN13', 2, 40,);
     return Inertia::render('BarcodeTest', [
-        'barcode' => $barcode
+        'barcode' => $barcode,
+        'book' => $book
     ]);
 });
 
