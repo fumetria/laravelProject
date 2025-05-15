@@ -78,6 +78,11 @@ defineProps({
                                     <font-awesome-icon :icon="['fas', 'trash-alt']" class="z-50 text-l text-stone-50" />
                                 </PrimaryButton>
                             </div>
+                            <div>
+                                <PrimaryButton title="Imprimir código de barras" class="bg-sky-600 hover:bg-sky-400 focus:bg-sky-700 active:bg-sky-900">
+                                    <font-awesome-icon :icon="['fas', 'barcode']" class="z-50 text-l text-stone-50" />
+                                </PrimaryButton>
+                            </div>
                             </div>
 
 
