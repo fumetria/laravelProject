@@ -22,7 +22,7 @@ defineProps({
                     Listado Libros
                 </h1>
                 <a :href="route('newBook')">
-                    <PrimaryButton>
+                    <PrimaryButton title="Nuevo Libro">
                         <font-awesome-icon :icon="['fas', 'plus']" class="z-50 text-xl text-stone-50" />
                     </PrimaryButton>
                 </a>
@@ -69,12 +69,12 @@ defineProps({
                         <td class="p-2 text-center ">
                             <div class="flex flex-row gap-1 justify-center items-center align-middle">
                                 <a :href="route('editBook', book.id_isbn)">
-                                <PrimaryButton class=" bg-orange-600  hover:bg-orange-400">
+                                <PrimaryButton title="Editar libro" class=" bg-orange-600  hover:bg-orange-400">
                                     <font-awesome-icon :icon="['fas', 'edit']" class="z-50 text-l  text-stone-50" />
                                 </PrimaryButton>
                             </a>
                             <div v-if="$page.props.auth.user.is_admin === 1">
-                                <PrimaryButton class="bg-red-600 hover:bg-red-400 focus:bg-red-700 active:bg-red-900" @click.prevent="deleteBook(book.id_isbn)">
+                                <PrimaryButton title="Eliminar libro" class="bg-red-600 hover:bg-red-400 focus:bg-red-700 active:bg-red-900" @click.prevent="deleteBook(book.id_isbn)">
                                     <font-awesome-icon :icon="['fas', 'trash-alt']" class="z-50 text-l text-stone-50" />
                                 </PrimaryButton>
                             </div>
