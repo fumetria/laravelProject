@@ -78,7 +78,7 @@ const closeModal = () => {
                         <td class="p-2">{{ book.author_id }}</td>
                         <td class="p-2" :class="estado(book.status)">{{
                             book.status
-                            }}</td>
+                        }}</td>
                         <td class="p-2 text-center">{{ book.location_floor }}</td>
                         <td class="p-2 text-center">{{ book.location_aisle }}</td>
                         <td class="p-2 text-center">{{ book.location_bookshelves }}</td>
@@ -112,12 +112,25 @@ const closeModal = () => {
             </table>
         </section>
         <section>
-            <Modal :show="showModal" @close="closeModal()">
-                <div>
-                    <div class="flex flex-col h-screen items-center justify-center">
-                        <h2 class="uppercase font-mono">{{ selectedBook.title }}</h2>
-                        <div v-html="barcode">
+            <Modal class="" :show="showModal" @close="closeModal()">
+                <div class="flex flex-col justify-center items-center gap-6 my-4">
+                    <section class="flex gap-2">
+                        <img src="/img/libraryLogos.PNG" alt="" height="40px" width="100px">
+                        <div class="flex flex-col items-center justify-center">
+                            <h2 class="uppercase font-mono">{{ selectedBook.title }}</h2>
+                            <div v-html="barcode">
+                            </div>
                         </div>
+                    </section>
+
+                    <div class="flex justify-center gap-2">
+                        <PrimaryButton @click="closeModal()">
+                            Cerrar
+                        </PrimaryButton>
+                        <PrimaryButton class="flex gap-2">
+                            <font-awesome-icon :icon="['fas', 'print']" />
+                            Imprimir
+                        </PrimaryButton>
                     </div>
                 </div>
             </Modal>
