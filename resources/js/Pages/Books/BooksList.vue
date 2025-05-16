@@ -1,12 +1,28 @@
 <script setup>
+import Modal from '@/Components/Modal.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
+import axios from 'axios';
+import { ref } from 'vue';
 
 defineProps({
     books: Object,
     updateBookMsg: String,
     newBookMsg: String,
 });
+
+const showModal = ref(false);
+const selectedBook = ref('');
+const barcode = ref('');
+const openModal = async (book) => {
+    selectedBook.value = book;
+    const res = await axios.get(`/api/books/barcode/${selectedBook.value.id_isbn}`);
+    barcode.value = res.data.barcode;
+    showModal.value = true;
+}
+const closeModal = () => {
+    showModal.value = false
+}
 
 
 
@@ -83,7 +99,8 @@ defineProps({
                                 </div>
                                 <div>
                                     <PrimaryButton title="Imprimir código de barras"
-                                        class="bg-sky-600 hover:bg-sky-400 focus:bg-sky-700 active:bg-sky-900">
+                                        class="bg-sky-600 hover:bg-sky-400 focus:bg-sky-700 active:bg-sky-900"
+                                        @click="openModal(book)">
                                         <font-awesome-icon :icon="['fas', 'barcode']"
                                             class="z-50 text-l text-stone-50" />
                                     </PrimaryButton>
@@ -93,6 +110,17 @@ defineProps({
                     </tr>
                 </tbody>
             </table>
+        </section>
+        <section>
+            <Modal :show="showModal" @close="closeModal()">
+                <div>
+                    <div class="flex flex-col h-screen items-center justify-center">
+                        <h2 class="uppercase font-mono">{{ selectedBook.title }}</h2>
+                        <div v-html="barcode">
+                        </div>
+                    </div>
+                </div>
+            </Modal>
         </section>
     </AppLayout>
 </template>

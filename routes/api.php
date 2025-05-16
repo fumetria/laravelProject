@@ -27,6 +27,7 @@ Route::get('/books/search', [BookControllerApi::class, 'search']);
  * Muestra información del libro seleccionado
  */
 Route::get('/books/{isbn}', [BookControllerApi::class, 'show']);
+Route::get('/books/barcode/{id_isbn}', [BookControllerApi::class, 'getBarcode']);
 
 Route::get('/catalog/search', [BookControllerApi::class, 'search']);
 
