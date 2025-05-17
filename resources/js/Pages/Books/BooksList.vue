@@ -119,7 +119,7 @@ const printBarcode = () =>{
             <Modal class="" :show="showModal" @close="closeModal()">
                 <div class="flex flex-col justify-center items-center gap-6 my-4" id="book_barcode">
                     <section class="flex gap-2">
-                        <img src="/img/libraryLogos.PNG" alt="" height="40px" width="100px">
+                        <img src="/img/logos/logo-sm.svg" alt="" height="40px" width="40px">
                         <div class="flex flex-col items-center justify-center">
                             <h2 class="uppercase font-mono">{{ selectedBook.title }}</h2>
                             <div v-html="barcode">
