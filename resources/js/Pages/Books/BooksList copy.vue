@@ -1,5 +1,4 @@
 <script setup>
-import DialogModal from '@/Components/DialogModal.vue';
 import Modal from '@/Components/Modal.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
@@ -25,7 +24,7 @@ const closeModal = () => {
     showModal.value = false
 }
 
-const printBarcode = () => {
+const printBarcode = () =>{
 
 }
 
@@ -117,38 +116,28 @@ const printBarcode = () => {
             </table>
         </section>
         <section>
-            <DialogModal class="" :show="showModal" @close="closeModal()">
-                <template #title>
-                    <h2>
-                        Impresión de código de barras
-                    </h2>
-                </template>
-                <template #content>
-                    <div class="flex flex-col justify-center items-center gap-6 my-4 shadow-lg w-fit px-4 py-2 mx-auto " id="book_barcode">
-                        <section class="flex gap-2">
-                            <img src="/img/logos/logo-sm.svg" alt="" height="40px" width="40px">
-                            <div class="flex flex-col items-center justify-center">
-                                <h2 class="uppercase font-mono">{{ selectedBook.title }}</h2>
-                                <div v-html="barcode">
-                                </div>
+            <Modal class="" :show="showModal" @close="closeModal()">
+                <div class="flex flex-col justify-center items-center gap-6 my-4" id="book_barcode">
+                    <section class="flex gap-2">
+                        <img src="/img/logos/logo-sm.svg" alt="" height="40px" width="40px">
+                        <div class="flex flex-col items-center justify-center">
+                            <h2 class="uppercase font-mono">{{ selectedBook.title }}</h2>
+                            <div v-html="barcode">
                             </div>
-                        </section>
-                    </div>
-                </template>
-                <template #footer>
+                        </div>
+                    </section>
+
                     <div class="flex justify-center gap-2">
-                        <PrimaryButton @click="closeModal()"
-                            class="bg-red-600 hover:bg-red-400 focus:bg-red-700 active:bg-red-900">
+                        <PrimaryButton @click="closeModal()" class="bg-red-600 hover:bg-red-400 focus:bg-red-700 active:bg-red-900">
                             Cerrar
                         </PrimaryButton>
-                        <PrimaryButton
-                            class="flex gap-2 bg-sky-600 hover:bg-sky-400 focus:bg-sky-700 active:bg-sky-900">
+                        <PrimaryButton class="flex gap-2 bg-sky-600 hover:bg-sky-400 focus:bg-sky-700 active:bg-sky-900">
                             <font-awesome-icon :icon="['fas', 'print']" />
                             Imprimir
                         </PrimaryButton>
                     </div>
-                </template>
-            </DialogModal>
+                </div>
+            </Modal>
         </section>
     </AppLayout>
 </template>
