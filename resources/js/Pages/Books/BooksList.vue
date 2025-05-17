@@ -24,6 +24,10 @@ const closeModal = () => {
     showModal.value = false
 }
 
+const printBarcode = () =>{
+
+}
+
 
 
 </script>
@@ -113,7 +117,7 @@ const closeModal = () => {
         </section>
         <section>
             <Modal class="" :show="showModal" @close="closeModal()">
-                <div class="flex flex-col justify-center items-center gap-6 my-4">
+                <div class="flex flex-col justify-center items-center gap-6 my-4" id="book_barcode">
                     <section class="flex gap-2">
                         <img src="/img/libraryLogos.PNG" alt="" height="40px" width="100px">
                         <div class="flex flex-col items-center justify-center">
@@ -124,10 +128,10 @@ const closeModal = () => {
                     </section>
 
                     <div class="flex justify-center gap-2">
-                        <PrimaryButton @click="closeModal()">
+                        <PrimaryButton @click="closeModal()" class="bg-red-600 hover:bg-red-400 focus:bg-red-700 active:bg-red-900">
                             Cerrar
                         </PrimaryButton>
-                        <PrimaryButton class="flex gap-2">
+                        <PrimaryButton class="flex gap-2 bg-sky-600 hover:bg-sky-400 focus:bg-sky-700 active:bg-sky-900">
                             <font-awesome-icon :icon="['fas', 'print']" />
                             Imprimir
                         </PrimaryButton>
