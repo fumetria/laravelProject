@@ -128,7 +128,7 @@ const printBarcode = () => {
                         <section class="flex gap-2">
                             <img src="/img/logos/logo-sm.svg" alt="" height="40px" width="40px">
                             <div class="flex flex-col items-center justify-center">
-                                <h2 class="uppercase font-mono">{{ selectedBook.title }}</h2>
+                                <h2 class="uppercase font-mono text-black">{{ selectedBook.title }}</h2>
                                 <div v-html="barcode">
                                 </div>
                             </div>
