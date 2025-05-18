@@ -24,11 +24,9 @@ Route::get('/catalog', function () {
 })->name('catalog');
 
 Route::get('/welcome', function () {
+    $author = Author::get()->random();
     return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
+        'author' => $author,
     ]);
 })->name('welcome');
 

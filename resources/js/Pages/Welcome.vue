@@ -3,7 +3,12 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import AuthorOfTheMonth from '@/Components/AuthorOfTheMonth.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
+import Banner from '@/Components/Banner.vue';
+import FeatureSection from '@/Components/FeatureSection.vue';
 
+defineProps({
+    author: Object,
+})
 </script>
 
 
@@ -13,17 +18,25 @@ import AppLayout from '@/Layouts/AppLayout.vue';
             <h1 class="font-semibold text-3xl text-gray-800 leading-tight">Bienvenido</h1>
         </template>
         <section>
+            <Banner></Banner>
             <WelcomeHeader></WelcomeHeader>
-            <AuthorOfTheMonth ></AuthorOfTheMonth>
+            <AuthorOfTheMonth :author="author"></AuthorOfTheMonth>
             <section>
                 <FeatureSection>
                     <template #title>
-                        <h2>Catálogo</h2>
+                        <h2>Nuestro catálogo</h2>
                     </template>
-                    <template #content>
-                        <img src="/img/welcome/catalog-img.webp" alt="Imagen de una biblioteca">
-                        <p>Disponemos de un amplio catálogo de libros. Accede a nuestro catálogo y encuentra el libro que necesitas para tu trabajo o simplemente algo para leer</p>
-                        <PrimaryButton>Ir a Catálogo</PrimaryButton>
+                    <template #content class="">
+                        <img src="/img/welcome/catalog-img.webp" alt="Imagen de una biblioteca" width="400px"
+                            height="300px" class="rounded-lg float-right ml-4 mb-4">
+                        <p>Disponemos de un amplio catálogo de libros. Accede a nuestro catálogo y encuentra el libro
+                            que necesitas para tu trabajo o simplemente algo para leer</p>
+
+                    </template>
+                    <template #footer>
+                        <div class="flex w-full justify-end">
+                            <PrimaryButton>Ir a Catálogo</PrimaryButton>
+                        </div>
                     </template>
                 </FeatureSection>
             </section>
