@@ -15,9 +15,9 @@ defineProps({
 
 <template>
     <AppLayout title="Welcome" class="">
-        <template #header>
+        <!-- <template #header>
             <h1 class="font-semibold text-3xl text-gray-800 leading-tight">Bienvenido</h1>
-        </template>
+        </template> -->
         <section class="bg-slate-200">
             <WelcomeHeader></WelcomeHeader>
             <AuthorOfTheMonth :author="author"></AuthorOfTheMonth>
