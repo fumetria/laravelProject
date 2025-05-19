@@ -17,5 +17,4 @@
             <slot name="footer" />
         </div>
     </div>
-
 </template>
