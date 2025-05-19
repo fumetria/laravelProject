@@ -60,7 +60,7 @@ npm run build
 Abrimos una nueva terminal
 
 ```bash
-php artisan migrate:fresh -seed
+php artisan migrate:fresh --seed
 php artisan serve
 ```
 
