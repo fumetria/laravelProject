@@ -10,6 +10,9 @@ import WelcomeHeader from '@/Components/WelcomeHeader.vue';
 defineProps({
     author: Object,
 })
+
+const welcomeTitle = 'Bienvenidos a la biblioteca';
+const welcomeDescription = 'Accede a nuestro catálogo y encuentra el libro que necesitas para tu trabajo o simplemente algo para leer';
 </script>
 
 
@@ -19,7 +22,7 @@ defineProps({
             <h1 class="font-semibold text-3xl text-gray-800 leading-tight">Bienvenido</h1>
         </template> -->
         <section class="bg-slate-200">
-            <WelcomeHeader></WelcomeHeader>
+            <WelcomeHeader :welcome-title="welcomeTitle" :welcome-description="welcomeDescription"></WelcomeHeader>
             <AuthorOfTheMonth :author="author"></AuthorOfTheMonth>
             <section class="py-5">
                 <FeatureSection>
