@@ -27,7 +27,7 @@ defineProps({
         <section>
             <p class="text-center">Encuentra sus libros en nuestro catálogo en el siguiente enlace</p>
             <div class="flex justify-end">
-                <PrimaryButton class="bg-orange-600 hover:bg-orange-400 focus:bg-orange-700 active:bg-orange-900">
+                <PrimaryButton class="bg-cyan-600 hover:bg-cyan-400 focus:bg-cyan-700 active:bg-cyan-900">
                     Buscar libros
                 </PrimaryButton>
             </div>

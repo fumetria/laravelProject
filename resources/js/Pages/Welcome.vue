@@ -38,11 +38,12 @@ const welcomeDescription = 'Accede a nuestro catálogo y encuentra el libro que 
                     </template>
                     <template #footer>
                         <div class="flex w-full justify-end">
-                            <PrimaryButton>Ir a Catálogo</PrimaryButton>
+                            <PrimaryButton class="bg-cyan-600 hover:bg-cyan-400 focus:bg-cyan-700 active:bg-cyan-900">Ir
+                                a Catálogo</PrimaryButton>
                         </div>
                     </template>
                 </FeatureSection>
-                                <FeatureSection>
+                <FeatureSection>
                     <template #title>
                         <h2>Eventos</h2>
                     </template>
@@ -55,11 +56,12 @@ const welcomeDescription = 'Accede a nuestro catálogo y encuentra el libro que 
                     </template>
                     <template #footer>
                         <div class="flex w-full justify-end">
-                            <PrimaryButton>Ir a Eventos</PrimaryButton>
+                            <PrimaryButton class="bg-cyan-600 hover:bg-cyan-400 focus:bg-cyan-700 active:bg-cyan-900">Ir
+                                a Eventos</PrimaryButton>
                         </div>
                     </template>
                 </FeatureSection>
-                                <FeatureSection>
+                <FeatureSection>
                     <template #title>
                         <h2>Comunidad</h2>
                     </template>
@@ -71,7 +73,8 @@ const welcomeDescription = 'Accede a nuestro catálogo y encuentra el libro que 
                     </template>
                     <template #footer>
                         <div class="flex w-full justify-end">
-                            <PrimaryButton>Ir a Comunidad</PrimaryButton>
+                            <PrimaryButton class="bg-cyan-600 hover:bg-cyan-400 focus:bg-cyan-700 active:bg-cyan-900">Ir
+                                a Comunidad</PrimaryButton>
                         </div>
                     </template>
                 </FeatureSection>
