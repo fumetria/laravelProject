@@ -25,6 +25,14 @@ Route::get('/catalog', function () {
     return Inertia::render('CatalogView');
 })->name('catalog');
 
+
+Route::get('/welcome', function () {
+    $author = Author::get()->random();
+    return Inertia::render('Welcome', [
+        'author' => $author,
+    ]);
+})->name('welcome');
+
 Route::get('/barcode-test', function () {
     $book = Book::get()->first();
     $dns1d = new DNS1D();
@@ -34,6 +42,7 @@ Route::get('/barcode-test', function () {
         'book' => $book
     ]);
 });
+
 
 Route::middleware([
     'auth:sanctum',
