@@ -22,6 +22,8 @@ class AuthorSeeder extends Seeder
             foreach ($books as $book) {
                 $newAuthor = new Author();
                 $newAuthor->name = $book['author_name'];
+                $newAuthor->biography = $book['biography'];
+                $newAuthor->profile_url = $book['profile_url'];
                 $newAuthor->save();
             }
         }

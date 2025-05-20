@@ -16,9 +16,10 @@ defineProps({
             <div>
                 <h2 class="uppercase">{{ author.name }}</h2>
                 <h2>Biografía</h2>
+                <p>{{ author.biography }}</p>
             </div>
             <aside>
-                <img src="/img/randomPerson.jpg" alt="" width="200px" height="300px" class="rounded">
+                <img :src="author.profile_url" alt="" width="200px" height="300px" class="rounded">
             </aside>
         </section>
         <section>
