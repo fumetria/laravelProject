@@ -8,18 +8,18 @@ defineProps({
 </script>
 
 <template>
-    <div class="bg-slate-100 flex flex-col w-full max-w-4xl mx-auto my-5 p-5 shadow">
+    <div class="bg-slate-100 flex flex-col w-full max-w-4xl rounded mx-auto my-5 p-5 shadow">
         <section class="flex justify-start text-3xl">
             <h2 class="capitalize">Autor del mes</h2>
         </section>
-        <section class="flex justify-between ">
+        <section class="flex justify-between gap-5 my-3">
             <div>
-                <h2 class="uppercase">{{ author.name }}</h2>
-                <h2>Biografía</h2>
+                <h2 class="uppercase font-bold text-cyan-600 mb-2">{{ author.name }}</h2>
+                <h2 class="underline">Biografía</h2>
                 <p>{{ author.biography }}</p>
             </div>
             <aside>
-                <img :src="author.profile_url" alt="" width="200px" height="300px" class="rounded">
+                <img :src="author.profile_url" alt="" class="rounded">
             </aside>
         </section>
         <section>

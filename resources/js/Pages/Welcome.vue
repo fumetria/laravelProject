@@ -41,7 +41,7 @@ const welcomeDescription = 'Accede a nuestro catálogo y encuentra el libro que 
                         <template #footer>
                             <div class="flex w-full justify-end">
                                 <PrimaryButton
-                                    class="bg-cyan-500 hover:bg-cyan-300 focus:bg-cyan-600 active:bg-cyan-800">Ir
+                                    class="bg-blue-500 hover:bg-blue-300 focus:bg-blue-600 active:bg-blue-800">Ir
                                     a Catálogo</PrimaryButton>
                             </div>
                         </template>
@@ -59,7 +59,7 @@ const welcomeDescription = 'Accede a nuestro catálogo y encuentra el libro que 
                         <template #footer>
                             <div class="flex w-full justify-end">
                                 <PrimaryButton
-                                    class="bg-cyan-500 hover:bg-cyan-300 focus:bg-cyan-600 active:bg-cyan-800">Ir
+                                    class="bg-blue-500 hover:bg-blue-300 focus:bg-blue-600 active:bg-blue-800">Ir
                                     a Eventos</PrimaryButton>
                             </div>
                         </template>
@@ -76,7 +76,7 @@ const welcomeDescription = 'Accede a nuestro catálogo y encuentra el libro que 
                         <template #footer>
                             <div class="flex w-full justify-end">
                                 <PrimaryButton
-                                    class="bg-cyan-500 hover:bg-cyan-300 focus:bg-cyan-600 active:bg-cyan-800">Ir
+                                    class="bg-blue-500 hover:bg-blue-300 focus:bg-blue-600 active:bg-blue-800">Ir
                                     a Comunidad</PrimaryButton>
                             </div>
                         </template>
