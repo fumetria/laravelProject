@@ -2,51 +2,51 @@
   {
     "author_name": "George Orwell",
     "biography": "George Orwell fue un escritor y periodista británico conocido por sus novelas distópicas como '1984' y 'Rebelión en la granja'. Su obra critica los totalitarismos y defiende la libertad individual. Vivió entre 1903 y 1950 y dejó una profunda huella en la literatura política del siglo XX.",
-    "profile_url":"/authors/george_orwell.webp"
+    "profile_url":"/storage/authors/george_orwell.webp"
   },
   {
     "author_name": "Harper Lee",
     "biography": "Harper Lee fue una escritora estadounidense célebre por su novela 'Matar a un ruiseñor', publicada en 1960. Su obra aborda el racismo y la injusticia social en el sur de Estados Unidos. Ganó el Premio Pulitzer y su libro es un clásico de la literatura norteamericana. Nació en 1926 y murió en 2016.",
-    "profile_url":"/authors/harper_lee.webp"
+    "profile_url":"/storage/authors/harper_lee.webp"
   },
   {
     "author_name": "F. Scott Fitzgerald",
     "biography": "F. Scott Fitzgerald fue un novelista estadounidense destacado del siglo XX. Es mejor conocido por 'El gran Gatsby', una crítica a la decadencia y el sueño americano durante los años 20. Nació en 1896 y murió en 1940. Su estilo elegante y visión crítica lo convirtieron en un icono literario de su época.",
-    "profile_url":"/authors/f_scott_fitzgerald.webp"
+    "profile_url":"/storage/authors/f_scott_fitzgerald.webp"
   },
   {
     "author_name": "Jane Austen",
     "biography": "Jane Austen fue una escritora británica del siglo XIX, famosa por novelas como 'Orgullo y prejuicio' y 'Emma'. Sus obras exploran temas de clase, matrimonio y la posición de la mujer en la sociedad de su tiempo. Nació en 1775 y murió en 1817, dejando un legado literario imperecedero.",
-    "profile_url":"/authors/jane_austen.webp"
+    "profile_url":"/storage/authors/jane_austen.webp"
   },
   {
     "author_name": "J.D. Salinger",
     "biography": "J.D. Salinger fue un escritor estadounidense, reconocido principalmente por su novela 'El guardián entre el centeno'. La obra refleja la alienación adolescente y se convirtió en un clásico moderno. Salinger vivió entre 1919 y 2010, y fue famoso también por su reclusión del ojo público tras el éxito de su libro.",
-    "profile_url":"/authors/jd_salinger.webp"   
+    "profile_url":"/storage/authors/jd_salinger.webp"   
   },
   {
     "author_name": "Aldous Huxley",
     "biography": "Aldous Huxley fue un escritor y filósofo británico conocido por su novela 'Un mundo feliz'. Su obra trata temas como la tecnología, el control social y la pérdida de valores humanos. Nació en 1894 y murió en 1963. Fue también un pensador crítico sobre la ciencia y el futuro de la civilización.",
-    "profile_url":"/authors/aldous_huxley.webp"
+    "profile_url":"/storage/authors/aldous_huxley.webp"
   },
   {
     "author_name": "Aditya Y. Bhargava",
     "biography": "Aditya Y. Bhargava es un desarrollador de software y autor especializado en enseñar informática de forma visual. Es conocido por su libro 'Algoritmos: Guía ilustrada para programadores y curiosos', donde explica conceptos complejos de programación de manera accesible y atractiva para principiantes y entusiastas de la tecnología.",
-    "profile_url":"/authors/aditya_y_bhargava.webp"     
+    "profile_url":"/storage/authors/aditya_y_bhargava.webp"
   },
   {
     "author_name": "J.R.R. Tolkien",
     "biography": "J.R.R. Tolkien fue un escritor, lingüista y académico británico, creador del legendario universo de la Tierra Media. Es autor de 'El hobbit' y 'El señor de los anillos'. Su obra sentó las bases de la fantasía moderna. Nació en 1892 y murió en 1973, siendo una figura clave en la literatura fantástica.",
-    "profile_url":"/authors/jrr_tolkien.webp"
+    "profile_url":"/storage/authors/jrr_tolkien.webp"
   },
   {
     "author_name": "Ray Bradbury",
     "biography": "Ray Bradbury fue un autor estadounidense célebre por sus obras de ciencia ficción y fantasía. Su novela más famosa, 'Fahrenheit 451', explora una sociedad opresiva donde los libros están prohibidos. Nació en 1920 y murió en 2012. Fue un defensor del pensamiento libre y de la imaginación como motor del cambio.",
-    "profile_url":"/authors/ray_bradbury.webp"      
+    "profile_url":"/storage/authors/ray_bradbury.webp"
   },
   {
     "author_name": "Fyodor Dostoevsky",
     "biography": "Fiódor Dostoyevski fue un novelista ruso considerado uno de los grandes maestros de la literatura universal. Autor de 'Crimen y castigo', exploró la psicología humana, la fe, el sufrimiento y la moral. Vivió entre 1821 y 1881, y su obra influyó profundamente en la filosofía y literatura del siglo XX.",
-    "profile_url":"/authors/fyodor_dostoevsky.webp"
+    "profile_url":"/storage/authors/fyodor_dostoevsky.webp"
   }
 ]

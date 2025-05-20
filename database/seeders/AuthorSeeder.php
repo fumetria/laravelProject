@@ -13,17 +13,17 @@ class AuthorSeeder extends Seeder
      */
     public function run(): void
     {
-        $json = file_get_contents(base_path('/data_example/books.json'));
+        $json = file_get_contents(base_path('/data_example/authors.json'));
         if ($json === false){
             echo "Error al obtener datos";
         
         } else {
-            $books = json_decode($json, true);
-            foreach ($books as $book) {
+            $authors = json_decode($json, true);
+            foreach ($authors as $author) {
                 $newAuthor = new Author();
-                $newAuthor->name = $book['author_name'];
-                $newAuthor->biography = $book['biography'];
-                $newAuthor->profile_url = $book['profile_url'];
+                $newAuthor->name = $author['author_name'];
+                $newAuthor->biography = $author['biography'];
+                $newAuthor->profile_url = $author['profile_url'];
                 $newAuthor->save();
             }
         }
