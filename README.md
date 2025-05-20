@@ -60,7 +60,7 @@ npm run build
 Abrimos una nueva terminal
 
 ```bash
-php artisan migrate:fresh -seed
+php artisan migrate:fresh --seed
 php artisan serve
 ```
 
@@ -85,9 +85,15 @@ user1234
 -   Sistema de alta de libros funcional.
 -   Sistema de gestión de prestamos funcional.
 
+## Generación de etiquetas con código de barras de los libros
 
+Mediante el modulo *milon/barcode* podemos generar una etiqueta con el código de barras del libro. Con esta etiqueta, podemos imprimir la en una impresora de etiquetas para pegar en el libro correspondiente.
 
 ### TODO
+
+- Sistema para la impresión de etiquetas e impresión en impresoras de etiquetas.
+
+## TODO
 
 -   Crear vista para usuarios(no registrados)
 -   Vista modificar permisos de usuarios ✔ [+info](/docs/BanUnbanUsers.md)

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Milon\Barcode\DNS1D;
 
 class BookControllerApi extends Controller
 {
@@ -93,5 +94,14 @@ class BookControllerApi extends Controller
             // }
             return response()->json($book);
         }
+    }
+
+    public function getBarcode($id_isbn)
+    {
+        $dns1d = new DNS1D();
+        $barcode = $dns1d->getBarcodeSVG($id_isbn, 'EAN13', 2, 40,);
+        return  [
+            'barcode' => $barcode,
+        ];
     }
 }
