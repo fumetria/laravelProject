@@ -40,9 +40,9 @@ const welcomeDescription = 'Accede a nuestro catálogo y encuentra el libro que 
                         </template>
                         <template #footer>
                             <div class="flex w-full justify-end">
-                                <PrimaryButton
-                                    class="bg-blue-500 hover:bg-blue-300 focus:bg-blue-600 active:bg-blue-800">Ir
-                                    a Catálogo</PrimaryButton>
+                                <button
+                                    class="inline-flex items-center px-4 py-2 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest bg-cyan-800 hover:bg-cyan-700 focus:bg-cyan-700 active:bg-cyan-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 transition ease-in-out duration-150">Ir
+                                    a Catálogo</button>
                             </div>
                         </template>
                     </FeatureSection>
@@ -58,9 +58,9 @@ const welcomeDescription = 'Accede a nuestro catálogo y encuentra el libro que 
                         </template>
                         <template #footer>
                             <div class="flex w-full justify-end">
-                                <PrimaryButton
-                                    class="bg-blue-500 hover:bg-blue-300 focus:bg-blue-600 active:bg-blue-800">Ir
-                                    a Eventos</PrimaryButton>
+                                <button
+                                    class="inline-flex items-center px-4 py-2 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest bg-cyan-800 hover:bg-cyan-700 focus:bg-cyan-700 active:bg-cyan-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 transition ease-in-out duration-150">Ir
+                                    a Eventos</button>
                             </div>
                         </template>
                     </FeatureSection>
@@ -75,9 +75,9 @@ const welcomeDescription = 'Accede a nuestro catálogo y encuentra el libro que 
                         </template>
                         <template #footer>
                             <div class="flex w-full justify-end">
-                                <PrimaryButton
-                                    class="bg-blue-500 hover:bg-blue-300 focus:bg-blue-600 active:bg-blue-800">Ir
-                                    a Comunidad</PrimaryButton>
+                                <button
+                                    class="inline-flex items-center px-4 py-2 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest bg-cyan-800 hover:bg-cyan-700 focus:bg-cyan-700 active:bg-cyan-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:opacity-50 transition ease-in-out duration-150">Ir
+                                    a Comunidad</button>
                             </div>
                         </template>
                     </FeatureSection>
