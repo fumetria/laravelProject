@@ -46,6 +46,7 @@ php artisan key:generate
 php artisan storage:link
 
 cp -r public/img/covers/ storage/app/public/covers/
+cp -r public/img/authors/ storage/app/public/authors/
 ```
 
 Ejecutamos script dev
@@ -95,8 +96,22 @@ Mediante el modulo *milon/barcode* podemos generar una etiqueta con el código d
 
 ## TODO
 
--   Crear vista para usuarios(no registrados)
+-   Crear vista para usuarios(no registrados) (Welcome  ✔, catálogo  ✔, comunidad, eventos, otros )
+-   En vista listado de usuarios, añadir:
+    - Mostrar detalle de usuario
+    - Actualizar datos de usuario
+    - Eliminar usarios
 -   Vista modificar permisos de usuarios ✔ [+info](/docs/BanUnbanUsers.md)
+    - Terminar funcionalidades de panel de permisos (is_employee, is_admin)
 -   Mejorar interfaz
 -   Crear vista con historial de libros en el perfil del usuario
 -   Crear sistema de notificaciones
+-   Crear sistema de reserva de libros
+-   Crear sistema de notificación de demoras de devoluciones para los empleados
+    - Desplegable con lista de las distintas incidencias
+    - Al clicar una incidencia muestra datos de contacto del cliente
+    - Posibilidad de marcar como incidencia resuelta
+    - CRM de estado de la incidencia
+-   Crear sistema comunidad (Blogs personales, foro o micromensajes tipo Twitter?)
+-   Calendario de eventos (Añadir eventos, enviar newsletter...)
+
