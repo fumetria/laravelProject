@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BookController;
-use App\Http\Controllers\BookControllerApi;
 use App\Http\Controllers\LoanController;
 use App\Models\Book;
 use App\Models\Author;
@@ -18,13 +17,12 @@ use Milon\Barcode\DNS1D;
 use Milon\Barcode\DNS2D;
 
 Route::get('/', function () {
-    return redirect('/catalog');
+    return redirect('/welcome');
 });
 
 Route::get('/catalog', function () {
     return Inertia::render('CatalogView');
 })->name('catalog');
-
 
 Route::get('/welcome', function () {
     $author = Author::get()->random();
@@ -32,17 +30,6 @@ Route::get('/welcome', function () {
         'author' => $author,
     ]);
 })->name('welcome');
-
-Route::get('/barcode-test', function () {
-    $book = Book::get()->first();
-    $dns1d = new DNS1D();
-    $barcode = $dns1d->getBarcodeSVG($book->id_isbn, 'EAN13', 2, 40,);
-    return Inertia::render('BarcodeTest', [
-        'barcode' => $barcode,
-        'book' => $book
-    ]);
-});
-
 
 Route::middleware([
     'auth:sanctum',
@@ -129,7 +116,7 @@ Route::middleware([
     })->name('usersList');
     Route::patch('/update/user/is-active/{id}', [UserController::class, 'updateIsActive'])->name('updateIsActive');
     /**
-     *
+     *Statics
      */
     Route::get('/statics', function () {
         if (auth()->user()->is_admin == 1)
@@ -140,16 +127,40 @@ Route::middleware([
                 'loans' => Loan::get()->count(),
             ]);
     })->name('statics');
-    Route::get('/loans/examen', function () {
-        if (auth()->user()->is_admin == 1) {
-            // $loans = Loan::get();
-            // $loansOrdered = usort($loans, function ($a, $b) {
-            //     return Carbon::createFromFormat('Y-m-d H:i:s.u', $a->updated_at)->gt(Carbon::createFromFormat('Y-m-d H:i:s.u', $b->updated_at));
-            // });
-            return Inertia::render('Loans/LoansListExamenView', [
-                'loans' => Loan::oldest('updated_at')->get(),
-                // 'loans' => $loansOrdered,
-            ]);
-        }
-    })->name('loansExamen');
 });
+
+/**
+ * For testing
+ */
+
+// Route::get('/barcode-test', function () {
+//     $book = Book::get()->first();
+//     $dns1d = new DNS1D();
+//     $barcode = $dns1d->getBarcodeSVG($book->id_isbn, 'EAN13', 2, 40,);
+//     return Inertia::render('BarcodeTest', [
+//         'barcode' => $barcode,
+//         'book' => $book
+//     ]);
+// });
+
+// Route::middleware([
+//     'auth:sanctum',
+//     config('jetstream.auth_session'),
+//     'verified',
+// ])->group(function (){
+//         Route::get('/loans/examen', function () {
+//             if (auth()->user()->is_admin == 1) {
+//                 $loans = Loan::get();
+//                 $loansOrdered = usort($loans, function ($a, $b) {
+//                     return Carbon::createFromFormat('Y-m-d H:i:s.u', $a->updated_at)->gt(Carbon::createFromFormat('Y-m-d H:i:s.u', $b->updated_at));
+//                 });
+//                 return Inertia::render('Loans/LoansListExamenView', [
+//                     'loans' => Loan::oldest('updated_at')->get(),
+//                     'loans' => $loansOrdered,
+//                 ]);
+//             }
+//         })->name('loansExamen');
+//     }
+// );
+
+   
