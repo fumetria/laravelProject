@@ -27,11 +27,11 @@ const welcomeDescription = 'Accede a nuestro catálogo y encuentra el libro que 
         <section class="bg-slate-200">
             <WelcomeHeader :welcome-title="welcomeTitle" :welcome-description="welcomeDescription"></WelcomeHeader>
             <AuthorOfTheMonth :author="author"></AuthorOfTheMonth>
-            <section class="py-5 px-5 rounded-xl">
-                <div class="rounded-xl">
+            <section class="py-5 px-5 flex justify-center">
+                <div class="bg-slate-100 rounded w-fit">
                     <FeatureSection>
                         <template #title>
-                            <h2>Nuestro catálogo</h2>
+                            Nuestro catálogo
                         </template>
                         <template #content class="">
                             <img src="/img/welcome/catalog-img.webp" alt="Imagen de una biblioteca" width="400px"
@@ -88,7 +88,6 @@ const welcomeDescription = 'Accede a nuestro catálogo y encuentra el libro que 
                         </template>
                     </FeatureSection>
                 </div>
-
             </section>
         </section>
 
