@@ -356,11 +356,7 @@ const logout = () => {
             </main>
 
             <!-- Page Footer-->
-            <!-- <footer class="bg-white border-t border-gray-100 text-sm shadow">
-                <div v-if="$page.props.auth.user != null">
-                    Usuario: {{ $page.props.auth.user.id }} - {{ $page.props.auth.user.name }}
-                </div>
-            </footer> -->
+
             <footer class="text-sm text-white shadow w-full pt-2">
                 <!-- footer for employees -->
                 <div v-if="$page.props.auth.user?.is_employee" class="bg-white text-gray-800 px-2 py-1">
