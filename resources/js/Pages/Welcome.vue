@@ -6,6 +6,7 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import Banner from '@/Components/Banner.vue';
 import FeatureSection from '@/Components/FeatureSection.vue';
 import WelcomeHeader from '@/Components/WelcomeHeader.vue';
+import SecondaryNavBar from '@/Components/SecondaryNavBar/SecondaryNavBar.vue';
 
 defineProps({
     author: Object,
@@ -21,6 +22,8 @@ const welcomeDescription = 'Accede a nuestro catálogo y encuentra el libro que 
         <!-- <template #header>
             <h1 class="font-semibold text-3xl text-gray-800 leading-tight">Bienvenido</h1>
         </template> -->
+        <SecondaryNavBar>
+        </SecondaryNavBar>
         <section class="bg-slate-200">
             <WelcomeHeader :welcome-title="welcomeTitle" :welcome-description="welcomeDescription"></WelcomeHeader>
             <AuthorOfTheMonth :author="author"></AuthorOfTheMonth>
