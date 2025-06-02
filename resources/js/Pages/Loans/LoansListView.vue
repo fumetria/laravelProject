@@ -23,7 +23,7 @@ defineProps({
 
         </template>
         <section class=" my-4 mx-5 ">
-            <table class="items-center w-full py-3 border-collapse border-neutral-800 ">
+            <table class="items-center bg-slate-50 w-full py-3 border-collapse border-neutral-800 ">
                 <thead class="bg-cyan-200 py-3 px-4">
                     <tr class="border-collapse border border-neutral-800 text-blueGray-500">
                         <th class="text-neutral-500 py-2 px-2">ID</th>

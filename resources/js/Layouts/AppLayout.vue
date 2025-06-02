@@ -30,7 +30,7 @@ const logout = () => {
 </script>
 
 <template>
-    <div class="flex flex-col h-screen bg-gray-100">
+    <div class="flex flex-col h-screen w-screen bg-gray-100">
 
         <Head :title="title" />
 
