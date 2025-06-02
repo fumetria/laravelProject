@@ -63,6 +63,19 @@ const form = useForm({
                             <input type="text" v-model="form.name" id="name" placeholder="Nombre autor"
                                 class="rounded w-96" required>
                         </div>
+                                                <div class="flex flex-col my-2 justify-between">
+                            <label for="name" class="font-bold text-white">BIOGRAFIA</label>
+                            <input type="text" v-model="form.biography" id="biography" placeholder="Biografía del autor"
+                                class="rounded w-96" maxlength="2048" required>
+                                                            <textarea maxlength="2048" v-model="form.biography" id="biography" placeholder="Biografía del autor" required></textarea>
+                        </div>
+                                                <div class="flex flex-col my-2 justify-between">
+                            <label for="name" class="font-bold text-white">NOMBRE</label>
+                            <input type="text" v-model="form.name" id="name" placeholder="Nombre autor"
+                                class="rounded w-96" required>
+
+
+                        </div>
                         <PrimaryButton type="submit"
                             class="flex flex-col my-2 justify-between bg-orange-600  hover:bg-orange-400"
                             :disabled="form.processing">
