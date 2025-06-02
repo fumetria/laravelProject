@@ -7,6 +7,9 @@ import axios from 'axios';
 
 const form = useForm({
     name: ref(''),
+    biography: ref(''),
+    profile_photo: ref(null),
+    profile_url: ref(''),
 })
 
 // const isLoading = ref(false);
@@ -55,24 +58,30 @@ const form = useForm({
             </h1>
         </template>
         <section class=" w-full">
-            <div class="py-4 px-4 mx-auto my-10 rounded-xl max-w-2xl lg:py-4 bg-emerald-600">
+            <div class="py-4 mx-auto my-10 rounded-xl max-w-2xl lg:py-4 bg-emerald-600">
+
                 <form @submit.prevent="form.post('/authors/store')">
                     <div class="container flex flex-col items-center justify-center">
+                        <section>
+                            <h1 class="uppercase text-white font-bold text-left text-xl ">Nuevo Autor</h1>
+                        </section>
                         <div class="flex flex-col my-2 justify-between">
                             <label for="name" class="font-bold text-white">NOMBRE</label>
                             <input type="text" v-model="form.name" id="name" placeholder="Nombre autor"
                                 class="rounded w-96" required>
                         </div>
-                                                <div class="flex flex-col my-2 justify-between">
+                        <div class="flex flex-col my-2 justify-between">
                             <label for="name" class="font-bold text-white">BIOGRAFIA</label>
-                            <input type="text" v-model="form.biography" id="biography" placeholder="Biografía del autor"
-                                class="rounded w-96" maxlength="2048" required>
-                                                            <textarea maxlength="2048" v-model="form.biography" id="biography" placeholder="Biografía del autor" required></textarea>
+                            <!-- <input type="text" v-model="form.biography" id="biography" placeholder="Biografía del autor"
+                                class="rounded w-96" maxlength="2048" required> -->
+                            <textarea maxlength="2048" v-model="form.biography" id="biography"
+                                placeholder="Biografía del autor" class="rounded w-96 field-sizing-content" cols="20"
+                                rows="6" required></textarea>
                         </div>
-                                                <div class="flex flex-col my-2 justify-between">
-                            <label for="name" class="font-bold text-white">NOMBRE</label>
-                            <input type="text" v-model="form.name" id="name" placeholder="Nombre autor"
-                                class="rounded w-96" required>
+                        <div class="flex flex-col my-2 justify-between">
+                            <label for="name" class="font-bold text-white">IMAGEN PERFIL</label>
+                            <input type="file"  id="profile_photo" placeholder="Inserte imagen de perfil"
+                                class="rounded w-96 bg-white" required>
 
 
                         </div>
