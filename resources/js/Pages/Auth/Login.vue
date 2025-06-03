@@ -8,6 +8,7 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { computed } from 'vue';
+import ApplicationMark from '@/Components/ApplicationMark.vue';
 
 defineProps({
     canResetPassword: Boolean,
@@ -44,7 +45,7 @@ const flashError = computed(() => {
 
     <AuthenticationCard>
         <template #logo>
-            <AuthenticationCardLogo />
+            <ApplicationMark/>
         </template>
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
