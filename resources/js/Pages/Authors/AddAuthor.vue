@@ -12,36 +12,12 @@ const form = useForm({
     profile_url: ref(''),
 })
 
-// const isLoading = ref(false);
-// const errorMessage = ref('');
-// watch(() => form.isbn, async (newIsbn) => {
-//     if (newIsbn > 10) {
-//         isLoading.value = true;
-//         errorMessage.value = '';
-//         try {
-//             const res = await axios.get(`/api/books/search/?query=${newIsbn}&filterType=isbn`);
-//             console.log(res);
-//             console.log(res.data[0]);
-//             if (res.data[0] != null) {
-//                 const book = res.data[0];
-//                 form.title = book.title;
-//                 form.genre = book.genre;
-//                 form.publisher = book.publisher;
-//                 form.author_id = book.author_id;
-//                 form.cover_url = book.cover_url;
-//             }
-//         } catch (error) {
-//             if (error.response && error.response.status === 404) {
-//                 errorMessage.value = 'No se encontró ningún libro con este ISBN.';
-//             } else {
-//                 errorMessage.value = 'Ocurrió un error al buscar el ISBN.';
-//             }
-//         } finally {
-//             isLoading.value = false;
-//         }
-//     }
-
-// })
+const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+        form.cover = file;
+    }
+}
 </script>
 
 
@@ -69,21 +45,20 @@ const form = useForm({
                             <label for="name" class="font-bold text-white">NOMBRE</label>
                             <input type="text" v-model="form.name" id="name" placeholder="Nombre autor"
                                 class="rounded w-96" required>
+                            <div v-if="form.errors.name" class="text-red-500">{{ form.errors.name }}</div>
                         </div>
                         <div class="flex flex-col my-2 justify-between">
                             <label for="name" class="font-bold text-white">BIOGRAFIA</label>
-                            <!-- <input type="text" v-model="form.biography" id="biography" placeholder="Biografía del autor"
-                                class="rounded w-96" maxlength="2048" required> -->
                             <textarea maxlength="2048" v-model="form.biography" id="biography"
                                 placeholder="Biografía del autor" class="rounded w-96 field-sizing-content" cols="20"
                                 rows="6" required></textarea>
+                            <div v-if="form.errors.biography" class="text-red-500">{{ form.errors.biography }}</div>
                         </div>
                         <div class="flex flex-col my-2 justify-between">
                             <label for="name" class="font-bold text-white">IMAGEN PERFIL</label>
-                            <input type="file"  id="profile_photo" placeholder="Inserte imagen de perfil"
-                                class="rounded w-96 bg-white" required>
-
-
+                            <input type="file" @change="handleFileChange"  id="profile_photo" placeholder="Inserte imagen de perfil"
+                                class="rounded w-96 bg-white" accept=".jpg,.jpeg,.png,.webp" required>
+                            <div v-if="form.errors.profile_photo" class="text-red-500">{{ form.errors.profile_photo }}</div>
                         </div>
                         <PrimaryButton type="submit"
                             class="flex flex-col my-2 justify-between bg-orange-600  hover:bg-orange-400"
