@@ -54,8 +54,6 @@ const handleFileChange = (event) => {
     if (file) {
         form.cover = file;
     }
-    console.log(event.target.files[0]);
-    console.log(form.cover.value);
 }
 
 </script>
@@ -135,15 +133,3 @@ const handleFileChange = (event) => {
         </section>
     </AppLayout>
 </template>
-<!-- <script>
-methods: {
-    handleFileChange(event) {
-        this.form.cover = event.target.files[0];
-    },
-    submitForm() {
-        this.form.post('/books/store', {
-            forceFormData: true
-        });
-    }
-}
-</script> -->
