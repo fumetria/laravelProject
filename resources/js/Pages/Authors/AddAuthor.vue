@@ -51,13 +51,13 @@ const handleFileChange = (event) => {
                             <label for="name" class="font-bold text-white">BIOGRAFIA</label>
                             <textarea maxlength="2048" v-model="form.biography" id="biography"
                                 placeholder="Biografía del autor" class="rounded w-96 field-sizing-content" cols="20"
-                                rows="6" required></textarea>
+                                rows="6" ></textarea>
                             <div v-if="form.errors.biography" class="text-red-500">{{ form.errors.biography }}</div>
                         </div>
                         <div class="flex flex-col my-2 justify-between">
                             <label for="name" class="font-bold text-white">IMAGEN PERFIL</label>
                             <input type="file" @change="handleFileChange"  id="profile_photo" placeholder="Inserte imagen de perfil"
-                                class="rounded w-96 bg-white" accept=".jpg,.jpeg,.png,.webp" required>
+                                class="rounded w-96 bg-white" accept=".jpg,.jpeg,.png,.webp" >
                             <div v-if="form.errors.profile_photo" class="text-red-500">{{ form.errors.profile_photo }}</div>
                         </div>
                         <PrimaryButton type="submit"

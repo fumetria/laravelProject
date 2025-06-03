@@ -13,7 +13,7 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        //
+        return Author::get();
     }
 
     /**
@@ -29,8 +29,15 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
+        $validate = $request->validate([
+            'name' => ['required', 'string', 'max:128'],
+            'biography' => ['nullable', 'string', 'max:2048'],
+            'profile_url' => ['nullable', 'string', 'max:128'],
+        ]);
         $author = new Author();
         $author->name = $request->name;
+        $author->biography = $request->biography;
+        $author->profile_url = $request->profile_url;
         $author->save();
 
         return redirect()->route('newBook');
