@@ -71,7 +71,7 @@ Route::middleware([
      * ROUTES FOR AUTHORS
      */
     Route::get('/authors', function () {
-        return Inertia::render('Authors/AuthorIndex',  [
+        return Inertia::render('Authors/AuthorsIndex',  [
             'authors' => Author::get()
         ]);
     })->name('authors');
@@ -162,5 +162,3 @@ Route::middleware([
 //         })->name('loansExamen');
 //     }
 // );
-
-   
