@@ -15,7 +15,7 @@ const form = useForm({
 const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-        form.cover = file;
+        form.profile_photo = file;
     }
 }
 </script>

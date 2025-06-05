@@ -32,15 +32,23 @@ class AuthorController extends Controller
         $validate = $request->validate([
             'name' => ['required', 'string', 'max:128'],
             'biography' => ['nullable', 'string', 'max:2048'],
+            'profile_photo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:2048'],
             'profile_url' => ['nullable', 'string', 'max:128'],
         ]);
+        $profile_photo_path = null;
+        if (!is_null($request->file('profile_photo'))) {
+            $validate['profile_photo'] = $request->file('profile_photo')->storeAs('profile_photos', $request->name . '.' . $request->file('profile_photo')->extension(), 'public');
+            $profile_photo_path = $request->file('profile_photo')->storeAs('profile_photos', $request->name . '.' . $request->file('profile_photo')->extension(), 'public');
+        }
         $author = new Author();
         $author->name = $request->name;
         $author->biography = $request->biography;
-        $author->profile_url = $request->profile_url;
+        if(!is_null($profile_photo_path)){
+            $author->profile_url = $profile_photo_path;
+        }
         $author->save();
 
-        return redirect()->route('newBook');
+        return redirect()->route('authors');
     }
 
     /**
