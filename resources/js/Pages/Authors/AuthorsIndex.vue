@@ -10,7 +10,7 @@ defineProps({
 </script>
 
 <template>
-    <AppLayout class="h-screen">
+    <AppLayout class="h-screen" title="Autores">
         <section class="w-full flex justify-center items-center">
             <table class="bg-slate-50">
                 <thead class="bg-emerald-400 text-white">
@@ -29,10 +29,10 @@ defineProps({
                         <td class="px-2 py-1 text-center">
                             <div class="flex gap-1 items-center">
                                 <PrimaryButton>
-                                    <font-awesome-icon :icon="['fas', 'edit']" class="z-50 text-l  text-stone-50" />
+                                    <font-awesome-icon :icon="['fas', 'eye']" class="z-50 text-l  text-stone-50" />
                                 </PrimaryButton>
                                 <SecondaryButton>
-                                    <font-awesome-icon :icon="['fas', 'trash-alt']" class="z-50 text-l text-stone-50" />
+                                    <font-awesome-icon :icon="['fas', 'edit']" class="z-50 text-l text-stone-50" />
                                 </SecondaryButton>
                                 <DangerButton>
                                     <font-awesome-icon :icon="['fas', 'trash-alt']" class="z-50 text-l text-stone-50" />
