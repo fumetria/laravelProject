@@ -16,19 +16,8 @@ defineProps({
 
 
 <template>
-    <AppLayout title="Listado Libros">
+    <AppLayout title="Estadisticas">
         <template #header>
-            <div class="box-border flex justify-between content-center items-center">
-                <h1 class="font-semibold text-4xl text-gray-800 leading-tight">
-                    Listado Libros
-                </h1>
-                <a :href="route('newBook')">
-                    <PrimaryButton>
-                        <font-awesome-icon :icon="['fas', 'plus']" class="z-50 text-xl text-stone-50" />
-                    </PrimaryButton>
-                </a>
-            </div>
-
         </template>
         <section class="bg-stone-900 my-4 mx-5 ">
             <table class="items-center w-full py-3 border-collapse border-neutral-800 bg-stone-50">
