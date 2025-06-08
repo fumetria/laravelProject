@@ -50,11 +50,11 @@ const printBarcode = () => {
             </div>
 
         </template>
-        <section class="bg-stone-900 my-4 mx-5 overflow-scroll overflow-y-auto ">
+        <section class="my-4 mx-5 overflow-scroll overflow-y-auto ">
             <div>
                 <h2>{{ newBookMsg }}</h2>
             </div>
-            <table class="items-center w-full py-3 border-collapse border-neutral-800 bg-stone-50">
+            <table class="items-center w-full border-collapse bg-slate-50">
                 <thead class="bg-emerald-600 py-3 px-4 border-collapse border border-neutral-800 text-blueGray-500">
                     <tr class="">
                         <th rowspan="2" class="text-stone-100 py-2 px-2">ID_ISBN</th>
@@ -80,8 +80,8 @@ const printBarcode = () => {
                         <td class="p-2 text-wrap">{{ book.title }}</td>
                         <td class="p-2 text-center">{{ book.genre }}</td>
                         <td class="p-2">{{ book.publisher }}</td>
-                        <td class="p-2">{{ book.author_id }}</td>
-                        <td class="p-2" :class="estado(book.status)">{{
+                        <td class="p-2 text-center">{{ book.author_id }}</td>
+                        <td class="p-2 text-center" :class="estado(book.status)">{{
                             book.status
                         }}</td>
                         <td class="p-2 text-center">{{ book.location_floor }}</td>
