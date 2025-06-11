@@ -9,18 +9,18 @@ defineProps({
 
 <template>
     <div class="bg-slate-100 flex flex-col w-full max-w-4xl rounded mx-auto my-5 p-5 shadow">
-        <section class="flex justify-start text-3xl">
-            <h2 class="capitalize">Autor del mes</h2>
+        <section class="flex justify-start text-3xl border-b-2 border-b-cyan-700">
+            <h2 class="capitalize text-cyan-700">Autor del mes</h2>
         </section>
         <section class="flex justify-between gap-5 my-3">
-            <div class="mx-auto">
+            <div class="">
                 <h2 class="uppercase font-bold text-cyan-600 my-2">{{ author.name }}</h2>
                 <h2 class="underline my-2">Biografía</h2>
                 <p class="text-wrap">{{ author.biography }}</p>
-                <h3 class="my-2 underline">Bibliografía</h3>
+                <!-- <h3 class="my-2 underline">Bibliografía</h3> -->
             </div>
-            <aside class="">
-                <img :src="author.profile_url" alt="" class="rounded object-cover w-100 h-100">
+            <aside class="flex justify-center items-center">
+                <img :src="author.profile_url" alt="" class="rounded">
             </aside>
         </section>
         <section>
